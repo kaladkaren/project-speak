@@ -1,67 +1,365 @@
-
-# RestIgniter CRUD / Headless CMS
+# Project Speak API
 [![Bless](https://cdn.rawgit.com/LunaGao/BlessYourCodeTag/master/tags/sakyamuni.svg)](http://lunagao.github.io/BlessYourCodeTag/)
 [![Bless](https://cdn.rawgit.com/LunaGao/BlessYourCodeTag/master/tags/fsm.svg)](http://lunagao.github.io/BlessYourCodeTag/)
 
-### About RestIgniter CRUD
-A fork of [CodeIgniter Rest Server](https://github.com/chriskacerguis/codeigniter-restserver) that has been enhanced for ease of use mainly CRUD operations for developing your own RESTful API. This project will also include a CMS in the future versions.
+## Table of contents
+1. [Register device ID](#register-device-id)
+1. [Members](#members)
+    1. [Get all internal members](#get-all-internal-members)
+1. [Divisions](#divisions)
+    1. [Get all divisions](#get-all-divisions)
+1. [Departments](#departments)
+    1. [Get all departments](#get-all-departments)
+1. [Sub agencies](#sub-agencies)
+    1. [Get all sub agencies](#get-all-sub-agencies)
+    1. [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id)
+1. [Rateables](#rateables)
+    1. [Get all services](#get-all-services)
+    1. [Get all experience](#get-all-experience)
+    1. [Get all people](#get-all-people)
+1. [Ratings](#ratings)
+    1. [Submit a rating](#submit-a-rating)
 
-## Requirements
-+ PHP 5.6 or greater
-
-## Dependencies
-+ [PHP dotenv for codeigniter](https://github.com/agungjk/phpdotenv-for-codeigniter)
-
-## Setup
-This project utilizes [PHP dotenv for codeigniter](https://github.com/agungjk/phpdotenv-for-codeigniter) and it's the only thing you need to edit aside from *creating a database*. The default mode of this application is set to `development`. Therefore, you should create a `.env.development` file in your project root. You can copy the `.env.development.example` provided at the root directory as well.
-
-+ Step 1: Create a `.env.development` file at the project root. You can copy the values from  `.env.development.example` as an example and then fill out the necessary information
-+ Step 2: Create a database depending on the `DB_NAME` you setup at the `.env.development`. The default one is `restcrud`, so if you're going to change that (which is most definitely you will), then create a database with the same name.
-+ Step 3: That's it! You've now successfully setup this headless CMS. You can now move on to **Migrations**.
-
-## Migrations
-
-Migrations are automatically enabled in the `.env.development` file (if you copy the default values from the example). Though I recommend to set `MIGRATION_ENABLED=` to `FALSE` when your application is in _production mode_ or after you have migrated your database.
-
-### How to create your own Migrations
-
-First if all, migrations can be found in the `application/migrations/` folder. Inside that folder, you can find `application/migrations/example`. Those are migrations that I previously used from other projects. You can take the liberty to copy them or use them as a reference.
-
-Moving on, here's how you create your own migration files:
-
-+ **Step 1**: Create a new file in the `application/migrations` folder
-+ **Step 2**: The file name must follow the pattern of `YYYYMMDDHHIISS_migration_name`.
-
-**NOTE:** The datetime in the migration you want to create should be *later* than the last one you created.  
-**For example**, if your last file is `20170604120500_crud_table`, then you should do something like `20170604120501_another_table` (this one is one second later) or `20180625000000_another_table` (the date today). Either will work just fine.
-
-+ **Step 3**: Refactor the `class name` of the newly created migration. Following our example, it should be `Migration_migration_name`.
-+ **Step 4**: Refactor the table names and field names in the migration as you see fit. You can always use the example migrations as reference if necessary.
+---
 
 
-### How to use migrations
-This repo comes with a Migration controller by default. You can add more commands to the controller as you wish. You can find it in the `application/controllers` folder.
+### Register device ID
+POST `/stations`  
+**NOTE:** At the very first launch of the app, the device ID should be sent to the API. This is used to differentiate `experience`, `services`, and `people` from other stations
 
-Here are the built-in commands that comes with this repo. Replace `http://localhost/your_site` with your base url.
+#### Payload
 
-
-* __Latest__  
-`http://localhost/your_site/migrate`
-`http://localhost/your_site/migrate/latest`  
-Access this in your browser to perform your migrations to the latest available migration.
-* __Reset__   
-`http://localhost/your_site/migrate/reset`  
-Use this to roll back all migrations. (Usually removes all data in the database)
-* __Refresh__  
-`http://localhost/your_site/migrate/refresh`  
-Perform `reset` then `latest`
+|      Name      | Required |   Type    |    Description    |    Sample Data 
+|----------------|----------|-----------|-------------------|-----------------------
+|    device_id   |  yes     |  string   |        -          |    1234asdzxcvbn 
+|  device_name   |  yes     |  string   | name of the device that will appear in admin backend | HR's tablet
 
 
-## Development reminders
-+ Make sure you customize your `application/config/routes.php` and set up your API routes there manually since Codeigniter uses the _magic routing_. Most of the time, you will have to have more control in your routes for a more pragmatic RESTful design.
-+ In uploading, you can set your `DEFAULT_FOLDER_PERMISSIONS` constant in `application/config/constants.php`
+#### Response
+```javascript
+200 OK
 
-## TODO:
-[x] Integrate create folder in core upload class  
-[ ] Documentation of MY_Controller
-[ ] Documentation of MY_Model
+{
+	"data" : {},
+	"meta" : {
+		"message": "Successfully registered device",
+		"status": 201,
+		"code": "ok"
+	}
+}
+```
+
+
+---
+
+
+
+## Note  
+All endpoints that follows *MUST* include a `DEVICE-ID` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
+
+#### Response
+```javascript
+403 Forbidden
+
+{
+	"data" : {},
+	"meta" : {
+		"message": "Station not yet assigned. Please contact your administrator for more details.",
+		"status": 403,
+		"code": "forbidden"
+	}
+}
+```
+
+If the device id is not yet registered, the message will change.  
+
+#### Response
+```javascript
+403 Forbidden
+
+{
+	"data" : {},
+	"meta" : {
+		"message": "Device ID not yet registered.",
+		"status": 403,
+		"code": "forbidden"
+	}
+}
+```
+
+## Members
+### Get all internal members  
+GET `/members/internal`
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : [
+		{"id": 1, "full_name":"Attraglaitz, Magen Rigel"},
+		{"id": 2, "full_name":"Attraglaitz, Elysid Zestrial"},
+		{"id": 3, "full_name":"Burne, Myrtle"}
+	],
+	"meta":{
+		"message":"Got all data",
+		"status": 200,
+		"code": "ok"
+		"station": {
+			"station_id": 1,
+			"station_name": "First floor station"
+		}
+	}
+}
+```
+
+## Divisions
+### Get all divisions
+GET `/divisions`
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : [
+		{"id": 1, "name":"Division 1"},
+		{"id": 2, "name":"Division 2"},
+		{"id": 3, "name":"Division 3"},
+		{"id": 4, "name":"Division 4"}
+	],
+	"meta":{
+		"message":"Got all data",
+		"status": 200,
+		"code": "ok"
+		"station": {
+			"station_id": 1,
+			"station_name": "First floor station"
+		}
+	}
+}
+```
+
+## Departments 
+### Get all departments
+GET `/departments`
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : [
+		{"id":1,"name":"Department 1"},
+		{"id":2,"name":"Department 2"},
+		{"id":3,"name":"Department 3"},
+		{"id":4,"name":"Department 4"}
+	],
+	"meta":{
+		"message":"Got all data",
+		"status": 200,
+		"code": "ok"
+		"station": {
+			"station_id": 1,
+			"station_name": "First floor station"
+		}
+	}
+}
+```
+
+## Sub agencies
+### Get all sub agencies
+GET `/sub_agencies`
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : [
+		{"id":1, "department_id":1, "name":"Sub agency 1"},
+		{"id":2, "department_id":2, "name":"Sub agency 2"},
+		{"id":3, "department_id":2, "name":"Sub agency 3"},
+		{"id":4, "department_id":3, "name":"Sub agency 4"}
+	],
+	"meta":{
+		"message":"Got all data",
+		"status": 200,
+		"code": "ok"
+		"station": {
+			"station_id": 1,
+			"station_name": "First floor station"
+		}
+	}
+}
+```
+
+
+### Get all sub agencies by department id
+GET `/sub_agencies/department/:department_id`
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : [
+		{"id":2, "department_id":2, "name":"Sub agency 2"},
+		{"id":3, "department_id":2, "name":"Sub agency 3"}
+	],
+	"meta":{
+		"message":"Got all data",
+		"status": 200,
+		"code": "ok"
+		"station": {
+			"station_id": 1,
+			"station_name": "First floor station"
+		}
+	}
+}
+```
+
+## Rateables
+
+### Get all experience
+GET `/rateables/experience`
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : [
+		{
+			"id":2,
+			"name": "Gold Experience", 
+			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"type": "experience",
+			"image_file": "lorem.jpeg",
+	    },
+	    {
+			"id":3,
+			"name": "Silver Chariot", 
+			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"type": "experience",
+			"image_file": "lorem.jpeg",
+	    }
+	],
+	"meta":{
+		"message":"Got all data",
+		"status": 200,
+		"code": "ok"
+		"station": {
+			"station_id": 1,
+			"station_name": "First floor station"
+		}
+	}
+}
+```
+
+### Get all services
+GET `/rateables/services`
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : [
+		{
+			"id":2,
+			"name": "Service of the Requiem", 
+			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"type": "services",
+			"image_file": "lorem.jpeg",
+	    },
+	    {
+			"id":3,
+			"name": "An Ode to the Melody", 
+			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"type": "services",
+			"image_file": "lorem.jpeg",
+	    }
+	],
+	"meta":{
+		"message":"Got all data",
+		"status": 200,
+		"code": "ok"
+		"station": {
+			"station_id": 1,
+			"station_name": "First floor station"
+		}
+	}
+}
+```
+
+## Rateables
+### Get all people
+GET `/rateables/people`
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : [
+		{
+			"id":2,
+			"name": "Godfrey Fvjyana", 
+			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"type": "people",
+			"image_file": "lorem.jpeg",
+	    },
+	    {
+			"id":2,
+			"name": "Seyn Daerz", 
+			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+			"type": "people",
+			"image_file": "lorem.jpeg",
+	    }
+	],
+	"meta":{
+		"message":"Got all data",
+		"status": 200,
+		"code": "ok"
+		"station": {
+			"station_id": 1,
+			"station_name": "First floor station"
+		}
+	}
+}
+```
+
+
+---
+
+
+## Ratings
+### Submit a rating
+POST `/ratings`  
+
+#### Payload
+
+|      Name              |  Required  |  Type     |           Description            |    Sample Data 
+|------------------------|------------|-----------|----------------------------------|------------------ 
+|  rateable_id           | yes        | number    | id of the one you will rate      |        1 
+|  rating                | yes        | number    | rating  1 (lowest) - 5 (highest) |        5 
+|  internal_member_id    | optional   | number    | if blank, will assume the request is from an external member | 123 / 0 / null
+| **- beyond this row are the parameters  used for external  member ratings. omit them if you have internal_member_id -**
+|  external_member_name  | optional   | string    | name of the external member      | 'John Doe'
+|  department_id         | optional   | number    | department id of the external member | 1 
+|  sub_agency_id         | optional   | number    | sub agency id of the external member | 2
+
+#### Response
+```javascript
+200 OK
+
+{
+	"data" : {},
+	"meta" : {
+		"message": "Successfully created rating",
+		"status": 201,
+		"code": "ok"
+	}
+}
+```

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_internal_members_table extends CI_Migration {
+class Migration_sub_agencies_table extends CI_Migration {
 
   public function up()
   {
@@ -11,19 +11,15 @@ class Migration_internal_members_table extends CI_Migration {
 
     # Other table fields
     $this->dbforge->add_field(array(
-      'fname' => array(
+      'name' => array(
         'type' => 'VARCHAR',
-        'constraint' => '200',
+        'constraint' => '300',
       ),
-      'lname' => array(
-        'type' => 'VARCHAR',
-        'constraint' => '200',
-      ),
-      'division_id' => array(
+      'department_id' => array(
         'type' => 'INT',
         'constraint' => '9',
-        'comment' => 'FK'
-      )
+        'comment' => 'FK',
+      ),
     ));
 
     # Table date defaults
@@ -31,9 +27,9 @@ class Migration_internal_members_table extends CI_Migration {
     $this->dbforge->add_field("`updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP");
 
 
-    if($this->dbforge->create_table('internal_members'))
+    if($this->dbforge->create_table('sub_agencies'))
     {
-      $table = 'internal_members';
+      $table = 'sub_agencies';
 
       // $data = array(
       //   'some_varchar_field' => 'Veroem ipsum adasdasd',
@@ -48,6 +44,6 @@ class Migration_internal_members_table extends CI_Migration {
 
   public function down()
   {
-    $this->dbforge->drop_table('internal_members');
+    $this->dbforge->drop_table('sub_agencies');
   }
 }
