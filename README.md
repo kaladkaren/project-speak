@@ -24,7 +24,7 @@
 
 
 ### Register device ID
-POST `/stations`  
+POST `/devices`  
 **NOTE:** At the very first launch of the app, the device ID should be sent to the API. This is used to differentiate `experience`, `services`, and `people` from other stations
 
 #### Payload
