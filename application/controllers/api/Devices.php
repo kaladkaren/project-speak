@@ -21,7 +21,7 @@ class Devices extends Crud_controller
       	'meta' => (object) [
       		'message' => 'Device already registered before',
       		'status' => 200,
-      		'code' => 'ok'
+      		'code' => 'already_exists'
       	]
       ], 200);
 	  return;

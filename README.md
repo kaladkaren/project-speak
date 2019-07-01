@@ -40,11 +40,28 @@ POST `/devices`
 200 OK
 
 {
-	"data" : {},
+	"data" : {
+	    "id": "2",
+	    "device_id": "a123qweasdzxc",
+	    "device_name": "Enzo's device",
+	    "created_at": "2019-06-28 17:54:50",
+	    "updated_at": "0000-00-00 00:00:00"
+	},
 	"meta" : {
 		"message": "Successfully registered device",
-		"status": 201,
+		"status": 200,
 		"code": "ok"
+	}
+}
+
+// if existing
+200 OK
+{
+	"data" : {},
+	"meta" : {
+		"message": "Device already registered before",
+		"status": 200,
+		"code": "already_exists"
 	}
 }
 ```
@@ -358,7 +375,7 @@ POST `/ratings`
 	"data" : {},
 	"meta" : {
 		"message": "Successfully created rating",
-		"status": 201,
+		"status": 200,
 		"code": "ok"
 	}
 }
