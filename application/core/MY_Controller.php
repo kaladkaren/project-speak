@@ -69,6 +69,8 @@ class Front_core_controller extends CI_Controller
 class Crud_controller extends \Restserver\Libraries\REST_Controller
 {
 
+  public $station_id = 0;
+
   function __construct()
   {
     parent::__construct();

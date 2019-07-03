@@ -16,6 +16,12 @@ class Migration_devices_table extends CI_Migration {
       ), 
       'device_name' => array(
         'type' => 'TEXT' 
+      ),
+      'station_id' => array(
+        'type' => 'INT', 
+        'constraint' => 9,
+        'comment' => 'This is its assigned station ID',
+        'default' => 0
       )
     ));
 
