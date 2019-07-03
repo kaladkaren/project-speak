@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_devices_table extends CI_Migration {
+class Migration_stations_table extends CI_Migration {
 
   public function up()
   {
@@ -11,37 +11,26 @@ class Migration_devices_table extends CI_Migration {
 
     # Other table fields
     $this->dbforge->add_field(array(
-      'device_id' => array(
+      'station_name' => array(
         'type' => 'TEXT' 
-      ), 
-      'device_name' => array(
-        'type' => 'TEXT' 
-      ),
-      'station_id' => array(
-        'type' => 'INT', 
-        'constraint' => 9,
-        'comment' => 'This is its assigned station ID',
-        'default' => 0
-      )
+      ) 
     ));
 
     # Table date defaults
     $this->dbforge->add_field("`created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP");
     $this->dbforge->add_field("`updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP");
 
-    if($this->dbforge->create_table('devices'))
+    if($this->dbforge->create_table('stations'))
     {
-      $table = 'devices';
+      $table = 'stations';
 
       $data = array(
-        'device_id' => 'FR567UYHGFRT567812WS',
-        'device_name' => '"HR Admin" Tablet',
+        'station_name' => 'Delhatti Spire',
       );
       $this->db->insert($table, $data);
 
       $data = array(
-        'device_id' => 'NJKO987654E32WSXCVY6',
-        'device_name' => 'Showroom\'s Tablet',
+        'station_name' => 'Rotun Dale Magical Library',
       );
       $this->db->insert($table, $data);
 
@@ -50,6 +39,6 @@ class Migration_devices_table extends CI_Migration {
 
   public function down()
   {
-    $this->dbforge->drop_table('devices');
+    $this->dbforge->drop_table('stations');
   }
 }
