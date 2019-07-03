@@ -772,7 +772,9 @@ abstract class REST_Controller extends \CI_Controller {
       $http_code = (int) $http_code;
       
       # Forbidden / Unauthorized message
-      if($http_code == 401 || $http_code == 403){
+      if($http_code == 401
+       // || $http_code == 403
+      ){
         header("Content-type:application/json");
         http_response_code($http_code);
         $msg = array('message' => ($http_code == 401) ? "Unauthorized" : "Forbidden");

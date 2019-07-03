@@ -27,7 +27,7 @@
 POST `/devices`  
 **NOTE:** At the very first launch of the app, the device ID should be sent to the API. This is used to differentiate `experience`, `services`, and `people` from other stations
 
-#### Payload
+##### Payload
 
 |      Name      | Required |   Type    |    Description    |    Sample Data 
 |----------------|----------|-----------|-------------------|-----------------------
@@ -35,7 +35,7 @@ POST `/devices`
 |  device_name   |  yes     |  string   | name of the device that will appear in admin backend | HR's tablet
 
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -74,7 +74,7 @@ POST `/devices`
 ## Note  
 All endpoints that follows *MUST* include a `DEVICE-ID` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
 
-#### Response
+##### Response
 ```javascript
 403 Forbidden
 
@@ -90,7 +90,7 @@ All endpoints that follows *MUST* include a `DEVICE-ID` header with the value of
 
 If the device id is not yet registered, the message will change.  
 
-#### Response
+##### Response
 ```javascript
 403 Forbidden
 
@@ -108,7 +108,7 @@ If the device id is not yet registered, the message will change.
 ### Get all internal members  
 GET `/members/internal`
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -134,7 +134,7 @@ GET `/members/internal`
 ### Get all divisions
 GET `/divisions`
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -161,7 +161,7 @@ GET `/divisions`
 ### Get all departments
 GET `/departments`
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -188,7 +188,7 @@ GET `/departments`
 ### Get all sub agencies
 GET `/sub_agencies`
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -215,7 +215,7 @@ GET `/sub_agencies`
 ### Get all sub agencies by department id
 GET `/sub_agencies/department/:department_id`
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -241,7 +241,7 @@ GET `/sub_agencies/department/:department_id`
 ### Get all experience
 GET `/rateables/experience`
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -277,7 +277,7 @@ GET `/rateables/experience`
 ### Get all services
 GET `/rateables/services`
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -314,7 +314,7 @@ GET `/rateables/services`
 ### Get all people
 GET `/rateables/people`
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
@@ -355,7 +355,7 @@ GET `/rateables/people`
 ### Submit a rating
 POST `/ratings`  
 
-#### Payload
+##### Payload
 
 |      Name              |  Required  |  Type     |           Description            |    Sample Data 
 |------------------------|------------|-----------|----------------------------------|------------------ 
@@ -367,7 +367,7 @@ POST `/ratings`
 |  department_id         | optional   | number    | department id of the external member | 1 
 |  sub_agency_id         | optional   | number    | sub agency id of the external member | 2
 
-#### Response
+##### Response
 ```javascript
 200 OK
 
