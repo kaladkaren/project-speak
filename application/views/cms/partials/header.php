@@ -30,8 +30,11 @@
   <script src="<?php echo base_url('public/admin/'); ?>js/respond.min.js"></script>
   <![endif]-->
   <script src="<?php echo base_url('public/admin/'); ?>js/jquery.js"></script>
+  <script src="<?php echo base_url('public/admin/'); ?>js/jquery-ui-1.9.2.custom.min.js"></script>
   <script type="text/javascript">
     const base_url = '<?php echo base_url(); ?>';
+    const gear_loader_url = '<?php echo base_url(); ?>public/img/gear-loader.gif';
+    const gear_loader_img = `<center><img class='gear-load' style="height:20px" src="<?php echo base_url(); ?>public/admin/img/gear-loader.gif" /></center>`;
   </script>
 </head>
 
