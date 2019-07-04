@@ -44,18 +44,18 @@
             <span>Devices List</span>
           </a>
         </li>
-<!--  
+
        <li class="sub-menu">
-          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['news', 'events', 'about']))  ? 'active': ''; ?>">
-            <i class="fa fa-tasks"></i>
-            <span>Devices</span>
+          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['stations', 'events', 'about']))  ? 'active': ''; ?>">
+            <i class="fa fa-gears"></i>
+            <span>Station Management</span>
           </a>
           <ul class="sub" >
-            <li><a <?php echo $this->uri->segment(2) === 'news' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/news') ?>">Assign a station</a></li>
+            <li><a <?php echo $this->uri->segment(2) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/stations') ?>">Stations</a></li>
             <li><a <?php echo $this->uri->segment(2) === 'events' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/events') ?>">Events</a></li>
             <li><a <?php echo $this->uri->segment(2) === 'about' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/about') ?>">About</a></li>
           </ul>
-        </li> -->
+        </li>
       </ul>
       <!-- sidebar menu end-->
     </div>

@@ -19,9 +19,8 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Device</th>
-                    <th>Email</th>
-                    <th>Action</th>
+                    <th>Station name</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -30,22 +29,21 @@
                     <?php $i = 1; foreach ($res as $key => $value): ?>
                       <tr>
                         <th scope="row"><?php echo $i++ ?></th>
-                        <td><?php echo $value->name ?></td>
-                        <td><?php echo $value->email ?></td>
+                        <td><?php echo $value->station_name ?></td>
                         <td>
                           <button type="button"
-                          data-payload='<?php echo json_encode(['id' => $value->id, 'name' => $value->name, 'email' => $value->email])?>'
+                          data-payload='<?php echo json_encode(['id' => $value->id, 'station_name' => $value->station_name])?>'
                           class="edit-row btn btn-info btn-xs">Edit</button>
                           <button type="button" data-id='<?php echo $value->id; ?>'
                             class="btn btn-delete btn-danger btn-xs">Delete</button>
-                          </td>
+                        </td>
                         </tr>
                       <?php endforeach; ?>
 
 
                     <?php else: ?>
                       <tr>
-                        <td colspan="4" style="text-align:center">Empty table data</td>
+                        <td colspan="2" style="text-align:center">Empty table data</td>
                       </tr>
                     <?php endif; ?>
                   </tbody>
@@ -71,22 +69,10 @@
 
           <form role="form" method="post">
             <div class="form-group">
-              <label >Name</label>
-              <input type="text" class="form-control" name="name" placeholder="Name">
+              <label >Station name</label>
+              <input type="text" class="form-control" name="station_name" placeholder="Station name">
             </div>
-            <div class="form-group">
-              <label >Email address</label>
-              <input type="email" class="form-control" name="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label >Password</label>
-              <input type="password" class="form-control" name="password" placeholder="New Password">
-            </div>
-            <div class="form-group">
-              <label >Confirm Password</label>
-              <input type="password" class="form-control" id="confirm_password" placeholder="Confirm New Password">
-            </div>
-
+ 
           </div>
           <div class="modal-footer">
             <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
@@ -98,5 +84,5 @@
   </div>
   <!-- modal -->
 
-  <script src="<?php echo base_url('public/admin/js/custom/') ?>admin_management.js"></script>
+  <script src="<?php echo base_url('public/admin/js/custom/') ?>stations_management.js"></script>
   <script src="<?php echo base_url('public/admin/js/custom/') ?>generic.js"></script>
