@@ -41,19 +41,26 @@
           <a href="<?php echo base_url('cms/devices') ?>"
             class="<?php echo $this->uri->segment(1) === 'cms' && ($this->uri->segment(2) === 'devices') ? 'active': ''; ?>">
             <i class="fa fa-laptop"></i>
-            <span>Devices List</span>
+            <span>Devices &lt;--&gt; Station Assignment</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo base_url('cms/stations') ?>"
+            class="<?php echo $this->uri->segment(1) === 'cms' && ($this->uri->segment(2) === 'stations') ? 'active': ''; ?>">
+            <i class="fa fa-gears"></i>
+            <span>Stations</span>
           </a>
         </li>
 
        <li class="sub-menu">
-          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['stations', 'events', 'about']))  ? 'active': ''; ?>">
-            <i class="fa fa-gears"></i>
-            <span>Station Management</span>
+          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['services', 'people', 'experience']))  ? 'active': ''; ?>">
+            <i class="fa fa-group"></i>
+            <span>Rateables management</span>
           </a>
           <ul class="sub" >
-            <li><a <?php echo $this->uri->segment(2) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/stations') ?>">Stations</a></li>
-            <li><a <?php echo $this->uri->segment(2) === 'events' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/events') ?>">Events</a></li>
-            <li><a <?php echo $this->uri->segment(2) === 'about' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/about') ?>">About</a></li>
+            <li><a <?php echo $this->uri->segment(2) === 'services' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/services') ?>">Services</a></li>
+            <li><a <?php echo $this->uri->segment(2) === 'people' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/people') ?>">People</a></li>
+            <li><a <?php echo $this->uri->segment(2) === 'experience' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/experience') ?>">Experience</a></li>
           </ul>
         </li>
       </ul>
