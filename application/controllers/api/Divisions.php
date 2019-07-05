@@ -1,20 +1,18 @@
 <?php
 
-class Sub_agencies extends Crud_controller
+class Divisions extends Crud_controller
 {
 
   function __construct()
   {
     parent::__construct();
 
-    $this->load->model('api/departments_model');
-    $this->load->model('api/stations_model');
-    $this->load->model('api/sub_agencies_model');
+    $this->load->model('api/divisions_model');
   }
 
-  function department_get($department_id)
+  function index_get()
   {
-    $res = $this->sub_agencies_model->allByDepartmentId($department_id);
+    $res = $this->divisions_model->all();
     $this->response($res, 200);
 
     $this->response((object) [

@@ -3,11 +3,11 @@
 [![Bless](https://cdn.rawgit.com/LunaGao/BlessYourCodeTag/master/tags/fsm.svg)](http://lunagao.github.io/BlessYourCodeTag/)
 
 ## Table of contents
-1. [Register device ID](#register-device-id)
+1. [Register device ID](#register-device-id) 🆗
 1. [Members](#members)
     1. [Get all internal members](#get-all-internal-members) 🆗
 1. [Divisions](#divisions)
-    1. [Get all divisions](#get-all-divisions)
+    1. [Get all divisions](#get-all-divisions) 🆗
 1. [Departments](#departments)
     1. [Get all departments](#get-all-departments) 🆗
 1. [Sub agencies](#sub-agencies)
@@ -116,21 +116,31 @@ GET `/divisions`
 200 OK
 
 {
-	"data" : [
-		{"id": 1, "name":"Division 1"},
-		{"id": 2, "name":"Division 2"},
-		{"id": 3, "name":"Division 3"},
-		{"id": 4, "name":"Division 4"}
-	],
-	"meta":{
-		"message":"Got all data",
-		"status": 200,
-		"code": "ok"
-		"station": {
-			"station_id": 1,
-			"station_name": "First floor station"
-		}
-	}
+  "data": [
+    {
+      "id": "1",
+      "division_name": "Scotland Yard",
+      "created_at": "2019-07-05 17:53:43",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "2",
+      "division_name": "KPD",
+      "created_at": "2019-07-05 17:53:43",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "3",
+      "division_name": "Morioh Police",
+      "created_at": "2019-07-05 17:53:43",
+      "updated_at": "0000-00-00 00:00:00"
+    }
+  ],
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok"
+  }
 }
 ```
 
@@ -186,21 +196,7 @@ GET `/sub_agencies`
 200 OK
 
 {
-	"data" : [
-		{"id":1, "department_id":1, "name":"Sub agency 1"},
-		{"id":2, "department_id":2, "name":"Sub agency 2"},
-		{"id":3, "department_id":2, "name":"Sub agency 3"},
-		{"id":4, "department_id":3, "name":"Sub agency 4"}
-	],
-	"meta":{
-		"message":"Got all data",
-		"status": 200,
-		"code": "ok"
-		"station": {
-			"station_id": 1,
-			"station_name": "First floor station"
-		}
-	}
+...
 }
 ```
 
@@ -218,25 +214,21 @@ GET `/sub_agencies/department/:department_id`
       "id": "1",
       "agency_name": "Anti-drugs division",
       "department_id": "1",
-      "created_at": "2019-07-05 16:30:20",
+      "created_at": "2019-07-05 17:53:45",
       "updated_at": "0000-00-00 00:00:00"
     },
     {
       "id": "2",
       "agency_name": "Anti-terrorism division",
       "department_id": "1",
-      "created_at": "2019-07-05 16:30:20",
+      "created_at": "2019-07-05 17:53:45",
       "updated_at": "0000-00-00 00:00:00"
     }
   ],
   "meta": {
     "message": "Got all data",
     "status": 200,
-    "code": "ok",
-    "station": {
-      "station_id": "1",
-      "station_name": "Delhatti Spire"
-    }
+    "code": "ok"
   }
 }
 ```
