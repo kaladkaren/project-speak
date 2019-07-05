@@ -38,6 +38,10 @@ class Stations_model extends Crud_model
     return $this->db->affected_rows();
   }
 
- 
+ function getStationObj($station_id)
+ {
+    $station = $this->db->get_where('stations', array('id' => $station_id))->row();
+    return (object)['station_id' => $station_id, 'station_name' => $station->station_name];
+ }
 
 }

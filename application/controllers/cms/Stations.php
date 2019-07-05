@@ -55,9 +55,7 @@ class Stations extends Admin_core_controller {
   }
 
 
-
-
-
+ 
   function assign()
   {
     $res = $this->devices_model->update(

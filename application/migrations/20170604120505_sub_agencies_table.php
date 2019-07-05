@@ -11,7 +11,7 @@ class Migration_sub_agencies_table extends CI_Migration {
 
     # Other table fields
     $this->dbforge->add_field(array(
-      'name' => array(
+      'agency_name' => array(
         'type' => 'VARCHAR',
         'constraint' => '300',
       ),
@@ -31,13 +31,23 @@ class Migration_sub_agencies_table extends CI_Migration {
     {
       $table = 'sub_agencies';
 
-      // $data = array(
-      //   'some_varchar_field' => 'Veroem ipsum adasdasd',
-      //   'some_text_field' => 'Hooooh',
-      //   'some_int_field' => '123',
-      //   'some_datetime_field' => ''
-      // );
-      // $this->db->insert($table, $data);
+      $data = array(
+        'agency_name' => 'Anti-drugs division',
+        'department_id' => 1,
+      );
+      $this->db->insert($table, $data);
+
+      $data = array(
+        'agency_name' => 'Anti-terrorism division',
+        'department_id' => 1,
+      );
+      $this->db->insert($table, $data);
+      
+      $data = array(
+        'agency_name' => 'Example agency',
+        'department_id' => 2,
+      );
+      $this->db->insert($table, $data);
 
     }
   }
