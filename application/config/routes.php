@@ -70,3 +70,5 @@ $route['migrate/(:any)'] = 'migrate/index/$1';
 # Restserver default examples
 $route['api/example/users/(:num)'] = 'api/example/users/id/$1';
 $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
+
+$route['api/sub-agencies/department/(:num)'] = 'api/sub_agencies/department/$1';

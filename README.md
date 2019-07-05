@@ -9,16 +9,16 @@
 1. [Divisions](#divisions)
     1. [Get all divisions](#get-all-divisions)
 1. [Departments](#departments)
-    1. [Get all departments](#get-all-departments)
+    1. [Get all departments](#get-all-departments) 🆗
 1. [Sub agencies](#sub-agencies)
     1. [Get all sub agencies](#get-all-sub-agencies)
-    1. [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id)
+    1. [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) 🆗
 1. [Rateables](#rateables)
     1. [Get all services](#get-all-services)
     1. [Get all experience](#get-all-experience)
     1. [Get all people](#get-all-people)
 1. [Ratings](#ratings)
-    1. [Sync](#sync)
+    1. [Sync](#sync) 🆗
 
 
 ---
@@ -167,21 +167,41 @@ GET `/departments`
 200 OK
 
 {
-	"data" : [
-		{"id":1,"name":"Department 1"},
-		{"id":2,"name":"Department 2"},
-		{"id":3,"name":"Department 3"},
-		{"id":4,"name":"Department 4"}
-	],
-	"meta":{
-		"message":"Got all data",
-		"status": 200,
-		"code": "ok"
-		"station": {
-			"station_id": 1,
-			"station_name": "First floor station"
-		}
-	}
+  "data": [
+    {
+      "id": "1",
+      "department_name": "Anti Cybercrime Department",
+      "created_at": "2019-07-05 16:30:19",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "2",
+      "department_name": "Food and Drugs Department",
+      "created_at": "2019-07-05 16:30:19",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "3",
+      "department_name": "Department of Tourism",
+      "created_at": "2019-07-05 16:30:19",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "4",
+      "department_name": "Help Department",
+      "created_at": "2019-07-05 16:30:19",
+      "updated_at": "0000-00-00 00:00:00"
+    }
+  ],
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok",
+    "station": {
+      "station_id": "1",
+      "station_name": "Delhatti Spire"
+    }
+  }
 }
 ```
 
@@ -221,19 +241,31 @@ GET `/sub_agencies/department/:department_id`
 200 OK
 
 {
-	"data" : [
-		{"id":2, "department_id":2, "name":"Sub agency 2"},
-		{"id":3, "department_id":2, "name":"Sub agency 3"}
-	],
-	"meta":{
-		"message":"Got all data",
-		"status": 200,
-		"code": "ok"
-		"station": {
-			"station_id": 1,
-			"station_name": "First floor station"
-		}
-	}
+  "data": [
+    {
+      "id": "1",
+      "agency_name": "Anti-drugs division",
+      "department_id": "1",
+      "created_at": "2019-07-05 16:30:20",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "2",
+      "agency_name": "Anti-terrorism division",
+      "department_id": "1",
+      "created_at": "2019-07-05 16:30:20",
+      "updated_at": "0000-00-00 00:00:00"
+    }
+  ],
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok",
+    "station": {
+      "station_id": "1",
+      "station_name": "Delhatti Spire"
+    }
+  }
 }
 ```
 
@@ -352,7 +384,7 @@ GET `/rateables/people`
 ---
 
 
-## Ratings
+## Ratings 
 ### Sync
 POST `/ratings/sync`  
 

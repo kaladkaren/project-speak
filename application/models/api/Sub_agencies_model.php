@@ -25,7 +25,7 @@ class Sub_agencies_model extends Crud_model
     return $this->db->get_where('sub_agencies', array('id' => $id))->row();
   }
 
-  public function getByDepartmentId($id)
+  public function allByDepartmentId($department_id)
   {
     return $this->db->get_where('sub_agencies', array('department_id' => $department_id))->result();
   }
