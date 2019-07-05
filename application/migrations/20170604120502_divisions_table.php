@@ -11,7 +11,7 @@ class Migration_divisions_table extends CI_Migration {
 
     # Other table fields
     $this->dbforge->add_field(array(
-      'name' => array(
+      'division_name' => array(
         'type' => 'VARCHAR',
         'constraint' => '300',
       )
@@ -26,13 +26,20 @@ class Migration_divisions_table extends CI_Migration {
     {
       $table = 'divisions';
 
-      // $data = array(
-      //   'some_varchar_field' => 'Veroem ipsum adasdasd',
-      //   'some_text_field' => 'Hooooh',
-      //   'some_int_field' => '123',
-      //   'some_datetime_field' => ''
-      // );
-      // $this->db->insert($table, $data);
+      $data = array(
+        'division_name' => 'Scotland Yard',
+      );
+      $this->db->insert($table, $data);
+
+      $data = array(
+        'division_name' => 'KPD',
+      );
+      $this->db->insert($table, $data);
+
+      $data = array(
+        'division_name' => 'Morioh Police',
+      );
+      $this->db->insert($table, $data);
 
     }
   }

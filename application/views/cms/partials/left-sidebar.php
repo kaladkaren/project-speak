@@ -41,7 +41,7 @@
           <a href="<?php echo base_url('cms/devices') ?>"
             class="<?php echo $this->uri->segment(1) === 'cms' && ($this->uri->segment(2) === 'devices') ? 'active': ''; ?>">
             <i class="fa fa-laptop"></i>
-            <span>Devices &lt;--&gt; Station Assignment</span>
+            <span>Station Assignment</span>
           </a>
         </li>
         <li>

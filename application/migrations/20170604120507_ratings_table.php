@@ -16,28 +16,50 @@ class Migration_ratings_table extends CI_Migration {
         'constraint' => 9,
         'comment' => 'FK from rateables'
       ), 
+      'device_id' => array(
+        'type' => 'INT',
+        'constraint' => 9,
+        'comment' => 'FK from devices PK'  # the device id saved in the table
+      ), 
+      'saved_station_id' => array(
+        'type' => 'INT',
+        'constraint' => 9,
+        'comment' => 'Saved station ID on device\'s local'
+      ), 
       'rating' => array(
         'type' => 'INT',
         'constraint' => 9,
         'comment' => '1 (lowest) - 5 (highest)'
       ), 
+      'rated_at' => array(
+        'type' => 'DATETIME',
+        'null' => true,
+        'default' => null
+      ),
       'internal_member_id' => array(
         'type' => 'INT',
         'constraint' => 9,
-        'null' => true
+        'null' => true,
+        'comment' => 'Should be null if external member'
       ), 
       'external_member_name' => array(
         'type' => 'TEXT',
+        'null' => true,
+        'comment' => 'Should be null if internal member'
       ), 
       'department_id' => array(
         'type' => 'INT',
         'constraint' => 9,
-        'comment' => 'FK departments table'
+        'comment' => 'FK departments table',
+        'null' => true,
+        'comment' => 'Should be null if internal member'
       ), 
       'sub_agency_id' => array(
         'type' => 'INT',
         'constraint' => 9,
-        'comment' => 'FK sub agencies table'
+        'comment' => 'FK sub agencies table',
+        'null' => true,
+        'comment' => 'Should be null if internal member'
       ),  
     ));
 

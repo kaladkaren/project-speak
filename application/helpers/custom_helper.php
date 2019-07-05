@@ -43,13 +43,11 @@ function helperValidateStationId($that){
 
   $station_id = helperGetStationId($that);
 
-
-
   if ($station_id === 0) { # if no station ID yet
   	$that->response([
       	'data' => (object)[],
       	'meta' => (object) [
-      		'message' => 'Station not yet assigned. Please contact your administrator for more details.',
+      		'message' => 'A station has yet to be assigned to your Device ID. Please contact your administrator for more details.',
       		'status' => 403,
       		'code' => 'forbidden'
       	]
@@ -65,7 +63,10 @@ function helperValidateStationId($that){
       	]
   	], 403);
   	return false; # stop the fn here
-  } 
+  } else {
+    return true; # means nothing's wrong
+  }
+
 
   # do nothing if has station_id ~
 }

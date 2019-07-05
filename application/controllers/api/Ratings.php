@@ -8,6 +8,7 @@ class Ratings extends Crud_controller
     parent::__construct();
 
     $this->load->model('api/ratings_model');
+    $this->load->model('api/devices_model');
 
   }
 
@@ -21,18 +22,21 @@ class Ratings extends Crud_controller
     # station id is set via $this->station_id
     # / block for checking if has station ID assigned
 
-  	# check first if exist
-  	if ($this->ratings_model->add($this->input->post(true))) {
+    $device_id_pk = $this->devices_model->getByDeviceId(helperGetDeviceIdHeader($this))->id;
+    $data = array_merge($this->input->post(null, true), ['device_id' => $device_id_pk]);
+    
+    # try to add
+  	if ($this->ratings_model->add($data)) {
   	  
   	  $this->response((object) [
         	'data' => (object)[],
         	'meta' => (object) [
-        		'message' => 'Rating successful',
-        		'status' => 201,
+        		'message' => 'Sync success',
+        		'status' => 200,
         		'code' => 'created'
         	]
         ], 200);
-  	  return;
+  	  
   	} else{ # end if $last_id
       $this->response((object) [
       	'data' => (object)[],

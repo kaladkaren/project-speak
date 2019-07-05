@@ -18,7 +18,8 @@
     1. [Get all experience](#get-all-experience)
     1. [Get all people](#get-all-people)
 1. [Ratings](#ratings)
-    1. [Submit a rating](#submit-a-rating)
+    1. [Sync](#sync)
+
 
 ---
 
@@ -71,8 +72,8 @@ POST `/devices`
 
 
 
-## Note  
-All endpoints that follows *MUST* include a `DEVICE-ID` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
+# Important Note  
+All endpoints that follow *MUST* include a `DEVICE-ID` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
 
 ##### Response
 ```javascript
@@ -81,7 +82,7 @@ All endpoints that follows *MUST* include a `DEVICE-ID` header with the value of
 {
 	"data" : {},
 	"meta" : {
-		"message": "Station not yet assigned. Please contact your administrator for more details.",
+		"message": "A station has yet to be assigned to your Device ID. Please contact your administrator for more details.",
 		"status": 403,
 		"code": "forbidden"
 	}
@@ -352,15 +353,17 @@ GET `/rateables/people`
 
 
 ## Ratings
-### Submit a rating
-POST `/ratings`  
+### Sync
+POST `/ratings/sync`  
 
 ##### Payload
 
 |      Name              |  Required  |  Type     |           Description            |    Sample Data 
 |------------------------|------------|-----------|----------------------------------|------------------ 
 |  rateable_id           | yes        | number    | id of the one you will rate      |        1 
+|  saved_station_id      | yes        | number    | saved station ID at the time of rating  |        1 
 |  rating                | yes        | number    | rating  1 (lowest) - 5 (highest) |        5 
+|  rated_at              | yes        | datetime  | time of rating on local device   | 2019-11-29 23:23:23
 |  internal_member_id    | optional   | number    | if blank, will assume the request is from an external member | 123 / 0 / null
 | **- beyond this row are the parameters  used for external  member ratings. omit them if you have internal_member_id -**
 |  external_member_name  | optional   | string    | name of the external member      | 'John Doe'
@@ -374,7 +377,7 @@ POST `/ratings`
 {
 	"data" : {},
 	"meta" : {
-		"message": "Successfully created rating",
+		"message": "Sync success",
 		"status": 200,
 		"code": "ok"
 	}

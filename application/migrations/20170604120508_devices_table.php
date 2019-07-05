@@ -34,14 +34,20 @@ class Migration_devices_table extends CI_Migration {
       $table = 'devices';
 
       $data = array(
-        'device_id' => 'FR567UYHGFRT567812WS',
-        'device_name' => '"HR Admin" Tablet',
+        'device_id' => 'sphinxofblackquartzjudgemyvow',
+        'device_name' => 'Enzo\'s Tablet',
       );
       $this->db->insert($table, $data);
 
       $data = array(
         'device_id' => 'NJKO987654E32WSXCVY6',
         'device_name' => 'Showroom\'s Tablet',
+      );
+      $this->db->insert($table, $data);
+
+      $data = array(
+        'device_id' => 'NJKO987654E32WSXCVY6',
+        'device_name' => '"Hr\'s" Tablet',
       );
       $this->db->insert($table, $data);
 

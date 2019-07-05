@@ -25,6 +25,11 @@ class Devices_model extends Crud_model
     return $this->db->get_where('devices', array('id' => $id))->row();
   }
 
+  public function getByDeviceId($device_id)
+  {
+    return $this->db->get_where('devices', array('device_id' => $device_id))->row();
+  }
+
   public function update($id, $data)
   {
     $this->db->update('devices', $data, ['id' => $id]);

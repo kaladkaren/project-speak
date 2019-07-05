@@ -8,27 +8,21 @@ class Ratings_model extends Crud_model
 
   }
 
-  // public function add($data)
-  // {
-  //   $this->db->insert('devices', $data);
-  //   return $this->db->insert_id();
-  // }
+  public function add($data)
+  {
+    $this->db->insert('ratings', $data);
+    return $this->db->insert_id();
+  }
 
-  // public function all()
-  // {
-  //   $res = $this->db->get('devices')->result();
-  //   return $res;
-  // }
+  public function all()
+  {
+    $res = $this->db->get('ratings')->result();
+    return $res;
+  }
 
-  // public function get($id)
-  // {
-  //   return $this->db->get_where('devices', array('id' => $id))->row();
-  // }
-
-  // function checkIfAlreadyRegistered($device_id = null)
-  // {
-  // 	$this->db->where('device_id', $device_id);
-  // 	return $this->db->count_all_results('devices');
-  // }
+  public function get($id)
+  {
+    return $this->db->get_where('ratings', array('id' => $id))->row();
+  }
 
 }
