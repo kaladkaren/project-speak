@@ -11,13 +11,9 @@ class Migration_internal_members_table extends CI_Migration {
 
     # Other table fields
     $this->dbforge->add_field(array(
-      'fname' => array(
+      'full_name' => array(
         'type' => 'VARCHAR',
-        'constraint' => '200',
-      ),
-      'lname' => array(
-        'type' => 'VARCHAR',
-        'constraint' => '200',
+        'constraint' => '250',
       ),
       'division_id' => array(
         'type' => 'INT',
@@ -36,22 +32,19 @@ class Migration_internal_members_table extends CI_Migration {
       $table = 'internal_members';
 
       $data = array(
-        'fname' => 'Lorenzo',
-        'lname' => 'Dante',
+        'full_name' => 'Lorenzo Dante',
         'division_id' => 1
       );
       $this->db->insert($table, $data);
 
       $data = array(
-        'fname' => 'En',
-        'lname' => 'Dan',
+        'full_name' => 'En Dan',
         'division_id' => 2
       );
       $this->db->insert($table, $data);
 
       $data = array(
-        'fname' => 'Endan',
-        'lname' => 'Pendleton',
+        'full_name' => 'Endan Pendleton',
         'division_id' => 1
       );
       $this->db->insert($table, $data);

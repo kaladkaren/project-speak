@@ -5,7 +5,7 @@
 ## Table of contents
 1. [Register device ID](#register-device-id)
 1. [Members](#members)
-    1. [Get all internal members](#get-all-internal-members)
+    1. [Get all internal members](#get-all-internal-members) 🆗
 1. [Divisions](#divisions)
     1. [Get all divisions](#get-all-divisions)
 1. [Departments](#departments)
@@ -67,44 +67,6 @@ POST `/devices`
 }
 ```
 
-
----
-
-
-
-# Important Note  
-All endpoints that follow *MUST* include a `DEVICE-ID` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
-
-##### Response
-```javascript
-403 Forbidden
-
-{
-	"data" : {},
-	"meta" : {
-		"message": "A station has yet to be assigned to your Device ID. Please contact your administrator for more details.",
-		"status": 403,
-		"code": "forbidden"
-	}
-}
-```
-
-If the device id is not yet registered, the message will change.  
-
-##### Response
-```javascript
-403 Forbidden
-
-{
-	"data" : {},
-	"meta" : {
-		"message": "Device ID not yet registered.",
-		"status": 403,
-		"code": "forbidden"
-	}
-}
-```
-
 ## Members
 ### Get all internal members  
 GET `/members/internal`
@@ -114,20 +76,34 @@ GET `/members/internal`
 200 OK
 
 {
-	"data" : [
-		{"id": 1, "full_name":"Attraglaitz, Magen Rigel"},
-		{"id": 2, "full_name":"Attraglaitz, Elysid Zestrial"},
-		{"id": 3, "full_name":"Burne, Myrtle"}
-	],
-	"meta":{
-		"message":"Got all data",
-		"status": 200,
-		"code": "ok"
-		"station": {
-			"station_id": 1,
-			"station_name": "First floor station"
-		}
-	}
+  "data": [
+    {
+      "id": "1",
+      "full_name": "Lorenzo Dante",
+      "division_id": "1",
+      "created_at": "2019-07-05 17:53:42",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "2",
+      "full_name": "En Dan",
+      "division_id": "2",
+      "created_at": "2019-07-05 17:53:42",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "3",
+      "full_name": "Endan Pendleton",
+      "division_id": "1",
+      "created_at": "2019-07-05 17:53:42",
+      "updated_at": "0000-00-00 00:00:00"
+    }
+  ],
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok"
+  }
 }
 ```
 
@@ -171,36 +147,32 @@ GET `/departments`
     {
       "id": "1",
       "department_name": "Anti Cybercrime Department",
-      "created_at": "2019-07-05 16:30:19",
+      "created_at": "2019-07-05 17:53:44",
       "updated_at": "0000-00-00 00:00:00"
     },
     {
       "id": "2",
       "department_name": "Food and Drugs Department",
-      "created_at": "2019-07-05 16:30:19",
+      "created_at": "2019-07-05 17:53:44",
       "updated_at": "0000-00-00 00:00:00"
     },
     {
       "id": "3",
       "department_name": "Department of Tourism",
-      "created_at": "2019-07-05 16:30:19",
+      "created_at": "2019-07-05 17:53:45",
       "updated_at": "0000-00-00 00:00:00"
     },
     {
       "id": "4",
       "department_name": "Help Department",
-      "created_at": "2019-07-05 16:30:19",
+      "created_at": "2019-07-05 17:53:45",
       "updated_at": "0000-00-00 00:00:00"
     }
   ],
   "meta": {
     "message": "Got all data",
     "status": 200,
-    "code": "ok",
-    "station": {
-      "station_id": "1",
-      "station_name": "Delhatti Spire"
-    }
+    "code": "ok"
   }
 }
 ```
@@ -266,6 +238,44 @@ GET `/sub_agencies/department/:department_id`
       "station_name": "Delhatti Spire"
     }
   }
+}
+```
+
+
+---
+
+
+
+# Important Note  
+All endpoints that follow *MUST* include a `DEVICE-ID` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
+
+##### Response
+```javascript
+403 Forbidden
+
+{
+	"data" : {},
+	"meta" : {
+		"message": "A station has yet to be assigned to your Device ID. Please contact your administrator for more details.",
+		"status": 403,
+		"code": "forbidden"
+	}
+}
+```
+
+If the device id is not yet registered, the message will change.  
+
+##### Response
+```javascript
+403 Forbidden
+
+{
+	"data" : {},
+	"meta" : {
+		"message": "Device ID not yet registered.",
+		"status": 403,
+		"code": "forbidden"
+	}
 }
 ```
 

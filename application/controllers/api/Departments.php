@@ -28,8 +28,7 @@ class Departments extends Crud_controller
     	'meta' => (object) [
   	    	'message' => 'Got all data',
   	    	'status' => 200,
-     		'code' => 'ok',
-     		'station' => $this->stations_model->getStationObj(helperGetStationId($this))
+     		'code' => 'ok' 
 	   ]
     ], 200);
   
