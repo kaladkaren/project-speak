@@ -73,3 +73,4 @@ $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/
 
 $route['api/sub-agencies/department/(:num)'] = 'api/sub_agencies/department/$1';
 $route['api/members/internal'] = 'api/internal_members';
+$route['api/rateables/(:any)'] = 'api/rateables/rateables/$1';

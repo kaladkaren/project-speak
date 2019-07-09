@@ -3,23 +3,18 @@
 [![Bless](https://cdn.rawgit.com/LunaGao/BlessYourCodeTag/master/tags/fsm.svg)](http://lunagao.github.io/BlessYourCodeTag/)
 
 ## Table of contents
-1. [Register device ID](#register-device-id) 🆗
-1. [Members](#members)
-    1. [Get all internal members](#get-all-internal-members) 🆗
-1. [Divisions](#divisions)
-    1. [Get all divisions](#get-all-divisions) 🆗
-1. [Departments](#departments)
-    1. [Get all departments](#get-all-departments) 🆗
-1. [Sub agencies](#sub-agencies)
-    1. [Get all sub agencies](#get-all-sub-agencies)
-    1. [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) 🆗
-1. [Rateables](#rateables)
-    1. [Get all services](#get-all-services)
-    1. [Get all experience](#get-all-experience)
-    1. [Get all people](#get-all-people)
-1. [Ratings](#ratings)
-    1. [Sync](#sync) 🆗
 
+|     Resource      |                         Route                         |    Needs `DEVICE-ID` header     | Status | Recently modified  
+|-------------------|-------------------------------------------------------|------------------------------------|--------|--------------------
+| Devices           | [Register device ID](#register-device-id)             |                  no                | 🆗    | 
+| Members           | [Get all internal members](#get-all-internal-members) |                  no                | 🆗    | 
+| Divisions         | [Get all divisions](#get-all-divisions)               |                  no                | 🆗    | 
+| Departments       | [Get all departments](#get-all-departments)           |                  no                | 🆗    | 
+| Sub agencies      | [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) |          no            |  🆗   | 
+| Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | 
+| Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | 
+| Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | 
+| Ratings           | [Sync](#sync)                                         |                  **yes**           |  🆗    | 
 
 ---
 
@@ -188,18 +183,6 @@ GET `/departments`
 ```
 
 ## Sub agencies
-### Get all sub agencies
-GET `/sub_agencies`
-
-##### Response
-```javascript
-200 OK
-
-{
-...
-}
-```
-
 
 ### Get all sub agencies by department id
 GET `/sub_agencies/department/:department_id`
@@ -281,31 +264,35 @@ GET `/rateables/experience`
 200 OK
 
 {
-	"data" : [
-		{
-			"id":2,
-			"name": "Gold Experience", 
-			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			"type": "experience",
-			"image_file": "lorem.jpeg",
-	    },
-	    {
-			"id":3,
-			"name": "Silver Chariot", 
-			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			"type": "experience",
-			"image_file": "lorem.jpeg",
-	    }
-	],
-	"meta":{
-		"message":"Got all data",
-		"status": 200,
-		"code": "ok"
-		"station": {
-			"station_id": 1,
-			"station_name": "First floor station"
-		}
-	}
+  "data": [
+    {
+      "id": "6",
+      "name": "Gold Experience",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "type": "experience",
+      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set2",
+      "created_at": "2019-07-05 17:53:46",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "7",
+      "name": "Test Experience",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "type": "experience",
+      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set2",
+      "created_at": "2019-07-05 17:53:46",
+      "updated_at": "0000-00-00 00:00:00"
+    } 
+  ],
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok",
+    "station": {
+      "station_id": "2",
+      "station_name": "Rotun Dale Magical Library"
+    }
+  }
 }
 ```
 
@@ -317,35 +304,38 @@ GET `/rateables/services`
 200 OK
 
 {
-	"data" : [
-		{
-			"id":2,
-			"name": "Service of the Requiem", 
-			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			"type": "services",
-			"image_file": "lorem.jpeg",
-	    },
-	    {
-			"id":3,
-			"name": "An Ode to the Melody", 
-			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			"type": "services",
-			"image_file": "lorem.jpeg",
-	    }
-	],
-	"meta":{
-		"message":"Got all data",
-		"status": 200,
-		"code": "ok"
-		"station": {
-			"station_id": 1,
-			"station_name": "First floor station"
-		}
-	}
+  "data": [
+    {
+      "id": "2",
+      "name": "Smithing",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "type": "services",
+      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set1",
+      "created_at": "2019-07-05 17:53:46",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "3",
+      "name": "Woodworking",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "type": "services",
+      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set1",
+      "created_at": "2019-07-05 17:53:46",
+      "updated_at": "0000-00-00 00:00:00"
+    } 
+  ],
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok",
+    "station": {
+      "station_id": "2",
+      "station_name": "Rotun Dale Magical Library"
+    }
+  }
 }
 ```
 
-## Rateables
 ### Get all people
 GET `/rateables/people`
 
@@ -354,31 +344,35 @@ GET `/rateables/people`
 200 OK
 
 {
-	"data" : [
-		{
-			"id":2,
-			"name": "Godfrey Fvjyana", 
-			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			"type": "people",
-			"image_file": "lorem.jpeg",
-	    },
-	    {
-			"id":2,
-			"name": "Seyn Daerz", 
-			"description":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-			"type": "people",
-			"image_file": "lorem.jpeg",
-	    }
-	],
-	"meta":{
-		"message":"Got all data",
-		"status": 200,
-		"code": "ok"
-		"station": {
-			"station_id": 1,
-			"station_name": "First floor station"
-		}
-	}
+  "data": [
+    {
+      "id": "10",
+      "name": "Sin Grey Audragonel",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "type": "people",
+      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set5",
+      "created_at": "2019-07-05 17:53:46",
+      "updated_at": "0000-00-00 00:00:00"
+    },
+    {
+      "id": "11",
+      "name": "Godfrey Fvjyana",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "type": "people",
+      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set5",
+      "created_at": "2019-07-05 17:53:46",
+      "updated_at": "0000-00-00 00:00:00"
+    } 
+  ],
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok",
+    "station": {
+      "station_id": "2",
+      "station_name": "Rotun Dale Magical Library"
+    }
+  }
 }
 ```
 
