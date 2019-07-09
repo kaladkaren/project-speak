@@ -6,6 +6,7 @@ class Rateables_model extends Crud_model
   function __construct(){
   	parent::__construct();
 
+    $this->full_up_path = base_url() . "uploads/rateables/"; 
   }
 
   public function add($data)
@@ -14,9 +15,16 @@ class Rateables_model extends Crud_model
     return $this->db->insert_id();
   }
 
-  public function all()
+  public function allByType($type)
   {
+    $this->db->where('type', $type);
     $res = $this->db->get('rateables')->result();
+
+    foreach ($res as &$value) {
+      $value->image_url = (strpos($value->image_file, 'robohash') !== false) ? $value->image_file : 
+        $this->full_up_path . $value->image_file;
+    }
+
     return $res;
   }
 
@@ -26,7 +34,7 @@ class Rateables_model extends Crud_model
   }
 
 
-  function allByType($type, $station_id)
+  function allByTypeAndStation($type, $station_id)
   {
     # Get from 3rd table first 
     $stations_rateables = $this->db->get_where('stations_rateables', ['station_id' => $station_id])->result_array();
@@ -36,7 +44,14 @@ class Rateables_model extends Crud_model
     # Get from rateables table with filters
     $this->db->where('type', $type);
     $this->db->where_in('id', $ids_arr);
-    return $this->db->get('rateables')->result();
+    $res = $this->db->get('rateables')->result();
+
+    foreach ($res as &$value) {
+      $value->image_url = (strpos($value->image_file, 'robohash') !== false) ? $value->image_file : 
+        $this->full_up_path . $value->image_file;
+    }
+    
+    return $res;
   }
 
 }

@@ -48,7 +48,7 @@ class Rateables extends Crud_controller
 
   function getRateable($type, $station_id)
   {
-    $res = $this->rateables_model->allByType($type, $station_id);
+    $res = $this->rateables_model->allByTypeAndStation($type, $station_id);
     
     $this->response((object) [
       'data' => $res,

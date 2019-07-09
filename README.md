@@ -272,7 +272,8 @@ GET `/rateables/experience`
       "type": "experience",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set2",
       "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00"
+      "updated_at": "0000-00-00 00:00:00",
+      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
     },
     {
       "id": "7",
@@ -281,7 +282,8 @@ GET `/rateables/experience`
       "type": "experience",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set2",
       "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00"
+      "updated_at": "0000-00-00 00:00:00",
+      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
     } 
   ],
   "meta": {
@@ -312,7 +314,8 @@ GET `/rateables/services`
       "type": "services",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set1",
       "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00"
+      "updated_at": "0000-00-00 00:00:00",
+      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
     },
     {
       "id": "3",
@@ -321,7 +324,8 @@ GET `/rateables/services`
       "type": "services",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set1",
       "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00"
+      "updated_at": "0000-00-00 00:00:00",
+      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
     } 
   ],
   "meta": {
@@ -352,7 +356,8 @@ GET `/rateables/people`
       "type": "people",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set5",
       "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00"
+      "updated_at": "0000-00-00 00:00:00",
+      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
     },
     {
       "id": "11",
@@ -361,7 +366,8 @@ GET `/rateables/people`
       "type": "people",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set5",
       "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00"
+      "updated_at": "0000-00-00 00:00:00",
+      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
     } 
   ],
   "meta": {

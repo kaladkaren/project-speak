@@ -49,7 +49,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Smithing',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'services',
-        'image_file' => "https://robohash.org/".time().".png?set=set1"
+        'image_file' => "https://robohash.org/".(time()+1).".png?set=set1"
       );
       $this->db->insert($table, $data);
 
@@ -57,7 +57,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Woodworking',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'services',
-        'image_file' => "https://robohash.org/".time().".png?set=set1"
+        'image_file' => "https://robohash.org/".(time()+2).".png?set=set1"
       );
       $this->db->insert($table, $data);
 
@@ -65,7 +65,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Metalworking',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'services',
-        'image_file' => "https://robohash.org/".time().".png?set=set1"
+        'image_file' => "https://robohash.org/".(time()+3).".png?set=set1"
       );
       $this->db->insert($table, $data);
 
@@ -73,7 +73,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Baking',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'services',
-        'image_file' => "https://robohash.org/".time().".png?set=set1"
+        'image_file' => "https://robohash.org/".(time()+4).".png?set=set1"
       );
       $this->db->insert($table, $data); # 5
 
@@ -81,7 +81,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Gold Experience',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'experience',
-        'image_file' => "https://robohash.org/".time().".png?set=set2"
+        'image_file' => "https://robohash.org/".(time()+1).".png?set=set2"
       );
       $this->db->insert($table, $data);
 
@@ -89,14 +89,14 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Some Experience',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'experience',
-        'image_file' => "https://robohash.org/".time().".png?set=set2"
+        'image_file' => "https://robohash.org/".(time()+2).".png?set=set2"
       );
 
       $data = array(
         'name' => 'Test Experience',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'experience',
-        'image_file' => "https://robohash.org/".time().".png?set=set2"
+        'image_file' => "https://robohash.org/".(time()+3).".png?set=set2"
       );
       $this->db->insert($table, $data);
 
@@ -104,7 +104,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Hello Experience',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'experience',
-        'image_file' => "https://robohash.org/".time().".png?set=set2"
+        'image_file' => "https://robohash.org/".(time()+4).".png?set=set2"
       );
       $this->db->insert($table, $data);  
 
@@ -112,7 +112,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Magen Attraglaitz',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'people', 
-        'image_file' => "https://robohash.org/".time().".png?set=set5" # 10
+        'image_file' => "https://robohash.org/".(time()+5).".png?set=set5" # 10
       );
       $this->db->insert($table, $data);
 
@@ -120,7 +120,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Sin Grey Audragonel',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'people',
-        'image_file' => "https://robohash.org/".time().".png?set=set5"
+        'image_file' => "https://robohash.org/".(time()+6).".png?set=set5"
       );
       $this->db->insert($table, $data);
 
@@ -128,7 +128,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Godfrey Fvjyana',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'people',
-        'image_file' => "https://robohash.org/".time().".png?set=set5"
+        'image_file' => "https://robohash.org/".(time()+7).".png?set=set5"
       );
       $this->db->insert($table, $data);
 
@@ -136,7 +136,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Arthis Grinsley',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'people',
-        'image_file' => "https://robohash.org/".time().".png?set=set5"
+        'image_file' => "https://robohash.org/".(time()+8).".png?set=set5"
       );
       $this->db->insert($table, $data);
 
@@ -144,7 +144,7 @@ class Migration_rateables_table extends CI_Migration {
         'name' => 'Cain Rosef Attraglaitz',
         'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         'type' => 'people',
-        'image_file' => "https://robohash.org/".time().".png?set=set5" # 14
+        'image_file' => "https://robohash.org/".(time()+9).".png?set=set5" # 14
       );
       $this->db->insert($table, $data);
 

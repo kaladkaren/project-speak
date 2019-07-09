@@ -53,14 +53,14 @@
         </li>
 
        <li class="sub-menu">
-          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['services', 'people', 'experience']))  ? 'active': ''; ?>">
+          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(3), ['services', 'people', 'experience']))  ? 'active': ''; ?>">
             <i class="fa fa-group"></i>
             <span>Rateables management</span>
           </a>
           <ul class="sub" >
-            <li><a <?php echo $this->uri->segment(2) === 'services' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/services') ?>">Services</a></li>
-            <li><a <?php echo $this->uri->segment(2) === 'people' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/people') ?>">People</a></li>
-            <li><a <?php echo $this->uri->segment(2) === 'experience' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/experience') ?>">Experience</a></li>
+            <li><a <?php echo $this->uri->segment(3) === 'services' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/services') ?>">Services</a></li>
+            <li><a <?php echo $this->uri->segment(3) === 'people' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/people') ?>">People</a></li>
+            <li><a <?php echo $this->uri->segment(3) === 'experience' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/experience') ?>">Experience</a></li>
           </ul>
         </li>
       </ul>
