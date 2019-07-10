@@ -33,12 +33,12 @@
                         <th scope="row"><?php echo $i++ ?></th>
                         <td><?php echo $value->name ?></td>
                         <td><?php echo $value->description ?></td>
-                        <td><a href="<?php echo $value->image_url ?>"><img src='<?php echo $value->image_url ?>' style="height:50px"/></a></td>
+                        <td><a target="_blank" href="<?php echo $value->image_url ?>"><img src='<?php echo $value->image_url ?>' style="height:50px"/></a></td>
                         <td>
                           <button type="button"
                           data-payload='<?php echo json_encode(['id' => $value->id, 'station_name' => $value->station_name])?>'
                           class="edit-row btn btn-info btn-xs">Edit</button>
-                          <button type="button" data-id='<?php echo $value->id; ?>'
+                          <button type="button" data-id='<?php echo $value->id; ?>' data-type='<?php echo $type_lower; ?>'
                             class="btn btn-delete btn-danger btn-xs">Delete</button>
                         </td>
                         </tr>
@@ -71,10 +71,19 @@
         </div>
         <div class="modal-body">
 
-          <form role="form" method="post">
+          <form role="form" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label >Station name</label>
-              <input type="text" class="form-control" name="station_name" placeholder="Station name">
+              <label ><?php echo $type ?> name</label>
+              <input type="text" class="form-control" name="name" placeholder="<?php echo $type ?> name">
+              <input type="hidden" name="type" value="<?php echo $type_lower ?>">
+            </div>            
+            <div class="form-group">
+              <label >Description</label>
+              <textarea class="form-control" name="description" placeholder="Description"></textarea>
+            </div>            
+            <div class="form-group">
+              <label >Image</label>
+              <input type="file" name="image_file">
             </div>
  
           </div>
@@ -88,5 +97,5 @@
   </div>
   <!-- modal -->
 
-  <script src="<?php echo base_url('public/admin/js/custom/') ?>stations_management.js"></script>
+  <script src="<?php echo base_url('public/admin/js/custom/') ?>rateables_management.js"></script>
   <script src="<?php echo base_url('public/admin/js/custom/') ?>generic.js"></script>
