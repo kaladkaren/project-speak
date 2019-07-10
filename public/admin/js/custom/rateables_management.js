@@ -4,10 +4,17 @@ $(document).ready(function() {
     $('form')[0].reset() // reset the form
     const payload = $(this).data('payload')
 
-    $('input[name=station_name]').removeAttr('required')
-    $('input[name=station_name]').val(payload.station_name)
+    $('input[name=name]').removeAttr('required')
+    $('input[name=name]').val(payload.name)
 
-    $('form').attr('action', base_url + 'cms/stations/update/' + payload.id)
+    $('textarea[name=description]').removeAttr('required')
+    $('textarea[name=description]').val(payload.description)
+
+    $('input[name=image_file]').removeAttr('required')
+    $('.modal-img').attr('src', payload.image_url)
+    $('.modal-img').show()
+
+    $('form').attr('action', base_url + 'cms/rateables/update/' + payload.id)
     $('.modal').modal()
   })
 
@@ -18,6 +25,7 @@ $(document).ready(function() {
     $('input[name=name]').attr('required', 'required') 
     $('textarea[name=description]').attr('required', 'required') 
     $('input[name=image_file]').attr('required', 'required') 
+    $('.modal-img').hide();
 
     $('form').attr('action', base_url + 'cms/rateables/add')
     $('.modal').modal()

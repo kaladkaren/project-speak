@@ -35,7 +35,9 @@ class Rateables extends Admin_core_controller {
 
   public function update($id)
   {
-    $data = $this->input->post();
+    $type = $this->input->post('type');
+    $data = array_merge($this->input->post(), $this->rateables_model->upload('image_file'));
+    $this->rateables_model->deleteUploadedMedia($id);
 
     if($this->rateables_model->update($id, $data)){
       $this->session->set_flashdata('flash_msg', ['message' => 'Item updated successfully', 'color' => 'green']);
@@ -43,7 +45,7 @@ class Rateables extends Admin_core_controller {
       $this->session->set_flashdata('flash_msg', ['message' => 'Error updating item', 'color' => 'red']);
     }
 
-    $this->admin_redirect('cms/rateables');
+    $this->admin_redirect("cms/rateables/$type");
   }
 
   public function delete($id)

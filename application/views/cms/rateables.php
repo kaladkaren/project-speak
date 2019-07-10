@@ -36,7 +36,7 @@
                         <td><a target="_blank" href="<?php echo $value->image_url ?>"><img src='<?php echo $value->image_url ?>' style="height:50px"/></a></td>
                         <td>
                           <button type="button"
-                          data-payload='<?php echo json_encode(['id' => $value->id, 'station_name' => $value->station_name])?>'
+                          data-payload='<?php echo json_encode(['id' => $value->id, 'name' => $value->name, 'description' => $value->description, 'image_url' => $value->image_url], JSON_HEX_APOS|JSON_HEX_QUOT)?>'
                           class="edit-row btn btn-info btn-xs">Edit</button>
                           <button type="button" data-id='<?php echo $value->id; ?>' data-type='<?php echo $type_lower; ?>'
                             class="btn btn-delete btn-danger btn-xs">Delete</button>
@@ -83,6 +83,7 @@
             </div>            
             <div class="form-group">
               <label >Image</label>
+              <a target="_blank" href=""><img src='' class="modal-img" style="height:50px"/></a>
               <input type="file" name="image_file">
             </div>
  
