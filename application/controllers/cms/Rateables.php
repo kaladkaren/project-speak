@@ -8,6 +8,7 @@ class Rateables extends Admin_core_controller {
     parent::__construct();
     $this->load->model('api/devices_model');
     $this->load->model('api/rateables_model');
+    $this->load->model('api/stations_model');
 
   }
  
@@ -17,6 +18,14 @@ class Rateables extends Admin_core_controller {
     $data['type'] = ucwords($type);
     $data['type_lower'] = $type;
     $this->wrapper('cms/rateables', $data);
+  }
+
+  function stations()
+  {
+    $data['stations'] = $this->stations_model->getAllStationRateablesObjects();
+    $data['flash_msg'] = $this->session->flash_msg;
+    // var_dump($data['stations']); die();
+    $this->wrapper('cms/rateables_stations', $data);
   }
 
   public function add()
@@ -51,6 +60,17 @@ class Rateables extends Admin_core_controller {
     }
 
     $this->admin_redirect("cms/rateables/$type");
+  }
+
+  function update_rateables_stations()
+  {
+    if($this->rateables_model->updateRateables($this->input->post())){
+      $this->session->set_flashdata("flash_msg", ['message' => 'Updated data successfully', 'color' => 'green', 'station_id' => $this->input->post('id')]);
+    } else {
+      $this->session->set_flashdata("flash_msg", ['message' => 'Error updating data', 'color' => 'red', 'station_id' => $this->input->post('id')]);
+    }
+
+    $this->admin_redirect("cms/rateables/stations");
   }
 
   public function delete($id)

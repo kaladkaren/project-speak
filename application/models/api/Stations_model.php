@@ -20,6 +20,50 @@ class Stations_model extends Crud_model
     return $res;
   }
 
+  function getAllStationRateablesObjects()
+  {
+    $stations = $this->all();
+    foreach ($stations as &$value) {
+      $value->stations_rateables = $this->getCompleteStationObjects($value->id);
+      $value->current_rateables = $this->getStationRateables($value->id);
+    }
+
+    return $stations;
+  }
+
+  function getStationRateables($station_id)
+  {
+    $stations_rateables = $this->db->get_where('stations_rateables', ['station_id' => $station_id])->result_array();
+    return array_column($stations_rateables, 'rateable_id');
+  }
+
+  function getCompleteStationObjects($station_id)
+  {
+    $stations_rateables = $this->getStationRateables($station_id);
+      
+    $this->db->select('id, name, type');
+    $rateables = $this->db->get('rateables')->result_array();
+
+    $types = array_column($rateables, 'type');
+    $types = array_unique($types); 
+
+    $res = (object)[]; # init our return
+
+    foreach ($types as $value) {
+      $res->{$value} = []; # mala imp na galawan?
+
+      foreach ($rateables as $r) {
+        if ($r['type'] === $value) {
+          unset($r['type']); # tanggal ang epal na type
+
+          $res->{$value}[] = $r;
+        }
+      }
+    }
+
+    return $res;
+  }
+
   public function get($id)
   {
     return $this->db->get_where('stations', array('id' => $id))->row();

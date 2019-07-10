@@ -35,6 +35,26 @@ class Rateables_model extends Crud_model
     return $this->db->get_where('rateables', array('id' => $id))->row();
   }
 
+  function updateRateables($data)
+  {
+    $station_id = $data['id'];
+    $rateable_ids = $data['rateable_ids'];
+
+    $this->db->where('station_id', $station_id);
+    $this->db->delete('stations_rateables');
+    $this->db->reset_query();
+
+    if (!$rateable_ids) {
+      return true;
+    } else {
+      $batch_data = [];
+      foreach ($rateable_ids as $value) {
+        $batch_data[] = ['station_id' => $station_id, 'rateable_id' => $value];
+      }
+      return $this->db->insert_batch('stations_rateables', $batch_data); 
+    }
+  }
+
 
   function allByTypeAndStation($type, $station_id)
   {

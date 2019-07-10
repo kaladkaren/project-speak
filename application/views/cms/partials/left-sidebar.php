@@ -6,7 +6,7 @@
       <i class="fa fa-bars"></i>
     </div>
     <!--logo start-->
-    <a href="index.html" class="logo" >RestIgniter<span>CRUD</span></a>
+    <a href="index.html" class="logo" >Project<span>Speak</span></a>
     <!--logo end-->
     <div class="top-nav ">
       <ul class="nav pull-right top-menu">
@@ -37,25 +37,27 @@
             <span>Admin Management</span>
           </a>
         </li>        
-        <li>
-          <a href="<?php echo base_url('cms/devices') ?>"
-            class="<?php echo $this->uri->segment(1) === 'cms' && ($this->uri->segment(2) === 'devices') ? 'active': ''; ?>">
-            <i class="fa fa-laptop"></i>
-            <span>Station Assignment</span>
-          </a>
-        </li>
-        <li>
-          <a href="<?php echo base_url('cms/stations') ?>"
-            class="<?php echo $this->uri->segment(1) === 'cms' && ($this->uri->segment(2) === 'stations') ? 'active': ''; ?>">
-            <i class="fa fa-gears"></i>
+ 
+
+
+        <li class="sub-menu">
+          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['devices', 'stations']) || in_array($this->uri->segment(3), ['stations']))  ? 'active': ''; ?>">
+            <i class="fa fa-group"></i>
             <span>Stations</span>
           </a>
+          <ul class="sub" >
+            <li><a <?php echo $this->uri->segment(2) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/stations') ?>">Stations Management</a></li>
+            <li><a <?php echo $this->uri->segment(2) === 'devices' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/devices') ?>">Device Station Assignment</a></li>
+            <li><a <?php echo $this->uri->segment(3) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/stations') ?>">Rateables Assignment</a></li>
+ 
+          </ul>
         </li>
+
 
        <li class="sub-menu">
           <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(3), ['services', 'people', 'experience']))  ? 'active': ''; ?>">
             <i class="fa fa-group"></i>
-            <span>Rateables management</span>
+            <span>Rateables</span>
           </a>
           <ul class="sub" >
             <li><a <?php echo $this->uri->segment(3) === 'services' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/services') ?>">Services</a></li>
