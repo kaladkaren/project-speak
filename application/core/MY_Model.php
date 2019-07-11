@@ -105,6 +105,10 @@ class Crud_model extends CI_model
   */
   protected $upload_dir;
 
+  public $per_page;
+  public $page;
+  public $offset;
+
   public function __construct()
   {
     parent::__construct();
@@ -116,7 +120,7 @@ class Crud_model extends CI_model
     # Use `$this->db->reset_query();` on the child class to override these two. Then redeclare them as needed
     // $this->db->order_by('id', 'DESC');
 
-    $this->paginate(); # apply pagination to all methods
+    // $this->paginate(); # apply pagination to all methods
   }
 
   /**

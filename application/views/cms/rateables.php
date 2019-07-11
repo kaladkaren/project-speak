@@ -28,9 +28,9 @@
                 <tbody>
                   <?php if (count($res) > 0 ): ?>
 
-                    <?php $i = 1; foreach ($res as $key => $value): ?>
+                    <?php foreach ($res as $key => $value): ?>
                       <tr>
-                        <th scope="row"><?php echo $i++ ?></th>
+                        <th scope="row"><?php echo $starty++ ?></th>
                         <td><?php echo $value->name ?></td>
                         <td><?php echo $value->description ?></td>
                         <td><a target="_blank" href="<?php echo $value->image_url ?>"><img src='<?php echo $value->image_url ?>' style="height:50px"/></a></td>
@@ -47,11 +47,24 @@
 
                     <?php else: ?>
                       <tr>
-                        <td colspan="2" style="text-align:center">Empty table data</td>
+                        <td colspan="5" style="text-align:center">Empty table data</td>
                       </tr>
                     <?php endif; ?>
                   </tbody>
                 </table>
+
+                <ul class="pagination">
+                  <ul class='pagination'>
+                    <?php
+                    for ($i=1; $i <= $total_pages; $i++) { ?>
+                      <li><a
+                        class="<?php echo ($i == $page) ? 'active_lg' : '' ?>"
+                        href="<?php echo base_url($this->uri->uri_string())
+                        . "?page=" . $i;
+                        ?>"><?php echo $i ?></a></li>
+                      <?php } ?>
+                    </ul>
+                  </ul>
               </div>
             </div>
           </section>

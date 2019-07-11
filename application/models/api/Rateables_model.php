@@ -9,6 +9,8 @@ class Rateables_model extends Crud_model
     $this->upload_dir = 'rateables'; # uploads/your_dir
     $this->uploads_folder = "uploads/" . $this->upload_dir . "/";
     $this->full_up_path = base_url() . "uploads/" . $this->upload_dir . "/"; # override this block on your child class. just redeclare it
+    $this->per_page = $this->input->get('per_page') ?: 15;
+    $this->page = $this->input->get('page') ?: 1;
   }
 
   public function add($data)
@@ -28,6 +30,26 @@ class Rateables_model extends Crud_model
     }
 
     return $res;
+  }
+
+  public function getTotalPages($type = null)
+  {
+    $this->db->reset_query();
+    if ($type) {
+      $this->db->where('type', $type);
+    }
+    return ceil(count($this->db->get('rateables')->result()) / $this->per_page);
+  }
+
+  /**
+  * this is for pagination
+  * uses $this->input->get('page') and $this->input->get('per_page')
+  * @return [type] [description]
+  */
+  public function paginate()
+  {
+    $offset = ($this->page - 1) * $this->per_page;
+    $this->db->limit($this->per_page, $offset);
   }
 
   public function get($id)

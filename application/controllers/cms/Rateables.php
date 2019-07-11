@@ -14,9 +14,17 @@ class Rateables extends Admin_core_controller {
  
   public function index($type)
   {
+    $this->rateables_model->paginate();
     $data['res'] =  $this->rateables_model->allByType($type);
     $data['type'] = ucwords($type);
     $data['type_lower'] = $type;
+    $data['total_pages'] = $this->rateables_model->getTotalPages($type);
+
+    #pagination shits
+    $data['page'] = $this->rateables_model->page;
+    $data['per_page'] = $this->rateables_model->per_page;
+    $data['starty'] = ($data['page'] == 1) ? 1 : ($data['page'] - 1) * $data['per_page'];
+
     $this->wrapper('cms/rateables', $data);
   }
 
