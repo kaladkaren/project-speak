@@ -73,14 +73,14 @@
 
 
        <li class="sub-menu">
-          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['departments', 'divisions', 'sub_agencies']))  ? 'active': ''; ?>">
+          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['departments', 'divisions', 'sub-agencies']))  ? 'active': ''; ?>">
             <i class="fa fa-cogs"></i>
             <span>Groups</span>
           </a>
           <ul class="sub" >
             <li><a <?php echo $this->uri->segment(2) === 'divisions' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/divisions') ?>">Divisions</a></li>
             <li><a <?php echo $this->uri->segment(2) === 'departments' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/departments') ?>">Departments</a></li>
-            <li><a <?php echo $this->uri->segment(2) === 'sub_agencies' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/sub_agencies') ?>">Sub agencies</a></li>
+            <li><a <?php echo $this->uri->segment(2) === 'sub-agencies' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/sub-agencies') ?>">Sub agencies</a></li>
           </ul>
         </li>
 
