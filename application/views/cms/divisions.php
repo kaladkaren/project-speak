@@ -48,6 +48,19 @@
                     <?php endif; ?>
                   </tbody>
                 </table>
+
+                <ul class="pagination">
+                  <ul class='pagination'>
+                    <?php
+                    for ($i=1; $i <= $total_pages; $i++) { ?>
+                      <li><a
+                        class="<?php echo ($i == $page) ? 'active_lg' : '' ?>"
+                        href="<?php echo base_url($this->uri->uri_string())
+                        . "?page=" . $i;
+                        ?>"><?php echo $i ?></a></li>
+                      <?php } ?>
+                    </ul>
+                  </ul>
               </div>
             </div>
           </section>

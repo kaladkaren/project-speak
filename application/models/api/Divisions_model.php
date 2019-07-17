@@ -6,6 +6,8 @@ class Divisions_model extends Crud_model
   function __construct(){
   	parent::__construct();
 
+    $this->per_page = $this->input->get('per_page') ?: 15;
+    $this->page = $this->input->get('page') ?: 1;
   }
 
   public function add($data)
@@ -36,6 +38,17 @@ class Divisions_model extends Crud_model
     $this->db->where('id', $id);
     $this->db->delete('divisions');
     return $this->db->affected_rows();
+  }
+
+  public function getTotalPages()
+  {
+    return ceil(count($this->db->get('divisions')->result()) / $this->per_page);
+  }
+
+  public function paginate()
+  {
+    $offset = (($this->page - 1) * $this->per_page) ?: 0;
+    $this->db->limit($this->per_page, $offset);
   }
 
 

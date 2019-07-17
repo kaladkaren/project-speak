@@ -13,7 +13,16 @@ class Divisions extends Admin_core_controller {
  
   public function index()
   {
-    $data['res'] =  $this->divisions_model->all();;
+    $this->divisions_model->paginate();
+    $this->db->order_by('division_name', 'asc');
+    $data['res'] =  $this->divisions_model->all();
+
+    #pagination shits
+    $data['total_pages'] = $this->divisions_model->getTotalPages();
+    $data['page'] = $this->divisions_model->page;
+    $data['per_page'] = $this->divisions_model->per_page;
+    $data['starty'] = ($data['page'] == 1) ? 1 : (($data['page'] - 1) * $data['per_page']) + 1;
+
     $this->wrapper('cms/divisions', $data);
   }
 
