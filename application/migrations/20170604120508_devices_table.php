@@ -46,7 +46,7 @@ class Migration_devices_table extends CI_Migration {
       $this->db->insert($table, $data);
 
       $data = array(
-        'device_id' => 'NJKO987654E32WSXCVY6',
+        'device_id' => 'FJKO987654E32WS11VY6',
         'device_name' => '"Hr\'s" Tablet',
       );
       $this->db->insert($table, $data);

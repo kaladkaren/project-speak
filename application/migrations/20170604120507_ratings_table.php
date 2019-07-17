@@ -29,7 +29,8 @@ class Migration_ratings_table extends CI_Migration {
       'rating' => array(
         'type' => 'INT',
         'constraint' => 9,
-        'comment' => '1 (lowest) - 5 (highest)'
+        'comment' => '1 (lowest) - 5 (highest)',
+        'default' => 1
       ), 
       'rated_at' => array(
         'type' => 'DATETIME',
