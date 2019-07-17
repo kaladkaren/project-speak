@@ -6,6 +6,9 @@ class Ratings_model extends Crud_model
   function __construct(){
   	parent::__construct();
 
+    $this->per_page = $this->input->get('per_page') ?: 15;
+    $this->page = $this->input->get('page') ?: 1;
+    $this->offset = (($this->page - 1) * $this->per_page)?: 0;
   }
 
   public function add($data)

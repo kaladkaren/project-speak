@@ -48,7 +48,7 @@ class Rateables_model extends Crud_model
   */
   public function paginate()
   {
-    $offset = ($this->page - 1) * $this->per_page;
+    $offset = (($this->page - 1) * $this->per_page) ?: 0;
     $this->db->limit($this->per_page, $offset);
   }
 

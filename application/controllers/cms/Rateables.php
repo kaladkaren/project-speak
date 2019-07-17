@@ -23,7 +23,7 @@ class Rateables extends Admin_core_controller {
     #pagination shits
     $data['page'] = $this->rateables_model->page;
     $data['per_page'] = $this->rateables_model->per_page;
-    $data['starty'] = ($data['page'] == 1) ? 1 : ($data['page'] - 1) * $data['per_page'];
+    $data['starty'] = ($data['page'] == 1) ? 1 : (($data['page'] - 1) * $data['per_page']) + 1;
 
     $this->wrapper('cms/rateables', $data);
   }
