@@ -39,19 +39,13 @@
         </li>        
  
 
-
-        <li class="sub-menu">
-          <a href="javascript:;" class="<?php echo (in_array($this->uri->segment(2), ['devices', 'stations']) || in_array($this->uri->segment(3), ['stations']))  ? 'active': ''; ?>">
-            <i class="fa fa-group"></i>
-            <span>Stations</span>
+        <li><a <?php echo $this->uri->segment(2) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/stations') ?>"><i class="fa fa-laptop"></i> Stations</a></li>
+          <li>
+          <a href="<?php echo base_url('cms/ratings') ?>"
+            class="<?php echo $this->uri->segment(2) === 'ratings' ? 'active': ''; ?>">
+            <i class="fa fa-star"></i>
+            <span>Ratings</span>
           </a>
-          <ul class="sub" >
-            <li><a <?php echo $this->uri->segment(2) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/stations') ?>">Stations Management</a></li>
-            <li><a <?php echo $this->uri->segment(2) === 'devices' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/devices') ?>">Device Station Assignment</a></li>
-            <li><a <?php echo $this->uri->segment(3) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/stations') ?>">Rateables Assignment</a></li>
- 
-          </ul>
-        </li>
 
 
        <li class="sub-menu">
@@ -65,6 +59,11 @@
             <li><a <?php echo $this->uri->segment(3) === 'experience' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/experience') ?>">Experience</a></li>
           </ul>
         </li>
+        <li>
+          <hr>
+        </li>
+          <li><a <?php echo $this->uri->segment(2) === 'devices' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/devices') ?>"><i class="fa fa-mobile-phone"></i> Device Station Assignment</a></li>
+        <li><a <?php echo $this->uri->segment(3) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/stations') ?>"><i class="fa fa-quote-left"></i> Rateables Assignment</a></li>
       </ul>
       <!-- sidebar menu end-->
     </div>
