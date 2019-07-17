@@ -13,7 +13,16 @@ class Departments extends Admin_core_controller {
  
   public function index()
   {
-    $data['res'] =  $this->departments_model->all();;
+    $this->departments_model->paginate();
+    $this->db->order_by('department_name', 'asc');
+    $data['res'] =  $this->departments_model->all();
+
+    #pagination shits
+    $data['total_pages'] = $this->departments_model->getTotalPages();
+    $data['page'] = $this->departments_model->page;
+    $data['per_page'] = $this->departments_model->per_page;
+    $data['starty'] = ($data['page'] == 1) ? 1 : (($data['page'] - 1) * $data['per_page']) + 1;
+
     $this->wrapper('cms/departments', $data);
   }
 
