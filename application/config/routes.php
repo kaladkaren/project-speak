@@ -77,6 +77,7 @@ $route['api/rateables/(:any)'] = 'api/rateables/rateables/$1';
 
 
 $route['cms/rateables/update-rateables-stations'] = 'cms/rateables/update_rateables_stations';
+$route['cms/internal-members'] = 'cms/internal_members';
 $route['cms/rateables/services'] = 'cms/rateables/index/services';
 $route['cms/rateables/people'] = 'cms/rateables/index/people';
 $route['cms/rateables/experience'] = 'cms/rateables/index/experience';
