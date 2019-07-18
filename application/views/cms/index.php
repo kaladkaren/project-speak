@@ -69,7 +69,7 @@
         </div>
         <div class="modal-body">
 
-          <form role="form" method="post">
+          <form role="form" method="post" id="admin_form">
             <div class="form-group">
               <label >Name</label>
               <input type="text" class="form-control" name="name" placeholder="Name">

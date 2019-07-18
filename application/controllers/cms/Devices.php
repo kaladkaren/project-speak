@@ -13,6 +13,7 @@ class Devices extends Admin_core_controller {
  
   public function index()
   {
+    $this->db->order_by('device_name', 'asc');
     $data['res'] = $this->devices_model->all();
     $data['stations'] = $this->stations_model->all();
     $default_station = (object)['id' => 0, 'station_name' => 'Unassigned'];
