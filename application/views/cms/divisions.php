@@ -26,9 +26,9 @@
                 <tbody>
                   <?php if (count($res) > 0 ): ?>
 
-                    <?php $i = 1; foreach ($res as $key => $value): ?>
+                    <?php foreach ($res as $key => $value): ?>
                       <tr>
-                        <th scope="row"><?php echo $i++ ?></th>
+                        <th scope="row"><?php echo $starty++ ?></th>
                         <td><?php echo $value->division_name ?></td>
                         <td>
                           <button type="button"

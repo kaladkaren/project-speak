@@ -27,9 +27,9 @@
                 <tbody>
                   <?php if (count($res) > 0 ): ?>
 
-                    <?php $i = 1; foreach ($res as $key => $value): ?>
+                    <?php foreach ($res as $key => $value): ?>
                       <tr>
-                        <th scope="row"><?php echo $i++ ?></th>
+                        <th scope="row"><?php echo $starty++ ?></th>
                         <td><?php echo $value->full_name ?></td>
                         <td><?php echo $value->division_name ?></td>
                         <td>
@@ -50,6 +50,18 @@
                     <?php endif; ?>
                   </tbody>
                 </table>
+                <ul class="pagination">
+                  <ul class='pagination'>
+                    <?php
+                    for ($i=1; $i <= $total_pages; $i++) { ?>
+                      <li><a
+                        class="<?php echo ($i == $page) ? 'active_lg' : '' ?>"
+                        href="<?php echo base_url($this->uri->uri_string())
+                        . "?page=" . $i;
+                        ?>"><?php echo $i ?></a></li>
+                      <?php } ?>
+                    </ul>
+                  </ul>
               </div>
             </div>
           </section>

@@ -13,8 +13,18 @@ class Internal_members extends Admin_core_controller {
  
   public function index()
   {
+    $this->internal_members_model->paginate();
+    $this->db->order_by('id', 'desc');
     $data['res'] =  $this->internal_members_model->all();
+
     $data['divisions'] =  $this->divisions_model->all();
+
+        #pagination shits
+    $data['total_pages'] = $this->internal_members_model->getTotalPages();
+    $data['page'] = $this->internal_members_model->page;
+    $data['per_page'] = $this->internal_members_model->per_page;
+    $data['starty'] = ($data['page'] == 1) ? 1 : (($data['page'] - 1) * $data['per_page']) + 1;
+
     $this->wrapper('cms/internal-members', $data);
   }
 
