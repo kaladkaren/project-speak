@@ -21,6 +21,7 @@ class Rateables_model extends Crud_model
 
   public function allByType($type)
   {
+    $this->db->order_by('name', 'asc');
     $this->db->where('type', $type);
     $res = $this->db->get('rateables')->result();
 

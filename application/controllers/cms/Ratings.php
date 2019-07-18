@@ -15,7 +15,11 @@ class Ratings extends Admin_core_controller {
   public function index()
   {
     $data['res'] =  $this->ratings_model->allFormatted(true);
+
+    $this->db->order_by('device_name', 'asc');
     $data['devices'] = $this->devices_model->all();
+    
+    $this->db->order_by('station_name', 'asc');
     $data['stations'] = $this->stations_model->all();
 
     $data['total_pages'] = $this->ratings_model->getTotalPages();

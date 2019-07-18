@@ -42,6 +42,7 @@ class Stations_model extends Crud_model
     $stations_rateables = $this->getStationRateables($station_id);
       
     $this->db->select('id, name, type');
+    $this->db->order_by('name', 'asc');
     $rateables = $this->db->get('rateables')->result_array();
 
     $types = array_column($rateables, 'type');
