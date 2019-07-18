@@ -6,6 +6,9 @@ class Sub_agencies_model extends Crud_model
   function __construct(){
   	parent::__construct();
 
+    $this->per_page = $this->input->get('per_page') ?: 15;
+    $this->page = $this->input->get('page') ?: 1;
+
   }
 
   public function add($data)
@@ -44,6 +47,17 @@ class Sub_agencies_model extends Crud_model
   public function allByDepartmentId($department_id)
   {
     return $this->db->get_where('sub_agencies', array('department_id' => $department_id))->result();
+  }
+
+  public function getTotalPages()
+  {
+    return ceil(count($this->db->get('sub_agencies')->result()) / $this->per_page);
+  }
+
+  public function paginate()
+  {
+    $offset = (($this->page - 1) * $this->per_page) ?: 0;
+    $this->db->limit($this->per_page, $offset);
   }
 
 }

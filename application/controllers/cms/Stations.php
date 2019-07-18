@@ -13,7 +13,8 @@ class Stations extends Admin_core_controller {
  
   public function index()
   {
-    $data['res'] =  $this->stations_model->all();;
+    $this->db->order_by('station_name', 'asc');
+    $data['res'] =  $this->stations_model->all();
     $this->wrapper('cms/stations', $data);
   }
 
