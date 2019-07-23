@@ -184,6 +184,50 @@ GET `/departments`
 
 ## Sub agencies
 
+### Get all sub agencies 
+GET `/sub_agencies`
+
+##### Response
+```javascript
+200 OK
+
+{
+  "data": [
+    {
+      "id": "1",
+      "agency_name": "Anti-drugs division",
+      "department_id": "1",
+      "created_at": "2019-07-09 16:20:49",
+      "updated_at": "0000-00-00 00:00:00",
+      "department_name": "Anti Cybercrime Department"
+    },
+    {
+      "id": "2",
+      "agency_name": "Anti-terrorism division",
+      "department_id": "1",
+      "created_at": "2019-07-09 16:20:49",
+      "updated_at": "0000-00-00 00:00:00",
+      "department_name": "Anti Cybercrime Department"
+    },
+    {
+      "id": "3",
+      "agency_name": "AA Example agency",
+      "department_id": "4",
+      "created_at": "2019-07-09 16:20:49",
+      "updated_at": "2019-07-18 11:13:30",
+      "department_name": "Help Department"
+    }
+  ],
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok"
+  }
+}
+```
+
+
+---
 ### Get all sub agencies by department id
 GET `/sub_agencies/department/:department_id`
 

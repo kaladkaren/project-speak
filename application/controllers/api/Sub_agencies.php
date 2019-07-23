@@ -27,6 +27,21 @@ class Sub_agencies extends Crud_controller
     ], 200);
   
   }
+
+  function index_get()
+  {
+    $res = $this->sub_agencies_model->all();
+    $this->response($res, 200);
+
+    $this->response((object) [
+      'data' => $res,
+      'meta' => (object) [
+          'message' => 'Got all data',
+          'status' => 200,
+        'code' => 'ok'
+     ]
+    ], 200);
+  }
    
 
 }
