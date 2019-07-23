@@ -14,7 +14,7 @@ function api_url($class)
 
 function helperGetDeviceIdHeader($that){
 	$headers = $that->input->request_headers(true);
-	return @$headers['DEVICE-ID'];
+	return @$headers['Device-Id'];
 }
 
 /**
