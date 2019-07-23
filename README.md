@@ -10,6 +10,7 @@
 | Members           | [Get all internal members](#get-all-internal-members) |                  no                | 🆗    | 
 | Divisions         | [Get all divisions](#get-all-divisions)               |                  no                | 🆗    | 
 | Departments       | [Get all departments](#get-all-departments)           |                  no                | 🆗    | 
+| Sub agencies      | [Get all sub agencies](#get-all-sub-agencies)         |                  no                |  🆗   | 
 | Sub agencies      | [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) |          no            |  🆗   | 
 | Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | 
 | Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | 
