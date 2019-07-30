@@ -303,7 +303,13 @@ POST `/options/rateables`
   "meta": {
     "message": "Got all data",
     "status": 200,
-    "code": "ok"
+    "code": "ok",
+    "datetime": "2019-07-30 17:19:03"
+  },
+  "request_meta": {
+    "device_id": "sphinxofblackquartzjudgemyvow",
+    "station_id": "1",
+    "last_updated": "2019-07-30 17:18:55"
   }
 }
 ```
