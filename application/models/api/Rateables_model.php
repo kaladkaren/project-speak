@@ -62,6 +62,12 @@ class Rateables_model extends Crud_model
   {
     $station_id = $data['id'];
     $rateable_ids = $data['rateable_ids'];
+    $rateables_existing_ids = $this->getExistingRateables($station_id);
+
+    # if resubmitting and same shit
+    if ($rateable_ids == $rateables_existing_ids) {
+      return true;  
+    }
 
     $this->db->where('station_id', $station_id);
     $this->db->delete('stations_rateables');
@@ -76,6 +82,12 @@ class Rateables_model extends Crud_model
       }
       return $this->db->insert_batch('stations_rateables', $batch_data); 
     }
+  }
+
+  function getExistingRateables($station_id)
+  {
+    $this->db->where('station_id', $station_id);
+    return array_column($this->db->get('stations_rateables')->result_array(), 'rateable_id');
   }
 
 
