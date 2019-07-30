@@ -262,10 +262,6 @@ GET `/sub_agencies/department/:department_id`
 }
 ```
 
-
----
-
-
 ---
 ### Check rateables status  
 Checks if there is an updated rateable  
