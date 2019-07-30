@@ -172,4 +172,47 @@ class Rateables_model extends Crud_model
     return $this->db->affected_rows(); # Returns 1 if update is successful, returns 0 if update is already made, but query is successful
   }
 
+  function buildOptionsRateables($station_id, $last_updated)
+  {
+    $rateables = [];
+    foreach (['services', 'experience', 'people'] as $value) {
+      $this->db->select('stations_rateables.station_id, rateables.type, rateables.updated_at');
+      $this->db->join('rateables', 'stations_rateables.rateable_id = rateables.id', 'left');
+      $this->db->where('station_id', $station_id);
+      $this->db->where('type', $value);
+      $res = $this->db->get('stations_rateables')->result();
+
+      $rateables_obj = (object)[];
+      $rateables_obj->type = $value;
+      
+      $is_updated = false;
+
+      foreach ($res as $value) {
+        if ($value->updated_at == '0000-00-00 00:00:00') {
+          continue;
+        }
+        $is_updated = $is_updated || (strtotime($last_updated) < strtotime($value->updated_at));
+      }
+
+      $rateables_obj->is_updated = $is_updated;
+
+      $rateables[] = $rateables_obj;
+    }
+
+    return $rateables;
+  }
+
+  function checkIfReassigned($station_id, $last_updated){
+    $this->db->distinct();
+    $this->db->select('created_at');
+    $this->db->where('station_id', $station_id);
+    $created_at = @$this->db->get('stations_rateables')->row()->created_at;
+
+    if (!$created_at) {
+      return false; # if empty
+    }
+
+    return strtotime($last_updated) < strtotime($created_at); # if created at is greater, it means list is updated
+  }
+
 }

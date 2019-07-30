@@ -12,6 +12,7 @@
 | Departments       | [Get all departments](#get-all-departments)           |                  no                | 🆗    | 
 | Sub agencies      | [Get all sub agencies](#get-all-sub-agencies)         |                  no                |  🆗   | 
 | Sub agencies      | [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) |          no            |  🆗   | 
+| Options **(NEW)** | [Check rateables status](#check-rateables-status)     |                  no                |  🆗    | 
 | Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | 
 | Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | 
 | Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | 
@@ -265,6 +266,76 @@ GET `/sub_agencies/department/:department_id`
 ---
 
 
+---
+### Check rateables status  
+Checks if there is an updated rateable  
+POST `/options/rateables`  
+
+|      Name      | Required |   Type    |    Description    |    Sample Data 
+|----------------|----------|-----------|-------------------|-----------------------
+|    device_id   |  yes     |  string   |        -          |    1234asdzxcvbn 
+| last_updated   |  yes     |  string   | local datetime last updated on the device | 2019-08-11 00:00:00
+
+##### Response
+```javascript
+200 OK
+
+{
+  "data": {
+    "rateables" : [ 
+        {
+          "type":"services",
+          "is_updated": false
+        },
+        {
+          "type":"experience",
+          "is_updated": true
+        },
+        {
+          "type":"people",
+          "is_updated": false
+        }
+      ],
+      "is_reassigned": true  // if the rateables have changed order/or have been reassigned.
+       //if this is true, then it is necessary to call all rateable endpoints regardless if they are updated or not
+    }
+  },
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok"
+  }
+}
+```
+
+In the event of a failure...  
+```javascript
+200 OK
+
+{
+  "data" : {},
+  "meta" : {
+    "message": "Device ID is not yet registered.",
+    "status": 200,
+    "code": "not_registered"
+  }
+}
+```
+
+```javascript
+200 OK
+
+{
+  "data" : {},
+  "meta" : {
+    "message": "A station has yet to be assigned to your Device ID. Please contact your administrator for more details.",
+    "status": 200,
+    "code": "not_assigned"
+  }
+}
+```
+
+---
 
 # Important Note  
 All endpoints that follow *MUST* include a `DEVICE-ID` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
