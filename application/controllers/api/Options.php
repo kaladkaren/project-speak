@@ -9,10 +9,11 @@ class Options extends Crud_controller
 
     $this->load->model('api/devices_model');
     $this->load->model('api/rateables_model');
+    $this->load->model('api/options_model');
   }
 
 
-  function rateables_post()
+  function updated_items_post()
   {
 
     $last_updated = $this->input->post('last_updated');
@@ -43,8 +44,12 @@ class Options extends Crud_controller
     } 
 
     $res = (object)[];
-    $res->rateables = $this->rateables_model->buildOptionsRateables($station_id, $last_updated);
-    $res->is_reassigned = $this->rateables_model->checkIfReassigned($station_id, $last_updated);
+    $res->rateables = (object)[];
+    $res->rateables->items = $this->rateables_model->buildOptionsRateables($station_id, $last_updated);
+    $res->rateables->is_reassigned = $this->rateables_model->checkIfReassigned($station_id, $last_updated);
+     
+    $res->generic = (object)[];
+    $res->generic->items = $this->options_model->buildOptionsGeneric($last_updated);
     
     $this->response([
         'data' => $res,

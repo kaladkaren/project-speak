@@ -80,6 +80,7 @@ $route['cms/rateables/update-rateables-stations'] = 'cms/rateables/update_rateab
 $route['cms/internal-members'] = 'cms/internal_members';
 $route['cms/sub-agencies'] = 'cms/sub_agencies';
 $route['api/sub-agencies'] = 'api/sub_agencies';
+$route['api/options/updated-items'] = 'api/options/updated_items';
 $route['cms/rateables/services'] = 'cms/rateables/index/services';
 $route['cms/rateables/people'] = 'cms/rateables/index/people';
 $route['cms/rateables/experience'] = 'cms/rateables/index/experience';

@@ -12,7 +12,7 @@
 | Departments       | [Get all departments](#get-all-departments)           |                  no                | 🆗    | 
 | Sub agencies      | [Get all sub agencies](#get-all-sub-agencies)         |                  no                |  🆗   | 
 | Sub agencies      | [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) |          no            |  🆗   | 
-| Options **(NEW)** | [Check rateables status](#check-rateables-status)     |                  no                |  🆗    | 
+| Options **(UPDATED)** | [Check rateables & groups status](#check-rateables-groups-status)     |                  no                |  🆗    | Aug 6, 2019 11:00 AM
 | Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | 
 | Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | 
 | Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | 
@@ -263,9 +263,9 @@ GET `/sub_agencies/department/:department_id`
 ```
 
 ---
-### Check rateables status  
-Checks if there is an updated rateable  
-POST `/options/rateables`  
+### Check rateables & groups status  
+Checks if there is an updated rateable or group  
+POST `/options/updated-items`  
 
 |      Name      | Required |   Type    |    Description    |    Sample Data 
 |----------------|----------|-----------|-------------------|-----------------------
@@ -275,32 +275,52 @@ POST `/options/rateables`
 ##### Response
 ```javascript
 200 OK
-
 {
   "data": {
-    "rateables" : [ 
+    "rateables": {
+      "items": [
         {
-          "type":"services",
+          "type": "services",
           "is_updated": false
         },
         {
-          "type":"experience",
-          "is_updated": true
+          "type": "experience",
+          "is_updated": false
         },
         {
-          "type":"people",
+          "type": "people",
           "is_updated": false
         }
       ],
-      "is_reassigned": true  // if the rateables have changed order/or have been reassigned.
+      "is_reassigned": false // if the rateables have changed order/or have been reassigned.
        //if this is true, then it is necessary to call all rateable endpoints regardless if they are updated or not
+    },
+    "generic": {
+      "items": [
+        {
+          "type": "internal_members",
+          "is_updated": false
+        },
+        {
+          "type": "divisions",
+          "is_updated": false
+        },
+        {
+          "type": "departments",
+          "is_updated": true
+        },
+        {
+          "type": "sub_agencies",
+          "is_updated": false
+        }
+      ]
     }
   },
   "meta": {
     "message": "Got all data",
     "status": 200,
     "code": "ok",
-    "datetime": "2019-07-30 17:19:03"
+    "datetime": "2019-08-06 10:59:01"
   },
   "request_meta": {
     "device_id": "sphinxofblackquartzjudgemyvow",
