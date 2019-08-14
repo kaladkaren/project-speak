@@ -17,6 +17,7 @@ class Admin_model extends Admin_core_model
 
   public function all()
   {
+    $this->db->where_not_in('id', [$this->session->id]);
     $res = $this->db->get('admin')->result();
     return $res;
   }

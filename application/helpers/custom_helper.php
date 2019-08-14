@@ -47,7 +47,7 @@ function helperValidateStationId($that){
   	$that->response([
       	'data' => (object)[],
       	'meta' => (object) [
-      		'message' => 'A station has yet to be assigned to your Device ID. Please contact your administrator for more details.',
+      		'message' => 'A station has yet to be assigned to your Device-Id. Please contact your administrator for more details.',
       		'status' => 403,
       		'code' => 'forbidden'
       	]
@@ -57,7 +57,7 @@ function helperValidateStationId($that){
   	$that->response([
       	'data' => (object)[],
       	'meta' => (object) [
-      		'message' => 'Please provide a DEVICE-ID http header in your request to proceed.',
+      		'message' => 'Please provide a Device-Id http header in your request to proceed.',
       		'status' => 403,
       		'code' => 'forbidden'
       	]

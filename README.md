@@ -4,7 +4,7 @@
 
 ## Table of contents
 
-|     Resource      |                         Route                         |    Needs `DEVICE-ID` header     | Status | Recently modified  
+|     Resource      |                         Route                         |    Needs `Device-Id` header     | Status | Recently modified  
 |-------------------|-------------------------------------------------------|------------------------------------|--------|--------------------
 | Devices           | [Register device ID](#register-device-id)             |                  no                | 🆗    | 
 | Members           | [Get all internal members](#get-all-internal-members) |                  no                | 🆗    | 
@@ -12,7 +12,7 @@
 | Departments       | [Get all departments](#get-all-departments)           |                  no                | 🆗    | 
 | Sub agencies      | [Get all sub agencies](#get-all-sub-agencies)         |                  no                |  🆗   | 
 | Sub agencies      | [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) |          no            |  🆗   | 
-| Options **(UPDATED)** | [Check rateables & groups status](#check-rateables-groups-status)     |                  no                |  🆗    | Aug 6, 2019 11:00 AM
+| Options **(UPDATED)** | [Check rateables & groups status](#check-rateables--groups-status)     |                  no                |  🆗    | Aug 6, 2019 11:00 AM
 | Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | 
 | Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | 
 | Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | 
@@ -360,7 +360,7 @@ In the event of a failure...
 ---
 
 # Important Note  
-All endpoints that follow *MUST* include a `DEVICE-ID` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
+All endpoints that follow *MUST* include a `Device-Id` header with the value of the requester's device ID. Otherwise, the API will respond a forbidden error.
 
 ##### Response
 ```javascript
@@ -536,6 +536,7 @@ POST `/ratings/sync`
 |  saved_station_id      | yes        | number    | saved station ID at the time of rating  |        1 
 |  rating                | yes        | number    | rating  1 (lowest) - 5 (highest) |        5 
 |  rated_at              | yes        | datetime  | time of rating on local device   | 2019-11-29 23:23:23
+|  comment               | no         | string    | comments                         | Lorem ipsum dolor sit amet, consectetur adipisicing elit
 |  internal_member_id    | optional   | number    | if blank, will assume the request is from an external member | 123 / 0 / null
 | **- beyond this row are the parameters  used for external  member ratings. omit them if you have internal_member_id -**
 |  external_member_name  | optional   | string    | name of the external member      | 'John Doe'
