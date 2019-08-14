@@ -69,6 +69,7 @@
                     <th>Station</th>
                     <th>Rateable</th>
                     <th>Rating</th>
+                    <th>Comment</th>
                     <th>Rated by</th>
                     <th>Rated at</th>
                     <!-- <th>Actions</th> -->
@@ -84,6 +85,7 @@
                         <td><?php echo $value->station_name ?></td>
                         <td><?php echo "$value->rateable_name ($value->rateable_type)" ?></td>
                         <td><?php echo $value->rating_star ?> (<?php echo (float) $value->rating ?>)</td>
+                        <td><?php echo $value->comment ?></td>
                         <td><?php echo ($value->internal_member_name)? "$value->internal_member_name (internal)": "$value->external_member_name (external)" ?></td>
                         <td><?php echo $value->rated_at_formatted?></td>
                         <!-- <td> -->

@@ -50,7 +50,7 @@ class Ratings_model extends Crud_model
     $limit_str = ($paginate) ? "LIMIT {$this->per_page} OFFSET {$this->offset}" : '';
 
     $res = $this->db->query("
-      SELECT ratings.id as id, rateables.name as rateable_name, rateables.type as rateable_type, ratings.rating, ratings.rated_at, DATE_FORMAT(ratings.rated_at, '%M, %d %Y %h:%i:%s %p') as rated_at_formatted,  devices.device_name, stations.station_name, internal_members.full_name, departments.department_name, internal_members.full_name as internal_member_name, ratings.external_member_name as external_member_name, sub_agencies.agency_name, divisions.division_name as division_name
+      SELECT ratings.id as id, rateables.name as rateable_name, rateables.type as rateable_type, ratings.rating, ratings.rated_at, ratings.comment, DATE_FORMAT(ratings.rated_at, '%M, %d %Y %h:%i:%s %p') as rated_at_formatted,  devices.device_name, stations.station_name, internal_members.full_name, departments.department_name, internal_members.full_name as internal_member_name, ratings.external_member_name as external_member_name, sub_agencies.agency_name, divisions.division_name as division_name
       FROM ratings
       LEFT JOIN rateables ON ratings.rateable_id = rateables.id
       LEFT JOIN devices ON ratings.device_id = devices.id 
