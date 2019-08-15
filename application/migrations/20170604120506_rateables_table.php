@@ -14,8 +14,15 @@ class Migration_rateables_table extends CI_Migration {
       'name' => array(
         'type' => 'TEXT',
       ), 
+      'sub_name' => array(
+        'type' => 'TEXT',
+        'null' => true,
+        'default' => null
+      ), 
       'description' => array(
         'type' => 'TEXT',
+        'null' => true,
+        'default' => null
       ), 
       'type' => array(
         'type' => 'VARCHAR',
@@ -24,6 +31,8 @@ class Migration_rateables_table extends CI_Migration {
       ), 
       'image_file' => array(
         'type' => 'TEXT',
+        'null' => true,
+        'default' => null,
         'comment' => 'Filename. Ex: my_image.png'
       ), 
     ));

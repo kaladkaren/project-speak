@@ -6,8 +6,7 @@ $(document).ready(function() {
 
     $('input[name=name]').removeAttr('required')
     $('input[name=name]').val(payload.name)
-
-    $('textarea[name=description]').removeAttr('required')
+    $('input[name=sub_name]').val(payload.sub_name)
     $('textarea[name=description]').val(payload.description)
 
     $('input[name=image_file]').removeAttr('required')
@@ -22,9 +21,7 @@ $(document).ready(function() {
   $('.add-btn').on('click', function() {
     $('form')[0].reset() // reset the form
 
-    $('input[name=name]').attr('required', 'required') 
-    $('textarea[name=description]').attr('required', 'required') 
-    $('input[name=image_file]').attr('required', 'required') 
+    $('input[name=name]').attr('required', 'required')  
     $('.modal-img').hide();
 
     $('form').attr('action', base_url + 'cms/rateables/add')

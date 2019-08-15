@@ -20,6 +20,26 @@ class Rateables extends Admin_core_controller {
     $data['type_lower'] = $type;
     $data['total_pages'] = $this->rateables_model->getTotalPages($type);
 
+    switch ($type) {
+      case 'experience':
+        $data['name_header'] = 'Experience name';
+        $data['sub_name_header'] = 'Experience subtitle';
+        $data['description_header'] = 'Description';
+        break;
+      case 'services':
+        $data['name_header'] = 'Service name';
+        $data['sub_name_header'] = 'Service subtitle';
+        $data['description_header'] = 'Description';
+        break;
+      
+      default:
+      case 'people':
+        $data['name_header'] = 'Nickname';
+        $data['sub_name_header'] = 'Full name';
+        $data['description_header'] = 'Position';
+        break; 
+    }
+
     #pagination shits
     $data['page'] = $this->rateables_model->page;
     $data['per_page'] = $this->rateables_model->per_page;
@@ -81,7 +101,7 @@ class Rateables extends Admin_core_controller {
     $this->admin_redirect("cms/rateables/stations");
   }
 
-  public function delete($id)
+  public function delete()
   {
     $type = $this->input->post('type');
     if($this->rateables_model->delete($this->input->post('id'))){

@@ -28,6 +28,7 @@ class Rateables_model extends Crud_model
     foreach ($res as &$value) {
       $value->image_url = (strpos($value->image_file, 'robohash') !== false) ? $value->image_file : 
         $this->full_up_path . $value->image_file;
+      $value->image_url = ($this->full_up_path == $value->image_url) ? 'https://via.placeholder.com/150?text=No+Image' : $value->image_url;
     }
 
     return $res;

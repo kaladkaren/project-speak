@@ -19,8 +19,9 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th><?php echo $name_header ?></th>
+                    <th><?php echo $sub_name_header ?></th>
+                    <th><?php echo $description_header ?></th>
                     <th>Image</th>
                     <th>Actions</th>
                   </tr>
@@ -32,6 +33,7 @@
                       <tr>
                         <th scope="row"><?php echo $starty++ ?></th>
                         <td><?php echo $value->name ?></td>
+                        <td><?php echo $value->sub_name ?></td>
                         <td><?php echo $value->description ?></td>
                         <td><a target="_blank" href="<?php echo $value->image_url ?>"><img src='<?php echo $value->image_url ?>' style="height:50px"/></a></td>
                         <td>
@@ -86,13 +88,17 @@
 
           <form role="form" method="post" enctype="multipart/form-data">
             <div class="form-group">
-              <label ><?php echo $type ?> name</label>
-              <input type="text" class="form-control" name="name" placeholder="<?php echo $type ?> name">
+              <label ><?php echo $name_header ?></label>
+              <input type="text" class="form-control" name="name" placeholder="<?php echo $name_header ?>">
               <input type="hidden" name="type" value="<?php echo $type_lower ?>">
+            </div>                  
+            <div class="form-group">
+              <label ><?php echo $sub_name_header ?></label>
+              <input type="text" class="form-control" name="sub_name" placeholder="<?php echo $sub_name_header ?>">
             </div>            
             <div class="form-group">
-              <label >Description</label>
-              <textarea class="form-control" name="description" placeholder="Description"></textarea>
+              <label ><?php echo $description_header ?></label>
+              <textarea class="form-control" name="description" placeholder="<?php echo $description_header ?>"></textarea>
             </div>            
             <div class="form-group">
               <label >Image</label>
