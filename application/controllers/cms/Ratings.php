@@ -52,7 +52,7 @@ class Ratings extends Admin_core_controller {
     fputcsv($file, array(
       // 'ID', 
       'Device', 'Station', 'Rateable', 'Rating', 'Rated by',
-       // 'Rater meta', 
+       'Rater meta', 
        'Rated at'));
     
     $res = $this->ratings_model->allFormatted(false);
@@ -66,7 +66,7 @@ class Ratings extends Admin_core_controller {
         $value->rateable_name . " ({$value->rateable_type})",
         $value->rating_star . " ({$value->rating})",
         ($value->internal_member_name) ? $value->internal_member_name . " (internal)": $value->external_member_name . " (external)",
-        // ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)",
+        ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)",
         $value->rated_at_formatted,
       );
     }

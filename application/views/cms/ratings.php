@@ -71,6 +71,7 @@
                     <th>Rating</th>
                     <th>Comment</th>
                     <th>Rated by</th>
+                    <th>Rater meta</th>
                     <th>Rated at</th>
                     <!-- <th>Actions</th> -->
                   </tr>
@@ -87,6 +88,7 @@
                         <td><?php echo $value->rating_star ?> (<?php echo (float) $value->rating ?>)</td>
                         <td><?php echo $value->comment ?></td>
                         <td><?php echo ($value->internal_member_name)? "$value->internal_member_name (internal)": "$value->external_member_name (external)" ?></td>
+                        <td><?php echo ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)" ?></td>
                         <td><?php echo $value->rated_at_formatted?></td>
                         <!-- <td> -->
          <!--                  <button type="button"
