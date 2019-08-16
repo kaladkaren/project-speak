@@ -102,8 +102,10 @@ class Rateables_model extends Crud_model
     $ids_arr = array_column($stations_rateables, 'rateable_id');
 
     # Get from rateables table with filters
-    $this->db->where('type', $type);
-    $this->db->where_in('id', $ids_arr);
+    $this->db->select('rateables.*, if(divisions.division_name is null, "Unclassified", divisions.division_name) as division_name');
+    $this->db->where('rateables.type', $type);
+    $this->db->where_in('rateables.id', $ids_arr);
+    $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
     $res = $this->db->get('rateables')->result();
 
     foreach ($res as &$value) {

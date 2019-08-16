@@ -406,33 +406,24 @@ GET `/rateables/experience`
     {
       "id": "6",
       "name": "Gold Experience",
-      "sub_name": "Test",
+      "sub_name": null,
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "division_id": "0",
       "type": "experience",
-      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set2",
-      "created_at": "2019-07-05 17:53:46",
+      "image_file": "https:\/\/robohash.org\/1562660451.png?set=set2",
+      "created_at": "2019-07-09 16:20:50",
       "updated_at": "0000-00-00 00:00:00",
-      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
-    },
-    {
-      "id": "7",
-      "name": "Test Experience",
-      "sub_name": "Test",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "type": "experience",
-      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set2",
-      "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00",
-      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
-    } 
+      "division_name": "Unclassified",
+      "image_url": "https:\/\/robohash.org\/1562660451.png?set=set2"
+    }
   ],
   "meta": {
     "message": "Got all data",
     "status": 200,
     "code": "ok",
     "station": {
-      "station_id": "2",
-      "station_name": "Rotun Dale Magical Library"
+      "station_id": "1",
+      "station_name": "Delhatti Spire"
     }
   }
 }
@@ -448,38 +439,42 @@ GET `/rateables/services`
 {
   "data": [
     {
-      "id": "2",
-      "name": "Smithing",
-      "sub_name": "Test",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "type": "services",
-      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set1",
-      "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00",
-      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
-    },
-    {
       "id": "3",
       "name": "Woodworking",
-      "sub_name": "Test",
+      "sub_name": null,
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "division_id": "0",
       "type": "services",
-      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set1",
-      "created_at": "2019-07-05 17:53:46",
+      "image_file": "https:\/\/robohash.org\/1562660452.png?set=set1",
+      "created_at": "2019-07-09 16:20:50",
       "updated_at": "0000-00-00 00:00:00",
-      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
-    } 
+      "division_name": "Unclassified",
+      "image_url": "https:\/\/robohash.org\/1562660452.png?set=set1"
+    },
+    {
+      "id": "26",
+      "name": "Serbisyong totoo",
+      "sub_name": "Hey!!!",
+      "description": "",
+      "division_id": "2",
+      "type": "services",
+      "image_file": "1565935022_octocat.png",
+      "created_at": "2019-08-16 13:42:43",
+      "updated_at": "2019-08-16 13:57:02",
+      "division_name": "KPD",
+      "image_url": "http:\/\/localhost\/project-speak\/uploads\/rateables\/1565935022_octocat.png"
+    }
   ],
   "meta": {
     "message": "Got all data",
     "status": 200,
     "code": "ok",
     "station": {
-      "station_id": "2",
-      "station_name": "Rotun Dale Magical Library"
+      "station_id": "1",
+      "station_name": "Delhatti Spire"
     }
   }
-}
+}}
 ```
 
 ### Get all people
@@ -492,35 +487,26 @@ GET `/rateables/people`
 {
   "data": [
     {
-      "id": "10",
-      "name": "Sin Grey Audragonel",
-      "sub_name": "Test",
+      "id": "9",
+      "name": "Magen Attraglaitz",
+      "sub_name": "A",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "division_id": "0",
       "type": "people",
-      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set5",
-      "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00",
+      "image_file": "https:\/\/robohash.org\/1562660456.png?set=set5",
+      "created_at": "2019-07-09 16:20:51",
+      "updated_at": "2019-08-15 15:18:17",
+      "division_name": "Unclassified",
       "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
-    },
-    {
-      "id": "11",
-      "name": "Godfrey Fvjyana",
-      "sub_name": "Test",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-      "type": "people",
-      "image_file": "https:\/\/robohash.org\/1562320426.png?set=set5",
-      "created_at": "2019-07-05 17:53:46",
-      "updated_at": "0000-00-00 00:00:00",
-      "image_url": "https:\/\/robohash.org\/1562660456.png?set=set5"
-    } 
+    }
   ],
   "meta": {
     "message": "Got all data",
     "status": 200,
     "code": "ok",
     "station": {
-      "station_id": "2",
-      "station_name": "Rotun Dale Magical Library"
+      "station_id": "1",
+      "station_name": "Delhatti Spire"
     }
   }
 }
