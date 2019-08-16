@@ -22,6 +22,7 @@
                     <th><?php echo $name_header ?></th>
                     <th><?php echo $sub_name_header ?></th>
                     <th><?php echo $description_header ?></th>
+                    <th>Division</th>
                     <th>Image</th>
                     <th>Actions</th>
                   </tr>
@@ -35,10 +36,11 @@
                         <td><?php echo $value->name ?></td>
                         <td><?php echo $value->sub_name ?></td>
                         <td><?php echo $value->description ?></td>
+                        <td><?php echo ($value->division_name)?:'&lt;no division&gt;'; ?></td>
                         <td><a target="_blank" href="<?php echo $value->image_url ?>"><img src='<?php echo $value->image_url ?>' style="height:50px"/></a></td>
                         <td>
                           <button type="button"
-                          data-payload='<?php echo json_encode(['id' => $value->id, 'name' => $value->name, 'description' => $value->description, 'image_url' => $value->image_url], JSON_HEX_APOS|JSON_HEX_QUOT)?>'
+                          data-payload='<?php echo json_encode(['id' => $value->id, 'name' => $value->name, 'description' => $value->description, 'sub_name' => $value->sub_name, 'image_url' => $value->image_url, 'division_id' => $value->division_id], JSON_HEX_APOS|JSON_HEX_QUOT)?>'
                           class="edit-row btn btn-info btn-xs">Edit</button>
                           <button type="button" data-id='<?php echo $value->id; ?>' data-type='<?php echo $type_lower; ?>'
                             class="btn btn-delete btn-danger btn-xs">Delete</button>
@@ -99,6 +101,15 @@
             <div class="form-group">
               <label ><?php echo $description_header ?></label>
               <textarea class="form-control" name="description" placeholder="<?php echo $description_header ?>"></textarea>
+            </div>
+            <div class="form-group">
+              <label >Division</label>
+              <select name="division_id" class="form-control">
+                <option value="0">&lt;no division&gt;</option>
+                <?php foreach ($divisions as $value): ?>
+                  <option value="<?php echo $value->id ?>"><?php echo $value->division_name ?></option>
+                <?php endforeach ?>
+              </select>
             </div>            
             <div class="form-group">
               <label >Image</label>

@@ -8,6 +8,7 @@ $(document).ready(function() {
     $('input[name=name]').val(payload.name)
     $('input[name=sub_name]').val(payload.sub_name)
     $('textarea[name=description]').val(payload.description)
+    $('select[name=division_id]').val(payload.division_id).change()
 
     $('input[name=image_file]').removeAttr('required')
     $('.modal-img').attr('src', payload.image_url)

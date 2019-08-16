@@ -23,6 +23,12 @@ class Migration_rateables_table extends CI_Migration {
         'type' => 'TEXT',
         'null' => true,
         'default' => null
+      ),      
+      'division_id' => array(
+        'type' => 'INT',
+        'constraint' => 9
+        'default' => 0,
+        'comment' => 'FK from Divisions'
       ), 
       'type' => array(
         'type' => 'VARCHAR',

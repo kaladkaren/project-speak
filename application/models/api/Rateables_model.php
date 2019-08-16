@@ -21,8 +21,10 @@ class Rateables_model extends Crud_model
 
   public function allByType($type)
   {
-    $this->db->order_by('name', 'asc');
-    $this->db->where('type', $type);
+    $this->db->order_by('rateables.name', 'asc');
+    $this->db->select('rateables.*, divisions.division_name');
+    $this->db->where('rateables.type', $type);
+    $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
     $res = $this->db->get('rateables')->result();
 
     foreach ($res as &$value) {

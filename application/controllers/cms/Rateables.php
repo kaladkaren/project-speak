@@ -9,6 +9,7 @@ class Rateables extends Admin_core_controller {
     $this->load->model('api/devices_model');
     $this->load->model('api/rateables_model');
     $this->load->model('api/stations_model');
+    $this->load->model('api/divisions_model');
 
   }
  
@@ -16,6 +17,10 @@ class Rateables extends Admin_core_controller {
   {
     $this->rateables_model->paginate();
     $data['res'] =  $this->rateables_model->allByType($type);
+
+    $this->db->order_by('division_name', 'asc');
+    $data['divisions'] =  $this->divisions_model->all();
+
     $data['type'] = ucwords($type);
     $data['type_lower'] = $type;
     $data['total_pages'] = $this->rateables_model->getTotalPages($type);

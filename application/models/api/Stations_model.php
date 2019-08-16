@@ -41,8 +41,9 @@ class Stations_model extends Crud_model
   {
     $stations_rateables = $this->getStationRateables($station_id);
       
-    $this->db->select('id, name, type');
+    $this->db->select('rateables.id, if(divisions.division_name is null, CONCAT("Unclassified", " - ", rateables.name), CONCAT(divisions.division_name, " - ", rateables.name)) name, rateables.type');
     $this->db->order_by('name', 'asc');
+    $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
     $rateables = $this->db->get('rateables')->result_array();
 
     $types = array_column($rateables, 'type');
