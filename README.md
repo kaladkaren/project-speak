@@ -13,9 +13,9 @@
 | Sub agencies      | [Get all sub agencies](#get-all-sub-agencies)         |                  no                |  🆗   | 
 | Sub agencies      | [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) |          no            |  🆗   | 
 | Options **(UPDATED)** | [Check rateables & groups status](#check-rateables--groups-status)     |                  no                |  🆗    | Aug 6, 2019 11:00 AM
-| Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | 
-| Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | 
-| Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | 
+| Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
+| Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM 
+| Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
 | Ratings           | [Sync](#sync)                                         |                  **yes**           |  🆗    | 
 
 ---
@@ -406,6 +406,7 @@ GET `/rateables/experience`
     {
       "id": "6",
       "name": "Gold Experience",
+      "sub_name": "Test",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "type": "experience",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set2",
@@ -416,6 +417,7 @@ GET `/rateables/experience`
     {
       "id": "7",
       "name": "Test Experience",
+      "sub_name": "Test",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "type": "experience",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set2",
@@ -448,6 +450,7 @@ GET `/rateables/services`
     {
       "id": "2",
       "name": "Smithing",
+      "sub_name": "Test",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "type": "services",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set1",
@@ -458,6 +461,7 @@ GET `/rateables/services`
     {
       "id": "3",
       "name": "Woodworking",
+      "sub_name": "Test",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "type": "services",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set1",
@@ -490,6 +494,7 @@ GET `/rateables/people`
     {
       "id": "10",
       "name": "Sin Grey Audragonel",
+      "sub_name": "Test",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "type": "people",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set5",
@@ -500,6 +505,7 @@ GET `/rateables/people`
     {
       "id": "11",
       "name": "Godfrey Fvjyana",
+      "sub_name": "Test",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "type": "people",
       "image_file": "https:\/\/robohash.org\/1562320426.png?set=set5",

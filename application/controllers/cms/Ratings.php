@@ -64,7 +64,7 @@ class Ratings extends Admin_core_controller {
         $value->device_name,
         $value->station_name,
         $value->rateable_name . " ({$value->rateable_type})",
-        $value->rating_star . " ({$value->rating})",
+        $value->rating,
         ($value->internal_member_name) ? $value->internal_member_name . " (internal)": $value->external_member_name . " (external)",
         ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)",
         $value->rated_at_formatted,

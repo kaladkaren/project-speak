@@ -11,7 +11,9 @@ class Admin_model extends Admin_core_model
 
   public function add($data)
   {
+    $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
     $this->db->insert('admin', $data);
+    
     return $this->db->insert_id();
   }
 

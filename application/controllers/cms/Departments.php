@@ -52,7 +52,7 @@ class Departments extends Admin_core_controller {
     $this->admin_redirect('cms/departments');
   }
 
-  public function delete($id)
+  public function delete()
   {
     if($this->departments_model->delete($this->input->post('id'))){
       $this->session->set_flashdata('flash_msg', ['message' => 'Item deleted successfully', 'color' => 'green']);

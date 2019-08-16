@@ -35,7 +35,7 @@ class Ratings_model extends Crud_model
     $where_from = $this->input->get('from');
     $where_to = $this->input->get('to');
     if ($where_from && $where_to) {
-      $where_date = "ratings.rated_at BETWEEN '$where_from' AND '$where_to'";
+      $where_date = "DATE(ratings.rated_at) BETWEEN '$where_from' AND '$where_to'";
     } else {
       $where_date = 1;
     }
