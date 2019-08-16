@@ -32,9 +32,9 @@
   <script src="<?php echo base_url('public/admin/'); ?>js/jquery.js"></script>
   <script src="<?php echo base_url('public/admin/'); ?>js/jquery-ui-1.9.2.custom.min.js"></script>
 
-
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/admin/'); ?>assets/jquery-multi-select/css/multi-select.css" />
   <script type="text/javascript" src="<?php echo base_url('public/admin/'); ?>assets/jquery-multi-select/js/jquery.multi-select.js"></script>
+  <script type="text/javascript" src="<?php echo base_url('public/admin/'); ?>assets/jquery-multi-select/js/jquery.quicksearch.js"></script>
 
   <script type="text/javascript">
     const base_url = '<?php echo base_url(); ?>';
