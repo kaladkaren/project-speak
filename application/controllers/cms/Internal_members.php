@@ -14,7 +14,7 @@ class Internal_members extends Admin_core_controller {
   public function index()
   {
     $this->internal_members_model->paginate();
-    $this->db->order_by('id', 'desc');
+    $this->db->order_by('full_name', 'asc');
     $data['res'] =  $this->internal_members_model->all();
 
     $data['divisions'] =  $this->divisions_model->all();

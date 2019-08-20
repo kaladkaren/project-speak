@@ -71,7 +71,7 @@
                     <th>Rating</th>
                     <th>Comment</th>
                     <th>Rated by</th>
-                    <th>Rater meta</th>
+                    <th>Group</th>
                     <th>Rated at</th>
                     <!-- <th>Actions</th> -->
                   </tr>

@@ -13,6 +13,7 @@ class Sub_agencies_model extends Crud_model
 
   public function add($data)
   {
+    $data = array_merge($data, ['updated_at' => date('Y-m-d H:i:s')]); # for putting a default value on updated at
     $this->db->insert('sub_agencies', $data);
     return $this->db->insert_id();
   }
