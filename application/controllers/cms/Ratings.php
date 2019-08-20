@@ -51,8 +51,8 @@ class Ratings extends Admin_core_controller {
     // send the column headers
     fputcsv($file, array(
       // 'ID', 
-      'Device', 'Station', 'Rateable', 'Rating', 'Rated by',
-       'Rater meta', 
+      'Device', 'Station', 'Rateable', 'Rating', 'Comment', 'Rated by',
+       'Group', 
        'Rated at'));
     
     $res = $this->ratings_model->allFormatted(false);
@@ -65,6 +65,7 @@ class Ratings extends Admin_core_controller {
         $value->station_name,
         $value->rateable_name . " ({$value->rateable_type})",
         $value->rating,
+        $value->comment,
         ($value->internal_member_name) ? $value->internal_member_name . " (internal)": $value->external_member_name . " (external)",
         ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)",
         $value->rated_at_formatted,
