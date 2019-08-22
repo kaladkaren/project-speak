@@ -39,7 +39,7 @@
                         <td><?php echo $value->name ?></td>
                         <td><?php echo $value->sub_name ?></td>
                         <?php if (in_array($type_lower, ['services'])): ?>
-                          <td><?php echo ($value->scope == false) ? 'unclassified' : $value->scope; ?></td>
+                          <td><?php echo ($value->scope == false) ? 'internal/external' : $value->scope; ?></td>
                         <?php endif; ?>
                         <td><?php echo $value->description ?></td>
                         <td><?php echo ($value->division_name)?:'&lt;no division&gt;'; ?></td>
@@ -108,7 +108,7 @@
               <div class="form-group">
               <label >Scope</label>
               <select name="scope" class="form-control">
-                <option value="">Unclassified</option>
+                <option value="">Internal/External</option>
                 <option value="internal">Internal</option>
                 <option value="external">External</option>
               </select>
