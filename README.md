@@ -14,6 +14,7 @@
 | Sub agencies      | [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) |          no            |  🆗   | 
 | Options **(UPDATED)** | [Check rateables & groups status](#check-rateables--groups-status)     |                  no                |  🆗    | Aug 6, 2019 11:00 AM
 | Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
+| Rateables         | [Get all mixed services](#get-all-mixed-services)                 |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
 | Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM 
 | Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
 | Ratings           | [Sync](#sync)                                         |                  **yes**           |  🆗    | 
@@ -474,7 +475,77 @@ GET `/rateables/services`
       "station_name": "Delhatti Spire"
     }
   }
-}}
+}
+```
+
+### Get all mixed services
+GET `/rateables/services/mixed`
+
+##### Response
+```javascript
+200 OK
+
+{
+  "data": {
+    "internal": [
+      {
+        "id": "3",
+        "name": "Woodworking",
+        "sub_name": null,
+        "scope": "internal",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "division_id": "0",
+        "type": "services",
+        "image_file": "https:\/\/robohash.org\/1562660452.png?set=set1",
+        "created_at": "2019-07-09 16:20:50",
+        "updated_at": "2019-08-22 11:02:52",
+        "division_name": "Unclassified",
+        "image_url": "https:\/\/robohash.org\/1562660452.png?set=set1"
+      }
+    ],
+    "external": [
+      {
+        "id": "2",
+        "name": "Tailoring",
+        "sub_name": null,
+        "scope": "external",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "division_id": "0",
+        "type": "services",
+        "image_file": "1563436171_Screenshot_34.png",
+        "created_at": "2019-07-09 16:20:50",
+        "updated_at": "2019-08-22 11:02:55",
+        "division_name": "Unclassified",
+        "image_url": "http:\/\/localhost\/project-speak\/uploads\/rateables\/1563436171_Screenshot_34.png"
+      }
+    ],
+    "unclassified": [
+      {
+        "id": "26",
+        "name": "Serbisyong totoo",
+        "sub_name": "Hey!!!",
+        "scope": null,
+        "description": "",
+        "division_id": "2",
+        "type": "services",
+        "image_file": "1565935022_octocat.png",
+        "created_at": "2019-08-16 13:42:43",
+        "updated_at": "2019-08-16 13:57:02",
+        "division_name": "KPD",
+        "image_url": "http:\/\/localhost\/project-speak\/uploads\/rateables\/1565935022_octocat.png"
+      }
+    ]
+  },
+  "meta": {
+    "message": "Got all data",
+    "status": 200,
+    "code": "ok",
+    "station": {
+      "station_id": "1",
+      "station_name": "Delhatti Spire"
+    }
+  }
+}
 ```
 
 ### Get all people

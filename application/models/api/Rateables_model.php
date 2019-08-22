@@ -27,6 +27,33 @@ class Rateables_model extends Crud_model
     $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
     $res = $this->db->get('rateables')->result();
 
+    $res = $this->formatRateables($res);
+
+    return $res;
+  }
+
+ function allServicesByScope($station_id, $scope = null)
+ {
+    # Get from 3rd table first 
+    $stations_rateables = $this->db->get_where('stations_rateables', ['station_id' => $station_id])->result_array();
+
+    $ids_arr = array_column($stations_rateables, 'rateable_id');
+
+    # Get from rateables table with filters
+    $this->db->select('rateables.*, if(divisions.division_name is null, "Unclassified", divisions.division_name) as division_name');
+    $this->db->where('rateables.type', 'services');
+    $this->db->where_in('rateables.id', $ids_arr);
+    $this->db->where('scope', $scope);
+    $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
+    $res = $this->db->get('rateables')->result();
+
+    $res = $this->formatRateables($res);
+    
+    return $res;
+ }
+
+  function formatRateables($res)
+  {
     foreach ($res as &$value) {
       $value->image_url = (strpos($value->image_file, 'robohash') !== false) ? $value->image_file : 
         $this->full_up_path . $value->image_file;
@@ -108,10 +135,7 @@ class Rateables_model extends Crud_model
     $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
     $res = $this->db->get('rateables')->result();
 
-    foreach ($res as &$value) {
-      $value->image_url = (strpos($value->image_file, 'robohash') !== false) ? $value->image_file : 
-        $this->full_up_path . $value->image_file;
-    }
+    $res = $this->formatRateables($res);
     
     return $res;
   }

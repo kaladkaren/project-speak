@@ -30,6 +30,10 @@ class Rateables extends Crud_controller
         case 'people':
         $this->getRateable($type, $station_id);
         break;
+
+        case 'services_mixed':
+        $this->getServicesMixed($station_id);
+        break;
       
       default:
         
@@ -49,6 +53,24 @@ class Rateables extends Crud_controller
   function getRateable($type, $station_id)
   {
     $res = $this->rateables_model->allByTypeAndStation($type, $station_id);
+    
+    $this->response((object) [
+      'data' => $res,
+      'meta' => (object) [
+        'message' => 'Got all data',
+        'status' => 200,
+        'code' => 'ok',
+        'station' => $this->stations_model->getStationObj($station_id)
+      ]
+    ], 200);
+  }
+
+  function getServicesMixed($station_id)
+  {
+    $res = (object)[];
+    $res->internal = $this->rateables_model->allServicesByScope($station_id, 'internal');
+    $res->external = $this->rateables_model->allServicesByScope($station_id, 'external');
+    $res->unclassified = $this->rateables_model->allServicesByScope($station_id, null);
     
     $this->response((object) [
       'data' => $res,

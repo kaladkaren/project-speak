@@ -74,6 +74,7 @@ $route['migrate/(:any)'] = 'migrate/index/$1';
 $route['api/sub-agencies/department/(:num)'] = 'api/sub_agencies/department/$1';
 $route['api/members/internal'] = 'api/internal_members';
 $route['api/rateables/(:any)'] = 'api/rateables/rateables/$1';
+$route['api/rateables/services/mixed'] = 'api/rateables/rateables/services_mixed';
 
 
 $route['cms/rateables/update-rateables-stations'] = 'cms/rateables/update_rateables_stations';
