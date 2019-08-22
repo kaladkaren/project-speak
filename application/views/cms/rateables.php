@@ -25,7 +25,9 @@
                       <th>Scope</th>
                     <?php endif; ?>
                     <th><?php echo $description_header ?></th>
-                    <th>Division</th>
+                    <?php if (in_array($type_lower, ['services', 'experience'])): ?>
+                      <th>Division</th>
+                    <?php endif; ?>
                     <th>Image</th>
                     <th>Actions</th>
                   </tr>
@@ -42,11 +44,13 @@
                           <td><?php echo ($value->scope == false) ? 'internal/external' : $value->scope; ?></td>
                         <?php endif; ?>
                         <td><?php echo $value->description ?></td>
-                        <td><?php echo ($value->division_name)?:'&lt;no division&gt;'; ?></td>
+                        <?php if (in_array($type_lower, ['services', 'experience'])): ?>
+                          <td><?php echo ($value->division_name)?:'&lt;no division&gt;'; ?></td>
+                        <?php endif; ?>
                         <td><a target="_blank" href="<?php echo $value->image_url ?>"><img src='<?php echo $value->image_url ?>' style="height:50px"/></a></td>
                         <td>
                           <button type="button"
-                          data-payload='<?php echo json_encode(['id' => $value->id, 'name' => $value->name, 'description' => $value->description, 'sub_name' => $value->sub_name, 'image_url' => $value->image_url, 'division_id' => $value->division_id], JSON_HEX_APOS|JSON_HEX_QUOT)?>'
+                          data-payload='<?php echo json_encode(['id' => $value->id, 'name' => $value->name, 'description' => $value->description, 'sub_name' => $value->sub_name, 'scope' => $value->scope, 'image_url' => $value->image_url, 'division_id' => $value->division_id], JSON_HEX_APOS|JSON_HEX_QUOT)?>'
                           class="edit-row btn btn-info btn-xs">Edit</button>
                           <button type="button" data-id='<?php echo $value->id; ?>' data-type='<?php echo $type_lower; ?>'
                             class="btn btn-delete btn-danger btn-xs">Delete</button>
@@ -118,6 +122,7 @@
               <label ><?php echo $description_header ?></label>
               <textarea class="form-control" name="description" placeholder="<?php echo $description_header ?>"></textarea>
             </div>
+            <?php if (in_array($type_lower, ['services', 'experience'])): ?>
             <div class="form-group">
               <label >Division</label>
               <select name="division_id" class="form-control">
@@ -127,6 +132,7 @@
                 <?php endforeach ?>
               </select>
             </div>            
+            <?php endif; ?>
             <div class="form-group">
               <label >Image</label>
               <a target="_blank" href=""><img src='' class="modal-img" style="height:50px"/></a>
