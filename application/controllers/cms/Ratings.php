@@ -9,6 +9,7 @@ class Ratings extends Admin_core_controller {
     $this->load->model('api/ratings_model');
     $this->load->model('api/stations_model');
     $this->load->model('api/devices_model');
+    $this->load->model('api/rateables_model');
 
   }
  
@@ -79,6 +80,49 @@ class Ratings extends Admin_core_controller {
       fputcsv($file, $row);
     }
     exit();
+  }
+
+  function summary($rateable_id = 0)
+  {
+    $rateable = $this->rateables_model->get($rateable_id);
+    $data['rateable_name'] = $rateable->name;
+    $data['rateable_id'] = $rateable->id;
+
+    # kailangan eh
+    
+    # where daterange block
+    $where_from = $this->input->get('from');
+    $where_to = $this->input->get('to');
+    if ($where_from && $where_to) {
+      $where_date = "DATE(ratings.rated_at) BETWEEN '$where_from' AND '$where_to'";
+    } else {
+      $where_date = 1;
+    }
+    # / where daterange block
+    $q = $this->db->query("SELECT COUNT(ratings.rating) as county, ratings.* FROM `ratings` WHERE rateable_id = $rateable_id AND $where_date GROUP BY rating ORDER BY rating DESC");
+
+
+    $summary = $q->result();
+
+
+    $summary_arr = $q->result_array();
+
+    $county = array_column($summary_arr, 'county');
+
+    $total = array_sum($county);
+    $data['average'] = $total / count($county);
+
+    foreach ($summary as &$value) {
+      $value->p = ($value->county / $total) * 100;
+    }
+
+
+    $data['summary'] = $summary;
+    $data['total'] = $total;
+    $data['from'] = $this->input->get('from');
+    $data['to'] = $this->input->get('to');
+
+    $this->wrapper('cms/rating-summary', $data);
   }
 
   

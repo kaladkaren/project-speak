@@ -76,13 +76,15 @@
                     <th>Rated by</th>
                     <th>Group</th>
                     <th>Rated at</th>
-                    <!-- <th>Actions</th> -->
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php if (count($res) > 0 ): ?>
 
-                    <?php foreach ($res as $key => $value): ?>
+                    <?php foreach ($res as $key => $value): 
+
+                      ?>
                       <tr>
                         <th scope="row"><?php echo $starty++ ?></th>
                         <td><?php echo $value->device_name ?></td>
@@ -93,13 +95,12 @@
                         <td><?php echo ($value->internal_member_name)? "$value->internal_member_name (internal)": "$value->external_member_name (external)" ?></td>
                         <td><?php echo ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)" ?></td>
                         <td><?php echo $value->rated_at_formatted?></td>
-                        <!-- <td> -->
-         <!--                  <button type="button"
-                          data-payload='<?php echo json_encode(['id' => $value->id, 'station_name' => $value->station_name])?>'
-                          class="edit-row btn btn-info btn-xs">Edit</button>
-                          <button type="button" data-id='<?php echo $value->id; ?>'
-                            class="btn btn-delete btn-danger btn-xs">Delete</button> -->
-                        <!-- </td> -->
+                        <td>
+                          <a href="<?php echo base_url('cms/ratings/summary/') . $value->rateable_id; ?>?from=<?php echo @$from ?>&to=<?php echo $to ?>">
+                          <button type="button"
+                            class="btn btn-delete btn-success btn-xs"><i class='fa fa-bar-chart-o'></i> Summary</button>
+                          </a>
+                        </td>
                         </tr>
                       <?php endforeach; ?>
 
