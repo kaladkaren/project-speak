@@ -16,6 +16,14 @@ class Rateables extends Admin_core_controller {
   public function index($type)
   {
     $this->rateables_model->paginate();
+
+    $name = $this->input->get('name');
+    $sub_name = $this->input->get('sub_name');
+
+    # seearch filter block
+    $this->searchFilterBlock($name, $sub_name);
+    # seearch filter block
+    
     $data['res'] =  $this->rateables_model->allByType($type);
 
     $this->db->order_by('division_name', 'asc');
@@ -23,6 +31,8 @@ class Rateables extends Admin_core_controller {
 
     $data['type'] = ucwords($type);
     $data['type_lower'] = $type;
+
+    $this->searchFilterBlock($name, $sub_name);
     $data['total_pages'] = $this->rateables_model->getTotalPages($type);
 
     switch ($type) {
@@ -47,10 +57,20 @@ class Rateables extends Admin_core_controller {
 
     #pagination shits
     $data['page'] = $this->rateables_model->page;
+    $data['name'] = $name;
+    $data['sub_name'] = $sub_name;
     $data['per_page'] = $this->rateables_model->per_page;
     $data['starty'] = ($data['page'] == 1) ? 1 : (($data['page'] - 1) * $data['per_page']) + 1;
 
     $this->wrapper('cms/rateables', $data);
+  }
+
+  function searchFilterBlock($name, $sub_name)
+  {
+    $where_name = ($name) ? "rateables.name LIKE '%$name%'" : 1;
+    $where_sub_name = ($sub_name) ? "rateables.sub_name LIKE '%$sub_name%'": 1;
+
+    $this->db->where("$where_name AND $where_sub_name");
   }
 
   function stations()

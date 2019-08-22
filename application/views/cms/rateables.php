@@ -9,6 +9,32 @@
             <?php if ($flash_msg = $this->session->flash_msg): ?>
               <br><sub style="color: <?php echo $flash_msg['color'] ?>"><?php echo $flash_msg['message'] ?></sub>
             <?php endif; ?>
+
+            <div style='margin-top:8px'>
+            </div>
+
+            <form method="GET">
+
+            <div class="row">
+                <div class="col-md-2">
+                  <input type="text" class="form-control" name="name" placeholder="Search <?php echo $name_header ?>" value="<?php echo @$name ?>">
+                </div>                
+                <div class="col-md-2">
+                  <input type="text" class="form-control" name="sub_name" placeholder="Search <?php echo $sub_name_header ?>" value="<?php echo @$sub_name ?>">
+                </div>
+                <div class="col-md-1">
+                   <button type="submit" class="btn btn-info"><i class="fa fa-filter"></i> Filter</button>
+                </div>
+              </form>
+
+              <div class="col-md-1">
+                <form method="GET">
+                   <button type="submit" class="btn btn-info"><i class="fa fa-times"></i> Clear</button>
+                </form>
+              </div>
+
+            </div> <!-- end row -->
+
           </header>
           <div class="panel-body">
             <p>
@@ -74,10 +100,10 @@
                       <li><a
                         class="<?php echo ($i == $page) ? 'active_lg' : '' ?>"
                         href="<?php echo base_url($this->uri->uri_string())
-                        . "?page=" . $i;
+                        . "?name=$name&sub_name=$sub_name&page=$i";
                         ?>"><?php echo $i ?></a></li>
                       <?php } ?>
-                    </ul>
+                   </ul>
                   </ul>
               </div>
             </div>

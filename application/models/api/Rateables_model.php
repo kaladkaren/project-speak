@@ -65,7 +65,6 @@ class Rateables_model extends Crud_model
 
   public function getTotalPages($type = null)
   {
-    $this->db->reset_query();
     if ($type) {
       $this->db->where('type', $type);
     }
