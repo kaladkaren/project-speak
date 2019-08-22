@@ -31,6 +31,11 @@ class Sub_agencies_model extends Crud_model
   {
     return $this->db->get_where('sub_agencies', array('id' => $id))->row();
   }
+ 
+  public function getByAgencyName($agency_name)
+  {
+    return $this->db->get_where('sub_agencies', array('agency_name' => $agency_name))->row();
+  }
 
   public function update($id, $data)
   {

@@ -14,10 +14,10 @@
 | Sub agencies      | [Get all sub agencies by department id](#get-all-sub-agencies-by-department-id) |          no            |  🆗   | 
 | Options **(UPDATED)** | [Check rateables & groups status](#check-rateables--groups-status)     |                  no                |  🆗    | Aug 6, 2019 11:00 AM
 | Rateables         | [Get all services](#get-all-services)                 |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
-| Rateables         | [Get all mixed services](#get-all-mixed-services)                 |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
+| Rateables         | [Get all mixed services](#get-all-mixed-services)                 |                  **yes**           |  🆗    | Aug 22, 2019 1:00 PM
 | Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM 
 | Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
-| Ratings           | [Sync](#sync)                                         |                  **yes**           |  🆗    | 
+| Ratings           | [Sync](#sync)                                         |                  **yes**           |  🆗    | Aug 22, 2019 1:00 PM
 
 ---
 
@@ -605,6 +605,7 @@ POST `/ratings/sync`
 |  external_member_name  | optional   | string    | name of the external member      | 'John Doe'
 |  department_id         | optional   | number    | department id of the external member | 1 
 |  sub_agency_id         | optional   | number    | sub agency id of the external member | 2
+|  custom_sub_agency     | optional   | string    | if this field is **NOT NULL**, the system will automatically create a new sub_agency then assign it to the rating | 'Custom agency'
 
 ##### Response
 ```javascript

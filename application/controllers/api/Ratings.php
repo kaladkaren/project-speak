@@ -9,6 +9,7 @@ class Ratings extends Crud_controller
 
     $this->load->model('api/ratings_model');
     $this->load->model('api/devices_model');
+    $this->load->model('api/sub_agencies_model');
 
   }
 
@@ -25,6 +26,19 @@ class Ratings extends Crud_controller
     $device_id_pk = $this->devices_model->getByDeviceId(helperGetDeviceIdHeader($this))->id;
     $data = array_merge($this->input->post(null, true), ['device_id' => $device_id_pk]);
     
+    # block for checking others / custom_sub_agency
+    $custom_sub_agency = $this->input->post('custom_sub_agency');
+    if ($custom_sub_agency && !$this->sub_agencies_model->getByAgencyName($custom_sub_agency)) {
+      $insert_id = $this->sub_agencies_model->add(['agency_name' => $this->input->post('custom_sub_agency'),
+       'department_id' => $this->input->post('department_id')]);
+
+      $data['sub_agency_id'] = $insert_id;
+    } else{
+      $data['sub_agency_id'] = $this->sub_agencies_model->getByAgencyName($custom_sub_agency)->id;
+    }
+    unset($data['custom_sub_agency']);
+    # / block for checking others / custom_sub_agency
+
     # try to add
   	if ($this->ratings_model->add($data)) {
   	  
