@@ -31,6 +31,9 @@ class Ratings_model extends Crud_model
     # device where
     $where_device = ($device_id = $this->input->get('device_id')) ? "ratings.device_id = $device_id": 1;
     
+    # device where
+    $where_name = ($name = $this->input->get('name')) ? "rateables.name LIKE '%$name%'": 1;
+    
     # where daterange block
     $where_from = $this->input->get('from');
     $where_to = $this->input->get('to');
@@ -43,7 +46,7 @@ class Ratings_model extends Crud_model
 
     # full where string
     if ($where_station || $where_device || $where_date) {
-      $where_str = "WHERE $where_station AND $where_device AND $where_date";
+      $where_str = "WHERE $where_station AND $where_device AND $where_date AND $where_name";
     }
 
     # for our pagination

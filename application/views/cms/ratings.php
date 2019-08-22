@@ -16,6 +16,9 @@
 
             <div class="row">
                 <div class="col-md-2">
+                  <input type="text" class="form-control" name="name" placeholder="Search rateable" value="<?php echo $name ?>">
+                </div>
+                <div class="col-md-2">
                   <select id="select_device" class="form-control" name="device_id">
                     <option value="">Select device</option>
                     <?php foreach ($devices as $value): ?>
@@ -37,7 +40,7 @@
                       <span class="input-group-addon">To</span>
                       <input type="date" class="form-control" name="to" value="<?php echo ($from && $to) ? $to :'';  ?>">
                   </div>
-                </div>              
+                </div>    
                 <div class="col-md-1">
                    <button type="submit" class="btn btn-info"><i class="fa fa-filter"></i> Filter</button>
                 </div>
@@ -49,7 +52,7 @@
                 </form>
               </div>
 
-                <div class="col-md-1">
+                <div class="col-md-1" style="margin-top:12px">
 
                     <a href="<?php echo base_url('cms/ratings/export?') . $_SERVER['QUERY_STRING'] ?>">
                       <button type="button" class="btn btn-success "><i class="fa fa-print"></i> Export to CSV</button>

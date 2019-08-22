@@ -29,6 +29,7 @@ class Ratings extends Admin_core_controller {
     $data['per_page'] = $this->ratings_model->per_page;
     $data['starty'] = ($data['page'] == 1) ? 1 : (($data['page'] - 1) * $data['per_page']) + 1;
 
+    $data['name'] = $this->input->get('name');
     $data['device_id'] = $this->input->get('device_id');
     $data['station_id'] = $this->input->get('station_id');
     $data['from'] = $this->input->get('from');
