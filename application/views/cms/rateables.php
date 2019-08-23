@@ -93,7 +93,6 @@
                   </tbody>
                 </table>
 
-                <ul class="pagination">
                   <ul class='pagination'>
                     <?php
                     for ($i=1; $i <= $total_pages; $i++) { ?>
@@ -102,9 +101,8 @@
                         href="<?php echo base_url($this->uri->uri_string())
                         . "?name=$name&sub_name=$sub_name&page=$i";
                         ?>"><?php echo $i ?></a></li>
-                      <?php } ?>
+                      <?php }  ?>
                    </ul>
-                  </ul>
               </div>
             </div>
           </section>

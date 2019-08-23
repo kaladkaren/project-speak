@@ -9,7 +9,7 @@ class Rateables_model extends Crud_model
     $this->upload_dir = 'rateables'; # uploads/your_dir
     $this->uploads_folder = "uploads/" . $this->upload_dir . "/";
     $this->full_up_path = base_url() . "uploads/" . $this->upload_dir . "/"; # override this block on your child class. just redeclare it
-    $this->per_page = $this->input->get('per_page') ?: 15;
+    $this->per_page = $this->input->get('per_page') ?: 2;
     $this->page = $this->input->get('page') ?: 1;
   }
 

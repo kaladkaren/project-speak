@@ -49,7 +49,6 @@
                   </tbody>
                 </table>
 
-                <ul class="pagination">
                   <ul class='pagination'>
                     <?php
                     for ($i=1; $i <= $total_pages; $i++) { ?>
@@ -60,7 +59,6 @@
                         ?>"><?php echo $i ?></a></li>
                       <?php } ?>
                     </ul>
-                  </ul>
               </div>
             </div>
           </section>

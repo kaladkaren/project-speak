@@ -41,6 +41,12 @@
     const gear_loader_url = '<?php echo base_url(); ?>public/img/gear-loader.gif';
     const gear_loader_img = `<center><img class='gear-load' style="height:20px" src="<?php echo base_url(); ?>public/admin/img/gear-loader.gif" /></center>`;
   </script>
+
+  <style>
+    .active_lg{
+      background-color : rgba(75,180,75,0.18) !important;
+    }
+  </style>
 </head>
 
 <body>
