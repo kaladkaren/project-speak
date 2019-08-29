@@ -56,7 +56,37 @@
           		</div>
           	</div>
 
-       	  </div>
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table">
+                  <tr>
+                    <th>Comment</th>
+                    <th>Commenter</th>
+                    <th>Group</th>
+                    <th>Rated At</th>
+                  </tr>
+                  <?php if ($comments): 
+                      foreach ($comments as $value):
+                    ?>
+                  <tr>
+                    <td><?php echo $value->comment ?></td>
+                        <td><?php echo ($value->internal_member_name)? "$value->internal_member_name (internal)": "$value->external_member_name (external)" ?></td>
+                        <td><?php echo ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)" ?></td>
+                    <td><?php echo $value->rated_at_formatted ?></td>
+                  </tr>
+                  <?php 
+                    endforeach;
+                      else: ?>                    
+                  <tr>
+                    <td colspan="4">No comments</td>
+                  </tr>
+                  <?php endif ?>
+                </table>
+              </div>
+            </div>
+       	
+
+          </div>
        </section>
 	  </div>
 	</div>
