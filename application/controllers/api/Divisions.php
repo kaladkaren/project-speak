@@ -12,6 +12,8 @@ class Divisions extends Crud_controller
 
   function index_get()
   {
+    $this->db->order_by('division_name', 'asc');
+    $this->db->where_not_in('id', [11, 12, 13]); # exclude Finance and Administrative Division (Ground), Finance and Administrative Division (Basement), Finance and Administrative Division (Cashier)
     $res = $this->divisions_model->all();
     $this->response($res, 200);
 
