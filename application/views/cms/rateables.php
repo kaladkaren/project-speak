@@ -51,7 +51,7 @@
                       <th>Scope</th>
                     <?php endif; ?>
                     <th><?php echo $description_header ?></th>
-                    <?php if (in_array($type_lower, ['services', 'experience'])): ?>
+                    <?php if (in_array($type_lower, ['services', 'experience', 'people'])): ?>
                       <th>Division</th>
                     <?php endif; ?>
                     <th>Image</th>
@@ -70,7 +70,7 @@
                           <td><?php echo ($value->scope == false) ? 'internal/external' : $value->scope; ?></td>
                         <?php endif; ?>
                         <td><?php echo $value->description ?></td>
-                        <?php if (in_array($type_lower, ['services', 'experience'])): ?>
+                        <?php if (in_array($type_lower, ['services', 'experience', 'people'])): ?>
                           <td><?php echo ($value->division_name)?:'&lt;no division&gt;'; ?></td>
                         <?php endif; ?>
                         <td><a target="_blank" href="<?php echo $value->image_url ?>"><img src='<?php echo $value->image_url ?>' style="height:50px"/></a></td>
@@ -146,7 +146,7 @@
               <label ><?php echo $description_header ?></label>
               <textarea class="form-control" name="description" placeholder="<?php echo $description_header ?>"></textarea>
             </div>
-            <?php if (in_array($type_lower, ['services', 'experience'])): ?>
+            <?php if (in_array($type_lower, ['services', 'experience', 'people'])): ?>
             <div class="form-group">
               <label >Division</label>
               <select name="division_id" class="form-control">

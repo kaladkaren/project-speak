@@ -9,7 +9,7 @@ class Rateables_model extends Crud_model
     $this->upload_dir = 'rateables'; # uploads/your_dir
     $this->uploads_folder = "uploads/" . $this->upload_dir . "/";
     $this->full_up_path = base_url() . "uploads/" . $this->upload_dir . "/"; # override this block on your child class. just redeclare it
-    $this->per_page = $this->input->get('per_page') ?: 2;
+    $this->per_page = $this->input->get('per_page') ?: 15;
     $this->page = $this->input->get('page') ?: 1;
   }
 
@@ -40,10 +40,15 @@ class Rateables_model extends Crud_model
     $ids_arr = array_column($stations_rateables, 'rateable_id');
 
     # Get from rateables table with filters
+    $this->db->order_by('name', 'asc');
     $this->db->select('rateables.*, if(divisions.division_name is null, "Unclassified", divisions.division_name) as division_name');
     $this->db->where('rateables.type', 'services');
     $this->db->where_in('rateables.id', $ids_arr);
-    $this->db->where('scope', $scope);
+    if ($scope == null) {
+      $this->db->where('(scope = "" OR scope IS NULL)'); # for empty string
+    } else {
+      $this->db->where('scope', $scope);
+    }
     $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
     $res = $this->db->get('rateables')->result();
 
@@ -128,6 +133,7 @@ class Rateables_model extends Crud_model
     $ids_arr = array_column($stations_rateables, 'rateable_id');
 
     # Get from rateables table with filters
+    $this->db->order_by('rateables.name', 'asc');
     $this->db->select('rateables.*, if(divisions.division_name is null, "Unclassified", divisions.division_name) as division_name');
     $this->db->where('rateables.type', $type);
     $this->db->where_in('rateables.id', $ids_arr);

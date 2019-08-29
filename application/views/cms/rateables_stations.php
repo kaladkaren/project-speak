@@ -1,3 +1,8 @@
+
+<style>
+  .ms-container { width: 100%;  }
+  .ms-container .ms-list { height: 440px; }
+</style>
 <section id="main-content">
   <section class="wrapper">
     <!-- page start-->
@@ -19,11 +24,12 @@
           <div class="panel-body">
              <form method="post" action="<?php echo base_url('cms/rateables/update-rateables-stations') ?>">
              <div class="form-group">
-               <label class="control-label col-md-1">Searchable</label>
-                <div class="col-md-5">
+                <div class="col-md-7">
                   <input type="hidden" name="id" value="<?php echo $station->id ?>">
                     <select multiple="multiple" class="multi-select" name="rateable_ids[]">
-                        <?php foreach ($station->stations_rateables as $k => $r): #categ ?>
+                        <?php foreach ($station->stations_rateables as $k => $r): #categ
+                        // var_dump($r); 
+                         ?>
                         
                         <optgroup label="<?php echo $k ?>">
                           <?php foreach ($r as $key => $ival): # laman 
@@ -38,7 +44,7 @@
                 </div>
                 <div class="col-md-3" >
                   <button type="submit" class="btn btn-success">
-                    <i class="fa fa-check-circle-o"></i> Save - <?php echo ucwords($station->station_name); ?>
+                      <i class="fa fa-check-circle-o"></i> Save - <?php echo ucwords($station->station_name); ?>
                   </button>
                     <?php if ($flash_msg['station_id'] === $station->id):?>
                       <br><h5 style="color: <?php echo $flash_msg['color'] ?>"><?php echo $flash_msg['message'] ?></h5>
