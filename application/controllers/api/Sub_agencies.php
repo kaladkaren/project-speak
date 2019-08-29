@@ -30,6 +30,7 @@ class Sub_agencies extends Crud_controller
 
   function index_get()
   {
+    $this->db->order_by('agency_name', 'asc');
     $res = $this->sub_agencies_model->all();
     $this->response($res, 200);
 

@@ -13,6 +13,7 @@ class Internal_members extends Crud_controller
 
   function index_get()
   {
+    $this->db->order_by('full_name', 'asc');
     $res = $this->internal_members_model->all();
 
     $this->response((object) [

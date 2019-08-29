@@ -22,7 +22,7 @@ class Sub_agencies_model extends Crud_model
   {
     $this->db->select('sub_agencies.*, departments.department_name');
     $this->db->join('departments', 'sub_agencies.department_id = departments.id');
-    $this->db->order_by('sub_agencies.id', 'asc');
+    // $this->db->order_by('sub_agencies.id', 'asc');
     $res = $this->db->get('sub_agencies')->result();
     return $res;
   }

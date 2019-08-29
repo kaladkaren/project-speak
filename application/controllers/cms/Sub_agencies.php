@@ -17,8 +17,8 @@ class Sub_agencies extends Admin_core_controller {
     $this->db->order_by('agency_name', 'asc');
     $data['res'] =  $this->sub_agencies_model->all();
 
+    $this->db->order_by('department_name', 'asc');
     $data['departments'] =  $this->departments_model->all();
-
 
     #pagination shits
     $data['total_pages'] = $this->sub_agencies_model->getTotalPages();
