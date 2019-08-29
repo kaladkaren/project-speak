@@ -34,19 +34,19 @@
                     <?php endforeach ?>
                   </select>
                 </div>                
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="input-group">
                       <input type="date" class="form-control" name="from" value="<?php echo ($from && $to) ? $from :''; ?>">
                       <span class="input-group-addon">To</span>
                       <input type="date" class="form-control" name="to" value="<?php echo ($from && $to) ? $to :'';  ?>">
                   </div>
                 </div>    
-                <div class="col-md-1">
+                <div class="col-md-1" style="margin-top:12px">
                    <button type="submit" class="btn btn-info"><i class="fa fa-filter"></i> Filter</button>
                 </div>
               </form>
 
-              <div class="col-md-1">
+              <div class="col-md-1" style="margin-top:12px">
                 <form method="GET">
                    <button type="submit" class="btn btn-info"><i class="fa fa-times"></i> Clear</button>
                 </form>
