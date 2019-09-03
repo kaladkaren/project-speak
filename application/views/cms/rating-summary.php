@@ -69,7 +69,7 @@
                       foreach ($comments as $value):
                     ?>
                   <tr>
-                    <td><?php echo $value->comment ?></td>
+                  <td><span style="color:<?php echo $value->comment_color ?>;font-weight: bold"><?php echo $value->comment ?></span></td>
                         <td><?php echo ($value->internal_member_name)? "$value->internal_member_name (internal)": "$value->external_member_name (external)" ?></td>
                         <td><?php echo ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)" ?></td>
                     <td><?php echo $value->rated_at_formatted ?></td>

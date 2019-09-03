@@ -102,7 +102,7 @@ class Ratings extends Admin_core_controller {
     $q = $this->db->query("SELECT COUNT(ratings.rating) as county, (rating * COUNT(ratings.rating)) as ratingsy, ratings.* FROM `ratings` WHERE rateable_id = $rateable_id AND $where_date GROUP BY rating ORDER BY rating DESC");
 
     $comments_q = $this->db->query("
-      SELECT ratings.id as id, rateables.name as rateable_name, rateables.type as rateable_type, ratings.rating, ratings.rateable_id, ratings.rated_at, ratings.comment, DATE_FORMAT(ratings.rated_at, '%M, %d %Y %h:%i:%s %p') as rated_at_formatted,  devices.device_name, stations.station_name, internal_members.full_name, departments.department_name, internal_members.full_name as internal_member_name, ratings.external_member_name as external_member_name, sub_agencies.agency_name, divisions.division_name as division_name
+      SELECT ratings.id as id, rateables.name as rateable_name, rateables.type as rateable_type, ratings.rating, ratings.rateable_id, ratings.rated_at, ratings.comment, DATE_FORMAT(ratings.rated_at, '%M, %d %Y %h:%i:%s %p') as rated_at_formatted,  devices.device_name, stations.station_name, internal_members.full_name, departments.department_name, internal_members.full_name as internal_member_name, ratings.external_member_name as external_member_name, sub_agencies.agency_name, divisions.division_name as division_name, ratings.comment_type
       FROM ratings
       LEFT JOIN rateables ON ratings.rateable_id = rateables.id
       LEFT JOIN devices ON ratings.device_id = devices.id 
@@ -131,8 +131,12 @@ class Ratings extends Admin_core_controller {
       $value->p = ($value->county / $total) * 100;
     }
 
-
     $data['comments'] = $comments_q->result();
+
+    foreach ($data['comments'] as &$value) {
+      $value->comment_color = $this->ratings_model->getCommentColor($value->comment_type);
+    }
+
     $data['summary'] = $summary;
     $data['total'] = $total;
     $data['from'] = $this->input->get('from');
