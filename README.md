@@ -17,7 +17,7 @@
 | Rateables         | [Get all mixed services](#get-all-mixed-services)                 |                  **yes**           |  🆗    | Aug 22, 2019 1:00 PM
 | Rateables         | [Get all experience](#get-all-experience)             |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM 
 | Rateables         | [Get all people](#get-all-people)                     |                  **yes**           |  🆗    | Aug 16, 2019 9:32 AM
-| Ratings           | [Sync](#sync)                                         |                  **yes**           |  🆗    | Aug 22, 2019 1:00 PM
+| Ratings           | [Sync](#sync)                                         |                  **yes**           |  🆗    | Sept 03, 2019 1:00 PM
 
 ---
 
@@ -600,6 +600,7 @@ POST `/ratings/sync`
 |  rating                | yes        | number    | rating  1 (lowest) - 5 (highest) |        5 
 |  rated_at              | yes        | datetime  | time of rating on local device   | 2019-11-29 23:23:23
 |  comment               | no         | string    | comments                         | Lorem ipsum dolor sit amet, consectetur adipisicing elit
+|  comment_type          | no         | string    | 'suggestion', 'compliment' (defaults to 'suggestion') | 'suggestion'
 |  internal_member_id    | optional   | number    | if blank, will assume the request is from an external member | 123 / 0 / null
 | **- beyond this row are the parameters  used for external  member ratings. omit them if you have internal_member_id -**
 |  external_member_name  | optional   | string    | name of the external member      | 'John Doe'
