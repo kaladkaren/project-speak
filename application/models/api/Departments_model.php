@@ -52,23 +52,24 @@ class Departments_model extends Crud_model
     $this->db->limit($this->per_page, $offset);
   }
 
+   function moveOthersAtTheEnd($arr)
+ {
+   $new_arr = [];
 
-  function moveOthersAtTheEnd($arr)
-   {
-     $others = null;
+   foreach ($arr as $value) {
+     if($value->department_name != 'Others'){
+      $new_arr[] = $value;
 
-     foreach ($arr as $key => $value) {
-       if($value->department_name == 'Others'){
-        $others = $value;
-
-        unset($arr[$key]);
-       }
      }
-
-     if ($others) {
-       array_push($arr, $others);
-     }
-     
-     return $arr;
    }
+
+   foreach ($arr as $value) {
+     if($value->department_name == 'Others'){
+      $new_arr[] = $value;
+     }
+   }
+
+   return $new_arr; 
+ }
+
 }

@@ -59,21 +59,22 @@ class Rateables_model extends Crud_model
 
  function moveOthersAtTheEnd($arr)
  {
-   $others = null;
+   $new_arr = [];
 
-   foreach ($arr as $key => $value) {
-     if($value->name == 'Others'){
-      $others = $value;
+   foreach ($arr as $value) {
+     if($value->name != 'Others'){
+      $new_arr[] = $value;
 
-      unset($arr[$key]);
      }
    }
 
-   if ($others) {
-     array_push($arr, $others);
+   foreach ($arr as $value) {
+     if($value->name == 'Others'){
+      $new_arr[] = $value;
+     }
    }
-   
-   return $arr;
+
+   return $new_arr; 
  }
 
  function orderExperienceArray($arr){
