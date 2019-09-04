@@ -5,17 +5,21 @@
   <section class="wrapper site-min-height">
     <!-- page start-->
     <div class="row">
-      <div class="col-lg-9">
+      <div class="col-lg-11">
         <section class="panel">
           <header class="panel-heading">
-          	Summary of <strong><em><?php echo $rateable_name ?></em></strong> 
+          	Summary of <strong><em><?php echo $rateable_name ?></em></strong> from <?php echo $division_name ?>
           	<?php if ($to && $from): ?>
           		from <b><?php echo date('F j, Y', strtotime($from)) ?></b> to <b><?php echo date('F j, Y', strtotime($to)) ?></b>
           	<?php endif ?>
           	<br>
-          	<a href="<?php echo base_url('cms/ratings') . "?name=$rateable_name&from=$from&to=$to" ?>">
+          	<a href="<?php echo base_url('cms/ratings') . "?" ?>">
           		<button class="btn btn-info btn-xs">&laquo; Go back to Ratings</button>
-          	</a>
+          	</a>           
+           <br>
+            <a href="<?php echo base_url('cms/ratings') . "?name=$rateable_name&from=$from&to=$to" ?>">
+              <button class="btn btn-info btn-xs">&laquo; Go back to Ratings (retain filters)</button>
+            </a>
           </header>
           <div class="panel-body">
 
@@ -47,13 +51,17 @@
 
           	<div class="row">
           		<div class="col-md-3">
+ 					<h5 style="font-weight:bold">Average rating: <?php echo $average ?>⭐</h5>
+          		</div>
+          		<div class="col-md-3">
+ 					<h5 style="font-weight:bold">Total ratings: <?php echo $total ?> ratings</h5>
+          		</div>
+          		<div class="col-md-3">
+          <h5 style="font-weight:bold">Total suggestions: <?php echo $total_suggestions ?></h5>
           		</div>	
-          		<div class="col-md-4">
- 					<h4>Average rating: <?php echo $average ?>⭐</h4>
-          		</div>
-          		<div class="col-md-4">
- 					<h4>Total ratings: <?php echo $total ?> ratings</h4>
-          		</div>
+              <div class="col-md-3">
+          <h5 style="font-weight:bold">Total compliments: <?php echo $total_compliments ?></h5>
+              </div>  
           	</div>
 
             <div class="row">
@@ -61,6 +69,11 @@
                 <table class="table">
                   <tr>
                     <th>Comment</th>
+                    <th>
+                      <?php if ($rateable_name == 'Others'): ?>
+                        Other rateable name
+                      <?php endif ?>
+                    </th>
                     <th>Commenter</th>
                     <th>Group</th>
                     <th>Rated At</th>
@@ -70,6 +83,7 @@
                     ?>
                   <tr>
                   <td><span style="color:<?php echo $value->comment_color ?>;font-weight: bold"><?php echo $value->comment ?></span></td>
+                  <td><?php echo ucwords($value->other_rateable_name) ?></td>
                         <td><?php echo ($value->internal_member_name)? "$value->internal_member_name (internal)": "$value->external_member_name (external)" ?></td>
                         <td><?php echo ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)" ?></td>
                     <td><?php echo $value->rated_at_formatted ?></td>

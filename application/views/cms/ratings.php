@@ -51,14 +51,21 @@
                    <button type="submit" class="btn btn-info"><i class="fa fa-times"></i> Clear</button>
                 </form>
               </div>
-
-                <div class="col-md-1" style="margin-top:12px">
+                <div class="col-md-2" style="margin-top:12px">
 
                     <a href="<?php echo base_url('cms/ratings/export?') . $_SERVER['QUERY_STRING'] ?>">
                       <button type="button" class="btn btn-success "><i class="fa fa-print"></i> Export to CSV</button>
                     </a>
 
                 </div>
+
+              <div class="col-md-5" style="margin-top:12px">
+                <p>
+                  <span style="font-size:12px;">Comment Legend:</span> 
+                  <span style="font-size:12px;font-weight:bold;color:#767676">Dark - Suggestion</span> |
+                  <span style="font-size:12px;font-weight:bold;color:green">Green - Compliment</span>
+                </p>
+              </div>
 
             </div> <!-- end row -->
           </header>
@@ -107,7 +114,7 @@
 
                     <?php else: ?>
                       <tr>
-                        <td colspan="8" style="text-align:center">Empty table data</td>
+                        <td colspan="10" style="text-align:center">Empty table data</td>
                       </tr>
                     <?php endif; ?>
                   </tbody>
@@ -120,7 +127,7 @@
                       <li><a
                         class="<?php echo ($i == $page) ? 'active_lg' : '' ?>"
                         href="<?php echo base_url($this->uri->uri_string())
-                        . "?device_id=$device_id&station_id=$station_id&from=$from&to=$to&page=$i";
+                        . "?name=$name&device_id=$device_id&station_id=$station_id&from=$from&to=$to&page=$i";
                         ?>"><?php echo $i ?></a></li>
                       <?php } ?>
                    </ul>

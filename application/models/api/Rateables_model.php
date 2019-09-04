@@ -89,7 +89,9 @@ class Rateables_model extends Crud_model
 
   public function get($id)
   {
-    return $this->db->get_where('rateables', array('id' => $id))->row();
+    $this->db->select('rateables.*, divisions.division_name');
+    $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
+    return $this->db->get_where('rateables', array('rateables.id' => $id))->row();
   }
 
   function updateRateables($data)

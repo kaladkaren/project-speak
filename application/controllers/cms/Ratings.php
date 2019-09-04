@@ -53,7 +53,7 @@ class Ratings extends Admin_core_controller {
     // send the column headers
     fputcsv($file, array(
       // 'ID', 
-      'Device', 'Station', 'Rateable', 'Rating', 'Comment', 'Rated by',
+      'Device', 'Station', 'Rateable', 'Rating', 'Comment', 'Comment type', 'Other rateable name', 'Rated by',
        'Group', 
        'Rated at'));
     
@@ -68,6 +68,8 @@ class Ratings extends Admin_core_controller {
         $value->rateable_name . " ({$value->rateable_type})",
         $value->rating,
         $value->comment,
+        $value->comment_type,
+        $value->other_rateable_name,
         ($value->internal_member_name) ? $value->internal_member_name . " (internal)": $value->external_member_name . " (external)",
         ($value->internal_member_name) ? $value->division_name . " (division)" : $value->department_name . " (department) - " . $value->agency_name . " (sub-agency)",
         $value->rated_at_formatted,
@@ -87,6 +89,7 @@ class Ratings extends Admin_core_controller {
     $rateable = $this->rateables_model->get($rateable_id);
     $data['rateable_name'] = $rateable->name;
     $data['rateable_id'] = $rateable->id;
+    $data['division_name'] = $rateable->division_name;
 
     # kailangan eh
     
@@ -101,19 +104,7 @@ class Ratings extends Admin_core_controller {
     # / where daterange block
     $q = $this->db->query("SELECT COUNT(ratings.rating) as county, (rating * COUNT(ratings.rating)) as ratingsy, ratings.* FROM `ratings` WHERE rateable_id = $rateable_id AND $where_date GROUP BY rating ORDER BY rating DESC");
 
-    $comments_q = $this->db->query("
-      SELECT ratings.id as id, rateables.name as rateable_name, rateables.type as rateable_type, ratings.rating, ratings.rateable_id, ratings.rated_at, ratings.comment, DATE_FORMAT(ratings.rated_at, '%M, %d %Y %h:%i:%s %p') as rated_at_formatted,  devices.device_name, stations.station_name, internal_members.full_name, departments.department_name, internal_members.full_name as internal_member_name, ratings.external_member_name as external_member_name, sub_agencies.agency_name, divisions.division_name as division_name, ratings.comment_type
-      FROM ratings
-      LEFT JOIN rateables ON ratings.rateable_id = rateables.id
-      LEFT JOIN devices ON ratings.device_id = devices.id 
-      LEFT JOIN stations ON ratings.saved_station_id = stations.id
-      LEFT JOIN internal_members ON ratings.internal_member_id = internal_members.id
-      LEFT JOIN departments ON ratings.department_id = departments.id
-      LEFT JOIN sub_agencies ON ratings.sub_agency_id = sub_agencies.id
-      LEFT JOIN divisions ON internal_members.division_id = divisions.id
-      WHERE ratings.rateable_id = $rateable_id AND $where_date 
-      AND (ratings.comment IS NOT NULL AND ratings.comment != '') 
-      GROUP BY ratings.comment ORDER BY rated_at DESC");
+    $comments_q = $this->ratings_model->getComments($rateable_id, $where_date);
 
       // SELECT ratings.*, DATE_FORMAT(ratings.rated_at, '%M, %d %Y %h:%i:%s %p') as rated_at_formatted FROM `ratings` WHERE rateable_id = $rateable_id AND $where_date GROUP BY comment ORDER BY rating DESC
 
@@ -131,7 +122,7 @@ class Ratings extends Admin_core_controller {
       $value->p = ($value->county / $total) * 100;
     }
 
-    $data['comments'] = $comments_q->result();
+    $data['comments'] = $comments_q;
 
     foreach ($data['comments'] as &$value) {
       $value->comment_color = $this->ratings_model->getCommentColor($value->comment_type);
@@ -139,9 +130,11 @@ class Ratings extends Admin_core_controller {
 
     $data['summary'] = $summary;
     $data['total'] = $total;
+    $data['total_suggestions'] = $this->ratings_model->countCommentType($rateable_id, 'suggestion');
+    $data['total_compliments'] = $this->ratings_model->countCommentType($rateable_id, 'compliment');
     $data['from'] = $this->input->get('from');
     $data['to'] = $this->input->get('to');
-
+    
     $this->wrapper('cms/rating-summary', $data);
   }
 
