@@ -52,5 +52,18 @@ class Divisions_model extends Crud_model
     $this->db->limit($this->per_page, $offset);
   }
 
+  function sortCustom($arr)
+  {
+    $res = [];
+
+    foreach ($arr as $value) { if($value->id == 14) { $res[] = $value; } } # Office of the Executive Director
+    foreach ($arr as $value) { if($value->id == 6) { $res[] = $value; } } #  Eligibility and Rank Appointment Division
+    foreach ($arr as $value) { if($value->id == 8) { $res[] = $value; } } #  Professional Development Division
+    foreach ($arr as $value) { if($value->id == 9) { $res[] = $value; } } #  Performance Management and Assistance Division 
+    foreach ($arr as $value) { if($value->id == 10) { $res[] = $value; } } # Policy, Planning and Legal Division and Finance and Administrative Division 
+
+    return $res;
+  }
+
 
 }

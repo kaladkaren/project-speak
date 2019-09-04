@@ -53,4 +53,22 @@ class Departments_model extends Crud_model
   }
 
 
+  function moveOthersAtTheEnd($arr)
+   {
+     $others = null;
+
+     foreach ($arr as $key => $value) {
+       if($value->department_name == 'Others'){
+        $others = $value;
+
+        unset($arr[$key]);
+       }
+     }
+
+     if ($others) {
+       array_push($arr, $others);
+     }
+     
+     return $arr;
+   }
 }

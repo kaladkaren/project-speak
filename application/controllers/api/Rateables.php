@@ -53,6 +53,10 @@ class Rateables extends Crud_controller
   function getRateable($type, $station_id)
   {
     $res = $this->rateables_model->allByTypeAndStation($type, $station_id);
+
+    if ($type == 'experience') {
+      $res = $this->rateables_model->orderExperienceArray($res);
+    }
     
     $this->response((object) [
       'data' => $res,
@@ -70,7 +74,9 @@ class Rateables extends Crud_controller
     $res = (object)[];
     $res->internal = $this->rateables_model->allServicesByScope($station_id, 'internal');
     $res->external = $this->rateables_model->allServicesByScope($station_id, 'external');
-    $res->unclassified = $this->rateables_model->allServicesByScope($station_id, null);
+    $unclassified = $this->rateables_model->allServicesByScope($station_id, null);
+
+    $res->unclassified = $this->rateables_model->moveOthersAtTheEnd($unclassified);
     
     $this->response((object) [
       'data' => $res,

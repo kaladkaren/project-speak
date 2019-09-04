@@ -57,6 +57,53 @@ class Rateables_model extends Crud_model
     return $res;
  }
 
+ function moveOthersAtTheEnd($arr)
+ {
+   $others = null;
+
+   foreach ($arr as $key => $value) {
+     if($value->name == 'Others'){
+      $others = $value;
+
+      unset($arr[$key]);
+     }
+   }
+
+   if ($others) {
+     array_push($arr, $others);
+   }
+   
+   return $arr;
+ }
+
+ function orderExperienceArray($arr){
+  $rate_this_app = null;
+  $overall_experience = null;
+
+   foreach ($arr as $key => $value) {
+     if($value->name == 'Rate this App'){
+      $rate_this_app = $value;
+
+      unset($arr[$key]);
+     }
+
+     if($value->name == 'Overall Experience'){
+      $overall_experience = $value;
+
+      unset($arr[$key]);
+     }
+   }
+
+   if ($overall_experience) {
+     array_unshift($arr, $overall_experience);
+   }
+   if ($rate_this_app) {
+     array_push($arr, $rate_this_app);
+   }
+   
+   return $arr;
+ }
+
   function formatRateables($res)
   {
     foreach ($res as &$value) {

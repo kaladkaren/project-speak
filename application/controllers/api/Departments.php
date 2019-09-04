@@ -21,6 +21,7 @@ class Departments extends Crud_controller
     # / block for checking if has station ID assigned
     $this->db->order_by('department_name', 'asc');
     $res = $this->departments_model->all();
+    $res = $this->departments_model->moveOthersAtTheEnd($res);
     $this->response($res, 200);
 
     $this->response((object) [

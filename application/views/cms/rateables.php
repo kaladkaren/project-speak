@@ -87,7 +87,7 @@
 
                     <?php else: ?>
                       <tr>
-                        <td colspan="5" style="text-align:center">Empty table data</td>
+                        <td colspan="8" style="text-align:center">Empty table data</td>
                       </tr>
                     <?php endif; ?>
                   </tbody>
