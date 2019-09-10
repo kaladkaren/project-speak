@@ -62,8 +62,8 @@
               <div class="col-md-5" style="margin-top:12px">
                 <p>
                   <span style="font-size:12px;">Comment Legend:</span> 
-                  <span style="font-size:12px;font-weight:bold;color:#767676">Dark - Suggestion</span> |
-                  <span style="font-size:12px;font-weight:bold;color:green">Green - Compliment</span>
+                  <span style="font-size:12px;font-weight:bold;color:#4f64f9">Blue - Suggestion</span> |
+                  <span style="font-size:12px;font-weight:bold;color:#09ce09">Green - Compliment</span>
                 </p>
               </div>
 

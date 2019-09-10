@@ -1,5 +1,4 @@
 
-
 <!--main content start-->
 <section id="main-content">
   <section class="wrapper site-min-height">
@@ -12,14 +11,33 @@
           	<?php if ($to && $from): ?>
           		from <b><?php echo date('F j, Y', strtotime($from)) ?></b> to <b><?php echo date('F j, Y', strtotime($to)) ?></b>
           	<?php endif ?>
-          	<br>
-          	<a href="<?php echo base_url('cms/ratings') . "?" ?>">
-          		<button class="btn btn-info btn-xs">&laquo; Go back to Ratings</button>
-          	</a>           
-           <br>
-            <a href="<?php echo base_url('cms/ratings') . "?name=$rateable_name&from=$from&to=$to" ?>">
-              <button class="btn btn-info btn-xs">&laquo; Go back to Ratings (retain filters)</button>
-            </a>
+            <div class="row">
+              <div class="col-md-3">
+                
+            	<a href="<?php echo base_url('cms/ratings') . "?" ?>">
+            		<button class="btn btn-info btn-xs">&laquo; Go back to Ratings</button>
+            	</a>           
+             <br>
+              <a href="<?php echo base_url('cms/ratings') . "?name=$rateable_name&from=$from&to=$to" ?>">
+                <button class="btn btn-info btn-xs">&laquo; Go back to Ratings (retain filters)</button>
+              </a>
+              </div>
+
+           <form method="GET">
+  
+            <div class="col-md-6" style="margin-top:12px">
+                <div class="input-group">
+                  <input type="date" class="form-control" name="from" value="<?php echo ($from && $to) ? $from :''; ?>">
+                  <span class="input-group-addon">To</span>
+                  <input type="date" class="form-control" name="to" value="<?php echo ($from && $to) ? $to :'';  ?>">
+              </div>
+            </div>
+            <div class="col-md-1" style="margin-top:12px" >
+               <button type="submit" class="btn btn-info"><i class="fa fa-filter"></i> Filter</button>
+            </div>   
+         </form>
+            </div>
+
           </header>
           <div class="panel-body">
 
