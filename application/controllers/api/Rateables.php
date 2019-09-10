@@ -56,6 +56,8 @@ class Rateables extends Crud_controller
 
     if ($type == 'experience') {
       $res = $this->rateables_model->orderExperienceArray($res);
+    } else if ($type == 'people'){
+      $res = $this->rateables_model->orderPeopleArray($res);
     }
     
     $this->response((object) [
@@ -72,11 +74,12 @@ class Rateables extends Crud_controller
   function getServicesMixed($station_id)
   {
     $res = (object)[];
-    $res->internal = $this->rateables_model->allServicesByScope($station_id, 'internal');
-    $res->external = $this->rateables_model->allServicesByScope($station_id, 'external');
-    $unclassified = $this->rateables_model->allServicesByScope($station_id, null);
+    $res->internal = $this->rateables_model->moveOthersAtTheEnd($this->rateables_model->allServicesByScope($station_id, 'internal'));
+    $res->external = $this->rateables_model->moveOthersAtTheEnd($this->rateables_model->allServicesByScope($station_id, 'external'));
+    $res->unclassified = [];
 
-    $res->unclassified = $this->rateables_model->moveOthersAtTheEnd($unclassified);
+    // $unclassified = $this->rateables_model->allServicesByScope($station_id, null);
+    // $res->unclassified = $this->rateables_model->moveOthersAtTheEnd($unclassified);
     
     $this->response((object) [
       'data' => $res,

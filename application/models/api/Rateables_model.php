@@ -47,7 +47,7 @@ class Rateables_model extends Crud_model
     if ($scope == null) {
       $this->db->where('(scope = "" OR scope IS NULL)'); # for empty string
     } else {
-      $this->db->where('scope', $scope);
+      $this->db->where("(scope = '$scope' OR scope IS NULL OR scope = '')");
     }
     $this->db->join('divisions', 'rateables.division_id = divisions.id', 'left');
     $res = $this->db->get('rateables')->result();
@@ -100,6 +100,22 @@ class Rateables_model extends Crud_model
    }
    if ($rate_this_app) {
      array_push($arr, $rate_this_app);
+   }
+   
+   return $arr;
+ }
+
+ function orderPeopleArray($arr){
+  $head = null;
+
+   foreach ($arr as $key => $value) {
+     if(in_array($value->id, [65, 66])){
+      $temp = $value;
+      unset($arr[$key]);
+
+      array_unshift($arr, $temp);
+
+     }
    }
    
    return $arr;

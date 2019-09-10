@@ -66,4 +66,25 @@ class Sub_agencies_model extends Crud_model
     $this->db->limit($this->per_page, $offset);
   }
 
+
+ function moveOthersAtTheEnd($arr)
+ {
+   $new_arr = [];
+
+   foreach ($arr as $value) {
+     if($value->agency_name != 'Others'){
+      $new_arr[] = $value;
+
+     }
+   }
+
+   foreach ($arr as $value) {
+     if($value->agency_name == 'Others'){
+      $new_arr[] = $value;
+     }
+   }
+
+   return $new_arr; 
+ }
+
 }

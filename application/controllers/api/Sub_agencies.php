@@ -14,8 +14,9 @@ class Sub_agencies extends Crud_controller
 
   function department_get($department_id)
   {
+    $this->db->order_by('sub_agencies.agency_name', 'asc');
     $res = $this->sub_agencies_model->allByDepartmentId($department_id);
-    $this->response($res, 200);
+    $res = $this->sub_agencies_model->moveOthersAtTheEnd($res);
 
     $this->response((object) [
   	  'data' => $res,
@@ -31,7 +32,7 @@ class Sub_agencies extends Crud_controller
   function index_get()
   {
     $this->db->order_by('agency_name', 'asc');
-    $res = $this->sub_agencies_model->all();
+    $res = $this->sub_agencies_model->moveOthersAtTheEnd($this->sub_agencies_model->all());
     $this->response($res, 200);
 
     $this->response((object) [

@@ -74,7 +74,9 @@ class Ratings_model extends Crud_model
   function getComments($rateable_id, $where_date)
   {
     return $this->db->query("
-      SELECT ratings.id as id, rateables.name as rateable_name, rateables.type as rateable_type, ratings.rating, ratings.rateable_id, ratings.rated_at, ratings.comment, DATE_FORMAT(ratings.rated_at, '%M, %d %Y %h:%i:%s %p') as rated_at_formatted,  devices.device_name, stations.station_name, internal_members.full_name, departments.department_name, internal_members.full_name as internal_member_name, ratings.external_member_name as external_member_name, sub_agencies.agency_name, divisions.division_name as division_name, ratings.comment_type, ratings.other_rateable_name
+      SELECT ratings.id as id, rateables.name as rateable_name, rateables.type as rateable_type, ratings.rating, ratings.rateable_id, ratings.rated_at, 
+        IF(ratings.comment IS NULL OR ratings.comment = '', 'N/A', ratings.comment) as comment,
+        DATE_FORMAT(ratings.rated_at, '%M, %d %Y %h:%i:%s %p') as rated_at_formatted,  devices.device_name, stations.station_name, internal_members.full_name, departments.department_name, internal_members.full_name as internal_member_name, ratings.external_member_name as external_member_name, sub_agencies.agency_name, divisions.division_name as division_name, ratings.comment_type, ratings.other_rateable_name
       FROM ratings
       LEFT JOIN rateables ON ratings.rateable_id = rateables.id
       LEFT JOIN devices ON ratings.device_id = devices.id 
@@ -84,7 +86,7 @@ class Ratings_model extends Crud_model
       LEFT JOIN sub_agencies ON ratings.sub_agency_id = sub_agencies.id
       LEFT JOIN divisions ON internal_members.division_id = divisions.id
       WHERE ratings.rateable_id = $rateable_id AND $where_date 
-      AND (ratings.comment IS NOT NULL AND ratings.comment != '') 
+      AND ((ratings.comment IS NOT NULL AND ratings.comment != '') OR ratings.other_rateable_name IS NOT NULL)  
       GROUP BY ratings.id ORDER BY rated_at DESC")->result();
   }
 
@@ -99,6 +101,7 @@ class Ratings_model extends Crud_model
       }
 
       $value->comment_color = $this->getCommentColor($value->comment_type);
+      // $value->rateable_name = ($value->other_rateable_name && $value->name == 'Others') ? $value->rateable_name . " - " . $value->other_rateable_name : $value->rateable_name;
       $value->rateable_name = ($value->other_rateable_name) ? $value->rateable_name . " - " . $value->other_rateable_name : $value->rateable_name;
     }
 
@@ -119,12 +122,12 @@ class Ratings_model extends Crud_model
   {
     switch ($color_type) {
       case 'compliment':
-      return 'green';
+      return '#09ce09';
       break;
 
       case 'suggestion':
       default:
-      return '#797979';
+      return '#4f64f9';
       break;
     }
   }
