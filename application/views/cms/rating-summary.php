@@ -1,4 +1,22 @@
+<style>
+  .hide-b4 {
+    display: none;
+  }
 
+  @media print{
+    .header, #sidebar, .hidey {
+      display: none;
+    }
+    .showwy {
+      display: block;
+    }
+    #main-content, .wrapper {
+      margin-left:0px;
+    }
+
+  }
+
+</style>
 <!--main content start-->
 <section id="main-content">
   <section class="wrapper site-min-height">
@@ -11,7 +29,7 @@
           	<?php if ($to && $from): ?>
           		from <b><?php echo date('F j, Y', strtotime($from)) ?></b> to <b><?php echo date('F j, Y', strtotime($to)) ?></b>
           	<?php endif ?>
-            <div class="row">
+            <div class="row hidey">
               <div class="col-md-3">
                 
             	<a href="<?php echo base_url('cms/ratings') . "?" ?>">
@@ -35,6 +53,9 @@
             <div class="col-md-1" style="margin-top:12px" >
                <button type="submit" class="btn btn-info"><i class="fa fa-filter"></i> Filter</button>
             </div>   
+            <div class="col-md-1" style="margin-top:12px" >
+               <button type="button" class="btn btn-warning" onclick="window.print()"><i class="fa fa-print"></i> Print/PDF</button>
+            </div>   
          </form>
             </div>
 
@@ -42,16 +63,16 @@
           <div class="panel-body">
 
           	<div class="row">
-          		<div class="col-md-3">
+          		<div class="col-md-3 hidey">
           			<i class="fa fa-star" style='font-size:188px; color:#a87aa8'></i>
           			<center><h4>Rating Summary</h4></center>
           		</div>
-          		<br> 
+          		<br class="hidey"> 
           		<div class="col-md-9">
           			
           			<?php
 			        foreach ($summary as $value):  ?>
-	          				<div class="row"> 
+	          				<div class="row hidey"> 
 	          						<div class="col-md-2"><?php echo $value->rating ?> ⭐</div>
 	          						<div class="col-md-7">
 	      								<div class="progress progress-striped active progress-sm">
@@ -61,8 +82,7 @@
 	          						</div>
 	          						<div class="col-md-3"><?php echo $value->county ?> ratings out of <?php echo $total ?></div>
 	          				</div>
-		          			
-		          			 
+                  <div class="hide-b4 showwy"><?php echo $value->rating ?> ⭐ <?php echo $value->county ?> ratings out of <?php echo $total ?></div>
           			<?php endforeach ?>
           		</div>
           	</div>
