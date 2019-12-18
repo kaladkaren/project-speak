@@ -22,7 +22,7 @@
                     <th>Device Name</th>
                     <th>Device ID</th>
                     <th>Station</th>
-                    <!-- <th>Action</th> -->
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -39,6 +39,11 @@
                               <option value="<?php echo $station->id ?>" <?php echo ($station->id == $device->station_id) ? 'selected="selected"' : '' ?>><?php echo $station->station_name ?></option>
                             <?php endforeach; ?>
                           </select>
+                        </td>
+                        <td>
+                          <?php if ($device->station_id): ?>
+                            <a class="btn btn-sm btn-info" href="<?php echo base_url('cms/devices/summary/' . $device->id) ?>"><i class="fa fa-book"></i> Device Summary</a>
+                          <?php endif ?>
                         </td>
               <!--           <td>
                           <button type="button"

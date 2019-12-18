@@ -23,6 +23,41 @@ class Ratings_model extends Crud_model
     return $res;
   }
 
+  function getDeviceRatingsPerType($device_id, $type = 'services', $from = null, $to = null)
+  {
+    $where_string = 1;
+    if ($from && $to) {
+      $where_string = "(ratings.rated_at >= '$from' AND ratings.rated_at <= '$to')";
+    }
+
+    // var_dump($from, $to, $where_string); die();
+    return $this->db->query("SELECT rateables.id as id, rateables.name, rateables.type, 
+      AVG(ratings.rating) as ratingy,
+      count(ratings.rating) as total,
+      ((AVG(ratings.rating) / count(ratings.rating)) * 100) as perc
+       FROM `ratings`
+      LEFT JOIN rateables ON ratings.rateable_id = rateables.id
+      WHERE device_id = $device_id AND type = '{$type}' AND $where_string
+      GROUP BY rateable_id")->result();
+  }
+
+  function createZeroRatings($rateables = [], $rateable_ids_exclude = [], $type = 'services') {
+    if (!$rateables)  # rateables ng station na yon
+      return [];
+    // var_dump($rateables); die();
+    $res = [];
+
+    foreach($rateables as $value){
+      # if not exclude and correct type
+      // var_dump(!in_array($value->id, $rateable_ids_exclude), $value->type == $type, $value->id); die();
+      if (!in_array($value->id, $rateable_ids_exclude) && $value->type == $type) {
+        $res[] = $value;
+      }
+    }
+    // var_dump($res, $rateables, $rateable_ids_exclude); die();
+    return $res;
+  }
+
   public function buildQueryObjectAllFormatted($paginate = false)
   {
     # station where

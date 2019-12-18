@@ -32,6 +32,13 @@ class Rateables_model extends Crud_model
     return $res;
   }
 
+  function getRateables($station_id)
+  {
+    return $this->db->query("SELECT rateables.id as id, rateables.name, rateables.type FROM `rateables`
+      LEFT JOIN stations_rateables ON rateables.id = stations_rateables.rateable_id
+      WHERE station_id = {$station_id}")->result();
+  }
+
  function allServicesByScope($station_id, $scope = null)
  {
     # Get from 3rd table first 

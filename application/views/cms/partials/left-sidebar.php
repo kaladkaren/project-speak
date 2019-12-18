@@ -87,7 +87,7 @@
         <li>
           <hr>
         </li>
-          <li><a <?php echo $this->uri->segment(2) === 'devices' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/devices') ?>"><i class="fa fa-mobile-phone"></i> Device Station Assignment</a></li>
+          <li><a <?php echo $this->uri->segment(2) === 'devices' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/devices') ?>"><i class="fa fa-mobile-phone"></i> Device Assignment / Summary</a></li>
         <li><a <?php echo $this->uri->segment(3) === 'stations' ? 'style="color:#ff6c60"': ''; ?> href="<?php echo base_url('cms/rateables/stations') ?>"><i class="fa fa-quote-left"></i> Rateables Assignment</a></li>
       </ul>
       <!-- sidebar menu end-->

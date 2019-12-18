@@ -42,6 +42,12 @@ class Devices_model extends Crud_model
   	return $this->db->count_all_results('devices');
   }
 
-
+  // function formatRes($data)
+  // {
+  //   $res = [];
+  //   foreach ($collection as $key => $value) {
+  //     $res[$key]->station = 
+  //   }
+  // }
 
 }
