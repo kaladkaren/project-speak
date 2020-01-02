@@ -64,7 +64,7 @@
               <div class="col-md-12">
                 <table class="table table-striped">
                   <tr>
-                    <th colspan="3">Services</th>
+                    <th colspan="3" style="text-align: center"><h4>Services</h4></th>
                   </tr>                  <tr>
                     <th>Rateable name</th>
                     <th>Rating</th>
@@ -103,7 +103,7 @@
               <div class="col-md-12">
                 <table class="table table-striped">
                   <tr>
-                    <th colspan="3">People</th>
+                    <th colspan="3" style="text-align: center"><h4>People</h4></th>
                   </tr>                  <tr>
                     <th>Rateable name</th>
                     <th>Rating</th>
@@ -145,7 +145,7 @@
               <div class="col-md-12">
                 <table class="table table-striped">
                   <tr>
-                    <th colspan="3">Experience</th>
+                    <th colspan="3" style="text-align: center"><h4>Experience</h4></th>
                   </tr>                  <tr>
                     <th>Rateable name</th>
                     <th>Rating</th>

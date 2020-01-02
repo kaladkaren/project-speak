@@ -38,7 +38,8 @@ class Ratings_model extends Crud_model
        FROM `ratings`
       LEFT JOIN rateables ON ratings.rateable_id = rateables.id
       WHERE device_id = $device_id AND type = '{$type}' AND $where_string
-      GROUP BY rateable_id")->result();
+      GROUP BY rateable_id
+      ORDER BY ratingy DESC")->result();
   }
 
   function createZeroRatings($rateables = [], $rateable_ids_exclude = [], $type = 'services') {
