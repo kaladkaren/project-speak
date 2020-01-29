@@ -42,6 +42,7 @@ class Devices extends Admin_core_controller {
     # Services
     # ##############
     $data['services'] = $this->ratings_model->getDeviceRatingsPerType($device_id, 'services', $data['from'], $data['to']);
+    $data['services'] = $this->ratings_model->formatAppendDeviceComments($data['services']);
     $data['services_rateable_ids'] = [];
     foreach ($data['services'] as $value) {
       $data['services_rateable_ids'][] = $value->id;
@@ -54,6 +55,7 @@ class Devices extends Admin_core_controller {
     # People
     # ##############
     $data['people'] = $this->ratings_model->getDeviceRatingsPerType($device_id, 'people', $data['from'], $data['to']);
+    $data['people'] = $this->ratings_model->formatAppendDeviceComments($data['people']);
     $data['people_rateable_ids'] = [];
     foreach ($data['people'] as $value) {
       $data['people_rateable_ids'][] = $value->id;
@@ -65,6 +67,7 @@ class Devices extends Admin_core_controller {
     # Experience
     # ##############
     $data['experience'] = $this->ratings_model->getDeviceRatingsPerType($device_id, 'experience', $data['from'], $data['to']);
+    $data['experience'] = $this->ratings_model->formatAppendDeviceComments($data['experience']);
     $data['experience_rateable_ids'] = [];
     foreach ($data['experience'] as $value) {
       $data['experience_rateable_ids'][] = $value->id;

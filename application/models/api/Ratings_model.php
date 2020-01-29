@@ -31,15 +31,33 @@ class Ratings_model extends Crud_model
     }
 
     // var_dump($from, $to, $where_string); die();
-    return $this->db->query("SELECT rateables.id as id, rateables.name, rateables.type, 
+    return $this->db->query("SELECT rateables.id as id, GROUP_CONCAT(ratings.id SEPARATOR ' ') as rating_ids,
+     IF (ratings.other_rateable_name IS NOT NULL AND ratings.other_rateable_name != '', CONCAT(rateables.name, ' - ', ratings.other_rateable_name), rateables.name) as name, rateables.type, 
       AVG(ratings.rating) as ratingy,
       count(ratings.rating) as total,
       ((AVG(ratings.rating) / count(ratings.rating)) * 100) as perc
        FROM `ratings`
       LEFT JOIN rateables ON ratings.rateable_id = rateables.id
       WHERE device_id = $device_id AND type = '{$type}' AND $where_string
-      GROUP BY rateable_id
+      GROUP BY ratings.rateable_id, ratings.other_rateable_name
       ORDER BY ratingy DESC")->result();
+  }
+
+  function formatAppendDeviceComments(&$data)
+  {
+    $res = [];
+    foreach ($data as $value) {
+      $comments = [];
+      $rating_ids = explode(" ", $value->rating_ids);
+      foreach($rating_ids as $rating_id) {
+        $comments[] = $this->get($rating_id);
+      }
+      $value->comments = $comments;
+
+      $res[] = $value;
+    }
+
+    return $res;
   }
 
   function createZeroRatings($rateables = [], $rateable_ids_exclude = [], $type = 'services') {
@@ -150,8 +168,13 @@ class Ratings_model extends Crud_model
   }
 
   public function get($id)
-  {
-    return $this->db->get_where('ratings', array('id' => $id))->row();
+  { 
+    $this->db->select('ratings.*, rateables.name');
+    $this->db->join('rateables', 'ratings.rateable_id = rateables.id', 'left');
+    $this->db->where('ratings.id', $id);
+    return $this->db->get('ratings')->row();
+    
+    // return $this->db->get_where('ratings', ['id' => $id])->row();
   }
 
   function getCommentColor($color_type)
