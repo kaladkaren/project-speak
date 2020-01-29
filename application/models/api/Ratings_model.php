@@ -23,7 +23,7 @@ class Ratings_model extends Crud_model
     return $res;
   }
 
-  function getDeviceRatingsPerType($device_id, $type = 'services', $from = null, $to = null)
+  function getDeviceRatingsPerType($device_id, $type = 'services', $scope = 'internal', $from = null, $to = null)
   {
     $where_string = 1;
     if ($from && $to) {
@@ -31,16 +31,23 @@ class Ratings_model extends Crud_model
     }
 
     // var_dump($from, $to, $where_string); die();
-    return $this->db->query("SELECT rateables.id as id, GROUP_CONCAT(ratings.id SEPARATOR ' ') as rating_ids,
-     IF (ratings.other_rateable_name IS NOT NULL AND ratings.other_rateable_name != '', CONCAT(rateables.name, ' - ', ratings.other_rateable_name), rateables.name) as name, rateables.type, 
+    $res = $this->db->query("SELECT rateables.id as id, 
+     GROUP_CONCAT(ratings.id SEPARATOR ' ') as rating_ids,
+      rateables.name as name,
+      rateables.type, 
       AVG(ratings.rating) as ratingy,
       count(ratings.rating) as total,
+      IF(rateables.scope is NULL OR rateables.scope = '', 'internal/external', rateables.scope) as scope,
       ((AVG(ratings.rating) / count(ratings.rating)) * 100) as perc
        FROM `ratings`
       LEFT JOIN rateables ON ratings.rateable_id = rateables.id
-      WHERE device_id = $device_id AND type = '{$type}' AND $where_string
-      GROUP BY ratings.rateable_id, ratings.other_rateable_name
+      WHERE device_id = $device_id AND type = '{$type}' AND $where_string 
+      AND (scope = '$scope' OR scope IS NULL OR scope = '')
+      GROUP BY ratings.rateable_id  
       ORDER BY ratingy DESC")->result();
+    // var_dump($this->db->last_query()); die();
+     
+    return $res;
   }
 
   function formatAppendDeviceComments(&$data)
@@ -169,7 +176,7 @@ class Ratings_model extends Crud_model
 
   public function get($id)
   { 
-    $this->db->select('ratings.*, rateables.name');
+    $this->db->select("ratings.*, rateables.name,  IF(rateables.scope is NULL OR rateables.scope = '', 'internal/external', rateables.scope) as scope");
     $this->db->join('rateables', 'ratings.rateable_id = rateables.id', 'left');
     $this->db->where('ratings.id', $id);
     return $this->db->get('ratings')->row();
