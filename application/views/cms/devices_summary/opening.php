@@ -24,7 +24,7 @@
   <section class="wrapper site-min-height">
     <!-- page start-->
     <div class="row">
-      <div class="col-lg-11">
+      <div class="col-lg-12">
         <section class="panel">
           <header class="panel-heading">
             Summary of <strong><em><?php echo $device->device_name ?></em></strong> (<?php echo $station->station_name ?> Station)

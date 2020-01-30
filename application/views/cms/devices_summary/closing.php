@@ -24,7 +24,7 @@
               <tr>
                 <th>Name</th>
                 <th>Details</th>
-                <th>Scope</th>
+                <th>Rater</th>
                 <th>Rating</th>
                 <th>Comment<br><sub>(<span style="font-size:12px;font-weight:bold;color:#4f64f9">Suggestion</span> |
                   <span style="font-size:12px;font-weight:bold;color:#09ce09">Compliment</span>)</sub></th>
@@ -62,7 +62,7 @@
           stringy += `<tr>`
           stringy += `<td>`+comment_data[i].name+`</td>`
           stringy += `<td>`+comment_data[i].other_rateable_name+`</td>`
-          stringy += `<td>`+comment_data[i].scope+`</td>`
+          stringy += `<td style='text-transform:capitalize'>`+comment_data[i].scope+ ` - ` + comment_data[i].full_name + `</td>`
           stringy += `<td>`+comment_data[i].rating+` ⭐</td>`
           if (comment_data[i].comment_type == 'compliment') {
             stringy += `<td><span style="color:#09ce09">`+comment_data[i].comment+`</span></td>`

@@ -28,6 +28,12 @@ class Ratings_model extends Crud_model
     $where_string = 1;
     if ($from && $to) {
       $where_string = "(ratings.rated_at >= '$from' AND ratings.rated_at <= '$to')";
+    } 
+
+    if ($scope == 'internal') { # internal
+      $where_string .= " AND ratings.internal_member_id != 0";
+    } else { # external
+      $where_string .= " AND ratings.internal_member_id = 0";
     }
 
     // var_dump($from, $to, $where_string); die();
@@ -35,14 +41,15 @@ class Ratings_model extends Crud_model
      GROUP_CONCAT(ratings.id SEPARATOR ' ') as rating_ids,
       rateables.name as name,
       rateables.type, 
+      SUM(ratings.comment_type = 'compliment') as compliment_count,
+      SUM(ratings.comment_type = 'suggestion') as suggestion_count,
       AVG(ratings.rating) as ratingy,
       count(ratings.rating) as total,
-      IF(rateables.scope is NULL OR rateables.scope = '', 'internal/external', rateables.scope) as scope,
+      IF(ratings.internal_member_id = 0, 'external', 'internal') as scope,
       ((AVG(ratings.rating) / count(ratings.rating)) * 100) as perc
        FROM `ratings`
       LEFT JOIN rateables ON ratings.rateable_id = rateables.id
       WHERE device_id = $device_id AND type = '{$type}' AND $where_string 
-      AND (scope = '$scope' OR scope IS NULL OR scope = '')
       GROUP BY ratings.rateable_id  
       ORDER BY ratingy DESC")->result();
     // var_dump($this->db->last_query()); die();
@@ -176,9 +183,11 @@ class Ratings_model extends Crud_model
 
   public function get($id)
   { 
-    $this->db->select("ratings.*, rateables.name,  IF(rateables.scope is NULL OR rateables.scope = '', 'internal/external', rateables.scope) as scope");
+    $this->db->select("ratings.*, rateables.name, IF(ratings.internal_member_id = 0, 'external', 'internal') as scope, 
+      IF(ratings.internal_member_id = 0, ratings.external_member_name, internal_members.full_name) as full_name");
     $this->db->join('rateables', 'ratings.rateable_id = rateables.id', 'left');
     $this->db->where('ratings.id', $id);
+    $this->db->join('internal_members', 'internal_members.id = ratings.internal_member_id', 'left');
     return $this->db->get('ratings')->row();
     
     // return $this->db->get_where('ratings', ['id' => $id])->row();
